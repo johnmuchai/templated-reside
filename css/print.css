@@ -1,0 +1,89 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Raleway:400,300,600,700);
+* { border-radius:0 !important; }
+
+/* ==========================================================================
+   Receipt Specific
+   ========================================================================== */
+body {
+	font-size: 15px;
+	font-family: 'Open Sans', serif;
+	font-weight: 300;
+}
+
+h2 { margin-bottom: 0; }
+strong { font-weight: 400; }
+
+.mt-0 { margin-top: 0px !important; }
+.mt-10 { margin-top: 10px !important; }
+.mt-20 { margin-top: 20px !important; }
+.mb-0 { margin-bottom: 0px !important; }
+.mb-10 { margin-bottom: 10px !important; }
+.mb-20 { margin-bottom: 20px !important; }
+
+.alertMsg {
+    padding: 10px 20px 10px 50px;
+    position: relative;
+	font-size: 14px;
+    line-height: 20px;
+	margin: 10px 0;
+}
+	.alertMsg .msgIcon {
+		font-size: 20px !important;
+		color: #ffffff;
+		position: absolute;
+		top: 9px;
+		left: 15px;
+	}
+	.alertMsg.warning {
+		border-left: 4px solid #cd851e;
+		border-color: #df8a13;
+		background-image: linear-gradient(#f0ad4e, #eea236);
+		color: #ffffff;
+	}
+
+/* ==========================================================================
+   Bootstrap Overrides
+   ========================================================================== */
+.panel { box-shadow: none; }
+	.panel-default > .panel-heading { background-color: #fafafa; }
+	.panel-default .panel-heading h4 { margin: 0; }
+	
+.panel-body { padding: 5px 15px; }
+
+.well {
+	background-color: transparent;
+	border: 1px solid #dddddd;
+	box-shadow: none;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.6;
+}
+
+.badge {
+    background-color: #ffffff;
+    color: #505050;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 3px 7px;
+    text-align: right;
+}
+
+.table > thead > tr > th { font-weight: 400; }
+
+/* ==========================================================================
+   Other Specifics
+   ========================================================================== */
+.sm-text { font-size: 14px; }
+
+.qty-col { width: 50px; }
+.desc-col { width: 840px; }
+.price-col { width: 100px; }
+.line-tot-col { width: 100px; }
+
+.lab-desc-col {  }
+.hours-col { width: 100px; }
+
+.sub-to-col {  }
+.grand-tot-col { width: 100px; }
+
+.res-well { min-height: 137px; }
