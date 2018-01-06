@@ -19,12 +19,12 @@
 				leases.leaseId = ".$rs_leaseId;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
 	$row = mysqli_fetch_assoc($res);
-	
+
 	$lateRentAmt = $row['propertyRate'] + $row['latePenalty'];
 
 	require_once('includes/paypal.php');
 	$show_form = 1;
-	
+
 	// Check if the Tenant is late on current month's rent
 	$latecheck1 = "SELECT
 					users.leaseId,
@@ -54,7 +54,7 @@
 	} else {
 		$tenantIsLate = 'false';
 	}
-	
+
 	if ($tenantIsLate == 'true') {
 		if ($currentDay > '5') {
 			$totalToPay = $lateRentAmt;
@@ -66,7 +66,7 @@
 	} else {
 		$totalToPay = '';
 	}
-	
+
 	// Get Next Record ID from the Payments Table
 	$nxt = "SHOW TABLE STATUS LIKE 'payments'";
 	$nxtres = mysqli_query($mysqli, $nxt) or die('-1' . mysqli_error());
@@ -82,7 +82,7 @@
 ?>
 	<div class="container page_block noTopBorder">
 		<hr class="mt-0 mb-0" />
-		
+
 		<?php
 			if ($rs_leaseId != '0' && $set['enablePayments'] == '1') {
 				if ($msgBox) { echo $msgBox; }
@@ -93,8 +93,9 @@
 			<?php } else { ?>
 				<p class="lead"><?php echo $set['siteName']; ?> <?php echo $paymentTypes2; ?></p>
 			<?php } ?>
-			
+
 			<?php
+
 				if ($tenantIsLate == 'true') {
 					if ($currentDay > '5') {
 						echo '<div class="well well-warning well-sm">'.$currAmyPastDueText.' '.formatCurrency($lateRentAmt,$currCode).'</div>';
@@ -107,7 +108,7 @@
 					echo '<div class="well well-success well-sm">'.$currAmtDueText.' '.formatCurrency($row['propertyRate'],$currCode).'</div>';
 				}
 			?>
-			
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="list-group">
@@ -125,7 +126,7 @@
 				<h3><?php echo $payPayPalH3; ?></h3>
 				<p class="lead mb-0"><?php echo $rentAmtEnteredText; ?></p>
 				<p><?php echo $payPalQuip1.' '.$set['paymentFee'].' '.$payPalQuip2; ?></p>
-				
+
 				<?php
 					if(!empty($_POST["process"]) && $_POST["process"] == "yes") {
 						$show_form = 0;
@@ -180,7 +181,7 @@
 							<button type="input" name="submit" value="Pay" class="btn btn-success btnIcon"><i class="fa fa-check-square-o"></i> <?php echo $payWithPaypalBtn; ?></button>
 						</form>
 				<?php } ?>
-				
+
 				<hr />
 			<?php } ?>
 
@@ -188,9 +189,13 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="list-group mt-10">
-						<li class="list-group-item"><?php echo $payableToText; ?> <?php echo $set['siteName']; ?></li>
+						<li class="list-group-item"><?php echo $paywithMpesa1; ?></li>
+						<li class="list-group-item"><?php echo $paywithMpesa2; ?></li>
+						<li class="list-group-item"><?php echo $paywithMpesa3; ?></li>
+						<li class="list-group-item"><?php echo $paywithMpesa4; ?> <?php echo $totalToPay; ?></li>
+						<li class="list-group-item"><?php echo $paywithMpesa5; ?></li>
 						<li class="list-group-item">
-							<?php echo $mailToText; ?><br />
+							<?php //echo $mailToText; ?><br />
 							<?php echo nl2br($set['businessAddress']); ?><br />
 							<?php echo $set['contactPhone']; ?>
 						</li>
@@ -198,12 +203,12 @@
 				</div>
 				<div class="col-md-8">
 					<p class="lead"><?php echo $mailToQuip; ?></p>
-					
+
 					<h3><?php echo $paymentQuestionsH3; ?></h3>
 					<p><?php echo $paymentQuestionsQuip; ?></p>
 				</div>
-			</div>		
-		
+			</div>
+
 		<?php } else { ?>
 			<hr class="mt-0 mb-0" />
 			<h3><?php echo $accessErrorHeader; ?></h3>

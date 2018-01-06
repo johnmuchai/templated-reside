@@ -443,11 +443,11 @@ $noUplFilesFoundMsg			= "No Uploaded Files found.";
 // pages/newPayment.php
 // --------------------------------------------------------------------------------------------------
 $newPaymentPageTitle		= "Property Payments";
-$paymentTypes1				= "accepts Cash, Personal / Cashier's Checks, Money Orders or PayPal for Rental Payments.";
-$paymentTypes2				= "accepts Cash, Personal / Cashier's Checks or Money Orders for Rental Payments.";
-$currAmyPastDueText			= "Current Amount Past-Due:";
+$paymentTypes1				= "accepts payment via M-Pesa.";
+$paymentTypes2				= "accepts payment via Equitel.";
+$currAmyPastDueText			= "This amount is overdue. Please pay now:";
 $userMonRentAmtText			= "Your Monthly Rent Amount is:";
-$addFeeText					= "Additional Fee if Rent Payment is Late:";
+$addFeeText					= "Late payment Penalty:";
 $payPayPalH3				= "Pay with PayPal";
 $rentAmtEnteredText			= "Your Rent amount has been entered for you.";
 $payPalQuip1				= "You can change the amount if what you are paying differs. The Payment Amount will be converted to include the additional";
@@ -459,12 +459,17 @@ $totPaypalAmtField			= "Total PayPal Amount";
 $totPaypalAmtFieldHelp1		= "This amount reflects the";
 $totPaypalAmtFieldHelp2		= "% PayPal Fee and is the total for this rental payment.";
 $payWithPaypalBtn			= "Pay with PayPal";
-$otherPayH3					= "Pay by Cash, Personal / Cashier's Check or Money Order";
+$otherPayH3					= "Pay with M-Pesa";
 $payableToText				= "Payable To:";
+$paywithMpesa1        ="Go to Mpesa -> Lipa Na Mpesa ->Pay Bill";
+$paywithMpesa2        ="Enter Business Number: <b>900122</b>";
+$paywithMpesa3        ="Enter Account Number: ";
+$paywithMpesa4        ="Enter Amount: ";
+$paywithMpesa5        ="Enter PIN and submit ";
 $mailToText					= "Mail or drop off at:";
-$mailToQuip					= "You can avoid paying the extra PayPal fees by paying with Cash, Check or a Money Order.";
+$mailToQuip					= "On successful payment, you will receive an SMS from us with confirmation of your payment.";
 $paymentQuestionsH3			= "Questions about Payments?";
-$paymentQuestionsQuip		= "If you have any questions or concerns about Rental Payments, please <a href=\"contact-us.php\">Contact Us</a>.";
+$paymentQuestionsQuip		= "If you have any questions or concerns about your Payments, please <a href=\"contact-us.php\">Contact Us</a>.";
 
 // pages/newRequest.php
 // --------------------------------------------------------------------------------------------------
@@ -780,7 +785,7 @@ $viewTemplText				= "View Template";
 $premadeFormsH3				= "Pre-Made Forms";
 $premadeFormsQuip			= "comes with some pre-made Forms & Templates.";
 $premadeFormsQuip1			= "These are great to use with your Tenants, just fill in the PDF fields with the Tenant's information.
-These pre-made forms are designed to be filled out, printed and then given to the Tenant. If you have the full version of 
+These pre-made forms are designed to be filled out, printed and then given to the Tenant. If you have the full version of
 <a href=\"http://www.adobe.com/products/acrobat.html\" target=\"_blank\">Adobe Acrobat,</a> you can also save the completed form,
 and then upload it to the Tenant's account.";
 $formNameHead				= "Form Name";
