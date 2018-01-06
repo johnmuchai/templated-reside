@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `userId` int(5) NOT NULL DEFAULT '0',
   `activityType` int(2) NOT NULL,
   `activityTitle` text NOT NULL,
-  `activityDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `activityDate` timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`activityId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -28,14 +28,14 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `twitter` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `youtube` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `notes` text,
-  `lastVisited` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `createDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastVisited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hash` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `isAdmin` int(5) NOT NULL DEFAULT '0',
   `adminRole` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `isActive` int(1) NOT NULL DEFAULT '1',
   `isDisabled` int(1) NOT NULL DEFAULT '0',
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`adminId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `appauth` (
   `appauthId` int(5) NOT NULL AUTO_INCREMENT,
   `adminId` int(5) NOT NULL DEFAULT '0',
   `authFlag` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `authDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `authDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`appauthId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `assigned` (
   `assignId` int(5) NOT NULL AUTO_INCREMENT,
   `propertyId` int(5) NOT NULL DEFAULT '0',
   `adminId` int(5) NOT NULL DEFAULT '0',
-  `assignDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `assignDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`assignId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -85,11 +85,11 @@ CREATE TABLE IF NOT EXISTS `events` (
   `adminId` int(5) NOT NULL DEFAULT '0',
   `internalEvent` int(1) NOT NULL DEFAULT '0',
   `publicEvent` int(1) NOT NULL DEFAULT '1',
-  `eventDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `eventDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `eventTitle` varchar(50) NOT NULL,
   `eventDesc` text,
   `eventColor` varchar(7) NOT NULL DEFAULT '#2481be',
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`eventId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -100,11 +100,11 @@ CREATE TABLE IF NOT EXISTS `leases` (
   `adminId` int(5) NOT NULL DEFAULT '0',
   `userId` int(5) NOT NULL DEFAULT '0',
   `leaseTerm` varchar(50) NOT NULL,
-  `leaseStart` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `leaseEnd` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `leaseStart` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `leaseEnd` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `notes` text,
   `closed` int(1) NOT NULL DEFAULT '0',
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`leaseId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `adminId` int(5) NOT NULL DEFAULT '0',
   `userId` int(5) NOT NULL DEFAULT '0',
   `hasRefund` int(1) NOT NULL DEFAULT '0',
-  `paymentDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `paymentDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `amountDue` varchar(50) NOT NULL,
   `amountPaid` varchar(50) NOT NULL,
   `penaltyFee` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `rentMonth` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `rentYear` int(4) DEFAULT NULL,
   `notes` text,
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`payId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `hoaFee` varchar(50) DEFAULT NULL,
   `feeSchedule` varchar(50) DEFAULT NULL,
   `googleMap` text,
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`propertyId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `propfiles` (
   `fileName` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `fileDesc` text,
   `fileUrl` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `uploadDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `uploadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`fileId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `proppictures` (
   `picName` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `picDesc` text,
   `picUrl` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `uploadDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `uploadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`pictureId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -198,11 +198,11 @@ CREATE TABLE IF NOT EXISTS `refunds` (
   `propertyId` int(5) NOT NULL DEFAULT '0',
   `adminId` int(5) NOT NULL DEFAULT '0',
   `userId` int(5) NOT NULL DEFAULT '0',
-  `refundDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `refundDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `refundAmount` varchar(50) NOT NULL,
   `refundFor` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `notes` text,
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`refundId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -217,9 +217,9 @@ CREATE TABLE IF NOT EXISTS `serviceexpense` (
   `expenseName` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `expenseDesc` text,
   `expenseCost` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `dateOfExpense` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dateOfExpense` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `notes` text,
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`expenseId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -232,8 +232,8 @@ CREATE TABLE IF NOT EXISTS `servicenotes` (
   `adminId` int(5) NOT NULL DEFAULT '0',
   `userId` int(5) NOT NULL DEFAULT '0',
   `noteText` text,
-  `noteDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `noteDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`noteId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `servicenotes` (
 CREATE TABLE IF NOT EXISTS `servicepriority` (
   `priorityId` int(5) NOT NULL AUTO_INCREMENT,
   `priorityTitle` varchar(50) NOT NULL,
-  `createDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`priorityId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
@@ -260,17 +260,17 @@ CREATE TABLE IF NOT EXISTS `servicerequests` (
   `assignedTo` int(5) DEFAULT '0',
   `requestTitle` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `requestText` longtext CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `requestDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `requestDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `requestPriority` int(5) NOT NULL DEFAULT '1',
   `requestStatus` int(5) NOT NULL DEFAULT '1',
   `isClosed` int(1) NOT NULL DEFAULT '0',
   `resolutionText` text,
-  `resolutionDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `resolutionDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `needsFollowUp` int(1) NOT NULL DEFAULT '0',
   `followUpText` text,
   `notes` text,
-  `dateCompleted` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dateCompleted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`requestId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `servicerequests` (
 CREATE TABLE IF NOT EXISTS `servicestatus` (
   `statusId` int(5) NOT NULL AUTO_INCREMENT,
   `statusTitle` varchar(50) NOT NULL,
-  `createDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`statusId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
@@ -301,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `sitealerts` (
   `alertType` int(1) NOT NULL DEFAULT '1',
   `alertTitle` varchar(255) NOT NULL,
   `alertText` longtext NOT NULL,
-  `alertDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `alertDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `alertStart` timestamp NULL DEFAULT NULL,
   `alertExpires` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`alertId`)
@@ -312,17 +312,17 @@ CREATE TABLE IF NOT EXISTS `sitecontent` (
   `pageId` int(2) NOT NULL DEFAULT '0' COMMENT '1 - Home, 2 - Available Properties, 3 - View Property, 4 - About Us, 5 - Contact Us, 6 - Rental Application',
   `contentName` varchar(255) CHARACTER SET utf8 NOT NULL,
   `pageContent` longtext CHARACTER SET utf8 NOT NULL,
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`contentId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
 INSERT INTO `sitecontent` (`contentId`, `pageId`, `contentName`, `pageContent`, `lastUpdated`) VALUES
-(1, 1, 'Home Page Intro Text', '&lt;h1&gt;Your Home the Way You''ve Always Wanted It.&lt;/h1&gt;\r\n&lt;p class=&quot;lead&quot;&gt;When you live here, you get more than a home. You get an entire neighborhood where you can live, work, shop, dine and play.&lt;/p&gt;\r\n&lt;p&gt;Our homes include an abundance of neighborhood retail, restaurants, office space and more. With so much convenience right at your doorstep, there''s hardly a need to venture further, but the direct access to the Metro, I-495 and I-395 make downtown DC, Old Town Alexandria and more easily accessible.&lt;/p&gt;', '0000-00-00 00:00:00'),
-(2, 2, 'Available Properties Page Content', '', '0000-00-00 00:00:00'),
-(3, 3, 'View Property Page Content', '', '0000-00-00 00:00:00'),
-(4, 4, 'About Us Intro Text', '&lt;h2&gt;We Are More then Just Management&lt;/h2&gt;\r\n&lt;p class=&quot;lead&quot;&gt;Although we manage properties, our business is people. We work hard to create great places for people to live, work, play and stay and take pride in the long-term relationships we have with our residents and team members.&lt;/p&gt;\r\n&lt;p&gt;Our residents, guests and tenants enjoy world-class customer service, and our team members understand the unique commitment we have to them, and their careers.&lt;/p&gt;', '0000-00-00 00:00:00'),
-(5, 5, 'Contact Us Intro Text', '&lt;h2&gt;Our Guiding Mission is our residents, guests and tenants. &lt;/h2&gt;\r\n&lt;p class=&quot;lead&quot;&gt;Customer care is at the core of our guiding mission. Regardless of the size or location of your home, we treat all of our residents, guests and tenants with an uncompromising level of attention and service. We are proud to help you enjoy the highest levels of satisfaction and comfort. It''s just what we do.&lt;/p&gt;', '0000-00-00 00:00:00'),
-(6, 6, 'Rental App Intro Text', '&lt;p class=&quot;lead&quot;&gt;Get started today by completing our Rental Application. It is quick, and we will respond within 2 business days.&lt;/p&gt;\r\n&lt;p&gt;Have questions are concerns? Please contact us and we will be happy to assist you in any way we can.&lt;/p&gt;', '0000-00-00 00:00:00');
+(1, 1, 'Home Page Intro Text', '&lt;h1&gt;Your Home the Way You''ve Always Wanted It.&lt;/h1&gt;\r\n&lt;p class=&quot;lead&quot;&gt;When you live here, you get more than a home. You get an entire neighborhood where you can live, work, shop, dine and play.&lt;/p&gt;\r\n&lt;p&gt;Our homes include an abundance of neighborhood retail, restaurants, office space and more. With so much convenience right at your doorstep, there''s hardly a need to venture further, but the direct access to the Metro, I-495 and I-395 make downtown DC, Old Town Alexandria and more easily accessible.&lt;/p&gt;', CURRENT_TIMESTAMP),
+(2, 2, 'Available Properties Page Content', '', CURRENT_TIMESTAMP),
+(3, 3, 'View Property Page Content', '', CURRENT_TIMESTAMP),
+(4, 4, 'About Us Intro Text', '&lt;h2&gt;We Are More then Just Management&lt;/h2&gt;\r\n&lt;p class=&quot;lead&quot;&gt;Although we manage properties, our business is people. We work hard to create great places for people to live, work, play and stay and take pride in the long-term relationships we have with our residents and team members.&lt;/p&gt;\r\n&lt;p&gt;Our residents, guests and tenants enjoy world-class customer service, and our team members understand the unique commitment we have to them, and their careers.&lt;/p&gt;', CURRENT_TIMESTAMP),
+(5, 5, 'Contact Us Intro Text', '&lt;h2&gt;Our Guiding Mission is our residents, guests and tenants. &lt;/h2&gt;\r\n&lt;p class=&quot;lead&quot;&gt;Customer care is at the core of our guiding mission. Regardless of the size or location of your home, we treat all of our residents, guests and tenants with an uncompromising level of attention and service. We are proud to help you enjoy the highest levels of satisfaction and comfort. It''s just what we do.&lt;/p&gt;', CURRENT_TIMESTAMP),
+(6, 6, 'Rental App Intro Text', '&lt;p class=&quot;lead&quot;&gt;Get started today by completing our Rental Application. It is quick, and we will respond within 2 business days.&lt;/p&gt;\r\n&lt;p&gt;Have questions are concerns? Please contact us and we will be happy to assist you in any way we can.&lt;/p&gt;', CURRENT_TIMESTAMP);
 
 CREATE TABLE IF NOT EXISTS `sitesettings` (
   `installUrl` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -365,7 +365,7 @@ CREATE TABLE IF NOT EXISTS `sitesettings` (
   `paymentEmail` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `paymentItemName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `paymentFee` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `lastUpdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`installUrl`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -375,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `sitetemplates` (
   `templateName` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `templateDesc` text,
   `templateUrl` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `uploadDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `uploadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`templateId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -398,7 +398,7 @@ CREATE TABLE IF NOT EXISTS `userdocs` (
   `docTitle` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `docDesc` text,
   `docUrl` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `uploadDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `uploadDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ipAddress` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`docId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -417,8 +417,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `pets` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `notes` text,
   `userFolder` varchar(255) DEFAULT NULL,
-  `lastVisited` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `createDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastVisited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hash` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `isLeased` int(1) NOT NULL DEFAULT '0',
   `propertyId` int(5) NOT NULL DEFAULT '0',
@@ -428,6 +428,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `isResident` int(1) NOT NULL DEFAULT '0',
   `primaryTenantId` int(5) NOT NULL DEFAULT '0',
   `isArchived` int(1) NOT NULL DEFAULT '0',
-  `archiveDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `archiveDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

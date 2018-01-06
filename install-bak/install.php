@@ -70,8 +70,8 @@
 			$timezone = $_POST['timezone'];
 
             $str ="<?php
-error_reporting(0);
-ini_set('display_errors', '0');
+error_reporting(1);
+ini_set('display_errors', '1');
 
 date_default_timezone_set('".$timezone."');
 
@@ -102,7 +102,7 @@ $"."dbname = '".$dbname."';
 				if (!$dbsql){
 					die ('Error opening file');
 				}
-				mysqli_multi_query($mysqli, $dbsql) or die('-1' . mysqli_error());
+				mysqli_multi_query($mysqli, $dbsql) or die('-1 error ' . mysqli_error($mysqli));
 				$step = '2';
 			}
 		}

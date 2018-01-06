@@ -161,7 +161,7 @@
 						payments.rentMonth = '".$currentMonth."' AND
 						payments.rentYear = '".$currentYear."'
 					GROUP BY users.propertyId";
-		$paymentres = mysqli_query($mysqli, $payment) or die('-9' . mysqli_error());
+		$paymentres = mysqli_query($mysqli, $payment) or die('-9' . mysqli_error($mysqli));
 
 		if(mysqli_num_rows($paymentres) > 0) {
 			// Get the Totals
