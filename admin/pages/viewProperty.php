@@ -598,6 +598,7 @@
 				$ipAddress
 			);
 			$inserted = $stmt->execute();
+			$err = $stmt->error;
 			$stmt->close();
 
 			// Add Recent Activity
@@ -606,7 +607,7 @@
 			$activityTitle = $rs_adminName.' '.$savePayAct.' "'.$propertyName.'"';
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 
-			$msgBox = alertBox($savePayMsg." \"".$propertyName."\" ".$newDiscCmtMsg2."-".$stmt->error.":".$inserted, "<i class='fa fa-check-square'></i>", "success");
+			$msgBox = alertBox($savePayMsg." \"".$propertyName."\" ".$newDiscCmtMsg2."-".$err.":".$inserted, "<i class='fa fa-check-square'></i>", "success");
 
 			// Clear the Form of values
 			$_POST['paymentDate'] = $_POST['paymentFor'] = $_POST['amountPaid'] = $_POST['penaltyFee'] = $_POST['paymentType'] = $_POST['notes'] = '';
