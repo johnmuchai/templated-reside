@@ -606,7 +606,7 @@
 			$activityTitle = $rs_adminName.' '.$savePayAct.' "'.$propertyName.'"';
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 
-			$msgBox = alertBox($savePayMsg." \"".$propertyName."\" ".$newDiscCmtMsg2, "<i class='fa fa-check-square'></i>", "success");
+			$msgBox = alertBox($savePayMsg." \"".$propertyName."\" ".$newDiscCmtMsg2."-".$stmt->error. "<i class='fa fa-check-square'></i>", "success");
 
 			// Clear the Form of values
 			$_POST['paymentDate'] = $_POST['paymentFor'] = $_POST['amountPaid'] = $_POST['penaltyFee'] = $_POST['paymentType'] = $_POST['notes'] = '';
@@ -871,7 +871,7 @@
 					users.isResident = 0";
 		$res = mysqli_query($mysqli, $qry) or die('-2' . mysqli_error());
 		$row = mysqli_fetch_assoc($res);
-		
+
 		$priTenantId = $row['userId'];
 
 		// Get Residents
@@ -955,7 +955,7 @@
 		$pets = $noBtn;
 		$setSel = '';
 	}
-	
+
 	if (isset($_GET['delFile']) && $_GET['delFile'] == 'yes') {
 		$msgBox = alertBox($propFileDltdMsg, "<i class='fa fa-check-square'></i>", "success");
 	}
