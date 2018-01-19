@@ -67,6 +67,8 @@
 		$totalToPay = '';
 	}
 
+
+
 	// Get Next Record ID from the Payments Table
 	$nxt = "SHOW TABLE STATUS LIKE 'payments'";
 	$nxtres = mysqli_query($mysqli, $nxt) or die('-1' . mysqli_error());
@@ -191,8 +193,8 @@
 					<div class="list-group mt-10">
 						<li class="list-group-item"><?php echo $paywithMpesa1; ?></li>
 						<li class="list-group-item"><?php echo $paywithMpesa2; ?></li>
-						<li class="list-group-item"><?php echo $paywithMpesa3; ?></li>
-						<li class="list-group-item"><?php echo $paywithMpesa4; ?> <?php echo $totalToPay; ?></li>
+						<li class="list-group-item"><?php echo $paywithMpesa3; ?> <b></b></li>
+						<li class="list-group-item"><?php echo $paywithMpesa4; ?> <b><?php echo formatCurrency($totalToPay,$currCode); ?></b></li>
 						<li class="list-group-item"><?php echo $paywithMpesa5; ?></li>
 						<li class="list-group-item">
 							<?php //echo $mailToText; ?><br />

@@ -1,4 +1,20 @@
 <?php
+
+function generateRandStr_md5 ($length,$prefix) {
+	// Perfect for: PASSWORD GENERATION
+	// Generate a random string based on an md5 hash
+	$randStr = strtoupper(md5(rand(0, 1000000))); // Create md5 hash
+	$rand_start = rand(5,strlen($randStr)); // Get random start point
+	if($rand_start+$length > strlen($randStr)) {
+		$rand_start -= $length; // make sure it will always be $length long
+	} if($rand_start == strlen($randStr)) {
+		$rand_start = 1; // otherwise start at beginning!
+	}
+	// Extract the 'random string' of the required length
+	$randStr = strtoupper(substr(md5($randStr), $rand_start, $length));
+	return $prefix.$randStr; // Return the string
+}
+
 	$propertyId = $mysqli->real_escape_string($_GET['propertyId']);
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
 	$leaseCreated = '';
@@ -23,6 +39,7 @@
 			$nextLeaseId = htmlspecialchars($_POST['nextLeaseId']);
 			$propertyName = htmlspecialchars($_POST['propertyName']);
 
+			$leaseNo = generateRandStr_md5 (6,$propertyId);
 			// Create the Lease Record
 			$stmt = $mysqli->prepare("
 								INSERT INTO
@@ -36,7 +53,8 @@
 										leaseEnd,
 										notes,
 										closed,
-										ipAddress
+										ipAddress,
+										leaseNo
 									) VALUES (
 										?,
 										?,
@@ -47,9 +65,10 @@
 										?,
 										?,
 										0,
+										?,
 										?
 									)");
-			$stmt->bind_param('sssssssss',
+			$stmt->bind_param('ssssssssss',
 				$nextLeaseId,
 				$propertyId,
 				$rs_adminId,
@@ -58,7 +77,8 @@
 				$leaseStart,
 				$leaseEnd,
 				$notes,
-				$ipAddress
+				$ipAddress,
+				$leaseNo
 			);
 			$stmt->execute();
 			$stmt->close();

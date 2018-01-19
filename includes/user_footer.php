@@ -5,26 +5,8 @@
 ?>
 	<div class="container footer_block noBotBorder mt-20">
 		<div class="row">
-			<div class="col-md-8">
-				<h4 class="footer-hLine"><?php echo $getToKnowTitle; ?></h4>
-				<div class="row">
-					<?php
-						while ($fmgrrow = mysqli_fetch_assoc($fmgrres)) {
-							$profileurl = preg_replace('/ /', '-', clean($fmgrrow['adminName']));
-					?>
-							<div class="col-md-6">
-								<div class="profile-widget">
-									<div class="profile">
-										<div class="img"><img alt="<?php echo $admAvatarAlt; ?>" src="<?php echo $avatarDir.$fmgrrow['adminPhoto']; ?>" /></div>
-										<div class="info">
-											<a href="profile.php?profile=<?php echo $profileurl; ?>"><?php echo clean($fmgrrow['adminName']); ?></a><br />
-											<span><?php echo clean($fmgrrow['adminRole']); ?></span>
-										</div>
-									</div>
-								</div>
-							</div>
-					<?php } ?>
-				</div>		
+			<div class="col-md-8">		
+
 			</div>
 			<div class="col-md-4">
 				<div class="dateTime">
@@ -40,7 +22,7 @@
 				<div id="weather"></div>
 			</div>
 		</div>
-		
+
 		<div class="copyright clearfix">
 			<div class="pull-left">
 				<span><i class="fa fa-copyright"></i> <?php echo $copyrightText; ?> <?php echo date("Y"); ?></span> <?php echo $copyrightLink; ?>
@@ -62,7 +44,7 @@
 							<li><a href="sign-in.php"><?php echo $signInNavLink; ?></a></li>
 					<?php
 							}
-						}	
+						}
 					?>
 				</ul>
 			</div>

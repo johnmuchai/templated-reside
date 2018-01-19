@@ -444,7 +444,7 @@ $noUplFilesFoundMsg			= "No Uploaded Files found.";
 // --------------------------------------------------------------------------------------------------
 $newPaymentPageTitle		= "Property Payments";
 $paymentTypes1				= "accepts payment via M-Pesa.";
-$paymentTypes2				= "accepts payment via Equitel.";
+$paymentTypes2				= "accepts payment via M-Pesa.";
 $currAmyPastDueText			= "This amount is overdue. Please pay now:";
 $userMonRentAmtText			= "Your Monthly Rent Amount is:";
 $addFeeText					= "Late payment Penalty:";
@@ -461,7 +461,7 @@ $totPaypalAmtFieldHelp2		= "% PayPal Fee and is the total for this rental paymen
 $payWithPaypalBtn			= "Pay with PayPal";
 $otherPayH3					= "Pay with M-Pesa";
 $payableToText				= "Payable To:";
-$paywithMpesa1        ="Go to Mpesa -> Lipa Na Mpesa ->Pay Bill";
+$paywithMpesa1        ="Go to Mpesa  >> Lipa Na Mpesa >> Pay Bill";
 $paywithMpesa2        ="Enter Business Number: <b>900122</b>";
 $paywithMpesa3        ="Enter Account Number: ";
 $paywithMpesa4        ="Enter Amount: ";
