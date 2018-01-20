@@ -197,7 +197,7 @@
 					<div class="list-group mt-10">
 						<li class="list-group-item"><?php echo $paywithMpesa1; ?></li>
 						<li class="list-group-item"><?php echo $paywithMpesa2; ?></li>
-						<li class="list-group-item"><?php echo $paywithMpesa3; ?> <b><?php echo $leaseNo?></b></li>
+						<li class="list-group-item"><?php echo $paywithMpesa3; ?> <b><?php echo $leaseNo; ?></b></li>
 						<li class="list-group-item"><?php echo $paywithMpesa4; ?> <b><?php echo formatCurrency($totalToPay,$currCode); ?></b></li>
 						<li class="list-group-item"><?php echo $paywithMpesa5; ?></li>
 						<li class="list-group-item">
