@@ -20,6 +20,8 @@
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
 	$row = mysqli_fetch_assoc($res);
 
+	$leaseNo =$row["leaseNo"];
+
 	$lateRentAmt = $row['propertyRate'] + $row['latePenalty'];
 
 	require_once('includes/paypal.php');
@@ -79,6 +81,8 @@
 	$propPage = 'true';
 	$pageTitle = $newPaymentPageTitle;
 	$jsFile = 'newPayment';
+
+
 
 	include 'includes/user_header.php';
 ?>
@@ -193,7 +197,7 @@
 					<div class="list-group mt-10">
 						<li class="list-group-item"><?php echo $paywithMpesa1; ?></li>
 						<li class="list-group-item"><?php echo $paywithMpesa2; ?></li>
-						<li class="list-group-item"><?php echo $paywithMpesa3; ?> <b></b></li>
+						<li class="list-group-item"><?php echo $paywithMpesa3; ?> <b><?php echo $leaseNo?></b></li>
 						<li class="list-group-item"><?php echo $paywithMpesa4; ?> <b><?php echo formatCurrency($totalToPay,$currCode); ?></b></li>
 						<li class="list-group-item"><?php echo $paywithMpesa5; ?></li>
 						<li class="list-group-item">
