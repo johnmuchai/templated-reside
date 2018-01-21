@@ -467,7 +467,7 @@ $paywithMpesa3        ="Enter Account Number: ";
 $paywithMpesa4        ="Enter Amount: ";
 $paywithMpesa5        ="Enter PIN and submit ";
 $mailToText					= "Mail or drop off at:";
-$mailToQuip					= "On successful payment, you will receive an SMS from us with confirmation of your payment.";
+$mailToQuip					= "On successful payment, you will receive an SMS from us with confirmation of your payment. Refresh to confirm the due amount is cleared.";
 $paymentQuestionsH3			= "Questions about Payments?";
 $paymentQuestionsQuip		= "If you have any questions or concerns about your Payments, please <a href=\"contact-us.php\">Contact Us</a>.";
 
@@ -1004,6 +1004,8 @@ $newAdmAccMsg				= "The new Administrator account has been created.";
 // --------------------------------------------------------------------------------------------------
 $newPropertyPageTitle		= "Add a New Property";
 $propNameField				= "Property Name";
+$propUnitNameField    = "Unit Name";
+$propCourtNameField   = "Court Name";
 $propAddressField			= "Property Address";
 $propDescField				= "Property Description";
 $propRateField				= "Property Rental Rate";

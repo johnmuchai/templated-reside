@@ -154,7 +154,7 @@ function generateRandStr_md5 ($length,$prefix) {
 			if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') {
 				if ($msgBox) { echo $msgBox; }
 		?>
-				<h3><?php echo $pageTitle.' '.clean($row['propertyName']); ?></h3>
+				<h3><?php echo $pageTitle.' '.clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?></h3>
 
 				<input type="hidden" id="weekStart" value="<?php echo $set['weekStart']; ?>" />
 

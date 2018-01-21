@@ -32,6 +32,9 @@
 			$heating = htmlspecialchars($_POST['heating']);
 			$googleMap = htmlspecialchars($_POST['googleMap']);
 
+			$unitName = htmlspecialchars($_POST['unitName']);
+			$courtName = htmlspecialchars($_POST['courtName']);
+
 
 			$stmt = $mysqli->prepare("
 								INSERT INTO
@@ -53,7 +56,9 @@
 										bedrooms,
 										bathrooms,
 										googleMap,
-										lastUpdated
+										lastUpdated,
+										unitName,
+										courtName,
 									) VALUES (
 										?,
 										?,
@@ -72,9 +77,11 @@
 										?,
 										?,
 										?,
-										NOW()
+										NOW(),
+										?,
+										?
 									)");
-			$stmt->bind_param('sssssssssssssssss',
+			$stmt->bind_param('sssssssssssssssssss',
 				$rs_adminId,
 				$propertyName,
 				$propertyDesc,
@@ -91,7 +98,9 @@
 				$heating,
 				$bedrooms,
 				$bathrooms,
-				$googleMap
+				$googleMap,
+				$unitName,
+				$courtName
 			);
 			$stmt->execute();
 			$stmt->close();
@@ -129,6 +138,21 @@
 					<div class="form-group">
 						<label for="propertyName"><?php echo $propNameField; ?></label>
 						<input type="text" class="form-control" name="propertyName" id="propertyName" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="unitName"><?php echo $propUnitNameField; ?></label>
+								<input type="text" class="form-control" name="unitName" id="unitName" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="courtName"><?php echo $propCourtNameField; ?></label>
+								<input type="text" class="form-control" name="courtName" id="courtName" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
