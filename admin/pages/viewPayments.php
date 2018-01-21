@@ -283,7 +283,7 @@
 						<ul class="list-group mt-20">
 							<li class="list-group-item"><strong><?php echo $newPaymentEmail2; ?></strong>
 								<a href="index.php?action=viewProperty&propertyId=<?php echo $rows['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-									<?php echo clean($rows['propertyName']); ?>
+									<?php echo clean($rows['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
 								</a>
 							</li>
 							<li class="list-group-item"><strong><?php echo $tenantNameText; ?>:</strong>

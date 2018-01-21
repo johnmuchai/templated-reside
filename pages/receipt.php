@@ -1,7 +1,7 @@
 <?php
 	if ($set['enablePayments'] == '1') {
 		$payId = $mysqli->real_escape_string($_GET['payId']);
-		
+
 		// Check if Payment belongs to logged in user
 		$usrCk = "SELECT userId FROM payments WHERE payId = ".$payId;
 		$userChk = mysqli_query($mysqli, $usrCk) or die('-1' . mysqli_error());
@@ -46,7 +46,7 @@
 					ORDER BY
 						orderDate DESC";
 		$alertres = mysqli_query($mysqli, $alert) or die('-2' . mysqli_error());
-	
+
 		// Add Recent Activity
 		$activityType = '2';
 		$rs_aid = '0';
@@ -140,7 +140,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo clean($row['propertyName']); ?></td>
+							<td><?php echo clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?></td>
 							<td><?php echo clean($row['paymentFor']); ?></td>
 							<td><?php echo clean($row['paymentType']); ?></td>
 							<td><?php echo formatCurrency($row['amountPaid'],$currCode); ?></td>

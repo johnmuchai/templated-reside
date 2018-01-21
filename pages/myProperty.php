@@ -160,7 +160,7 @@
 							<img alt="" src="<?php echo $propPicsPath.clean($row['propertyImage']); ?>" class="img-responsive" />
 						</div>
 						<div class="col-sm-4">
-							<h4 class="mt-0"><?php echo clean($row['propertyName']); ?></h4>
+							<h4 class="mt-0"><?php echo clean($row['propertyName']); ?> -  <?php echo clean($row['unitName']); ?></h4>
 							<hr class="mt-0" />
 							<p><?php echo nl2br(clean($row['propertyAddress'])); ?></p>
 							<ul class="propLists">

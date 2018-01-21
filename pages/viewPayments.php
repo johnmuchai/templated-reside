@@ -34,7 +34,7 @@
 				users.userId = ".$primaryTenId." AND
 				payments.leaseId = ".$primaryLeaseId;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
-	
+
 	// Get the Totals
 	$totals = "SELECT
 				SUM(amountPaid) AS totalPaid,
@@ -58,7 +58,7 @@
 	// Format the Amounts
 	$totreceived = $tot['totalPaid'] + $tot['totalFee'] - $tr['refundAmount'];
 	$totalReceived = formatCurrency($totreceived,$currCode);
-	
+
 	$totalRef = formatCurrency($tr['refundAmount'],$currCode);
 
 	// Get Refund Data
@@ -70,7 +70,7 @@
 				LEFT JOIN payments ON refunds.payId = payments.payId
 			WHERE refunds.leaseId = ".$primaryLeaseId;
 	$results = mysqli_query($mysqli, $sql) or die('-4' . mysqli_error());
-	
+
 	// Get Lease Data
 	$sql = "SELECT
 					properties.*,
@@ -85,7 +85,7 @@
 					leases.leaseId = ".$primaryLeaseId;
 	$result = mysqli_query($mysqli, $sql) or die('-2' . mysqli_error());
 	$rows = mysqli_fetch_assoc($result);
-	
+
 	$profileurl = preg_replace('/ /', '-', clean($rows['adminName']));
 
 	$propPage = 'true';
@@ -98,7 +98,7 @@
 ?>
 	<div class="container page_block noTopBorder">
 		<hr class="mt-0 mb-0" />
-		
+
 		<?php
 			if ($rs_leaseId != '0' && $set['enablePayments'] == '1') {
 				if ($msgBox) { echo $msgBox; }
@@ -107,7 +107,7 @@
 				<div class="col-md-3">
 					<ul class="list-group mt-20">
 						<li class="list-group-item group-item-sm">
-							<strong><?php echo $newPaymentEmail2; ?></strong> <?php echo clean($rows['propertyName']); ?>
+							<strong><?php echo $newPaymentEmail2; ?></strong> <?php echo clean($rows['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
 						</li>
 						<li class="list-group-item group-item-sm">
 							<strong><?php echo $leaseTermText; ?></strong> <?php echo clean($rows['leaseTerm']); ?><br />
@@ -200,12 +200,12 @@
 								<?php } ?>
 							</tbody>
 						</table>
-						
+
 						<span class="reportTotal"><strong><?php echo $totRecLeaseText; ?></strong> <?php echo $totalReceived; ?></span>
-						
+
 						<hr />
 					<?php } ?>
-					
+
 					<h3><?php echo $leaseRefIssH3; ?></h3>
 					<?php if(mysqli_num_rows($results) < 1) { ?>
 						<div class="alertMsg default mb-20">
@@ -238,13 +238,13 @@
 								<?php } ?>
 							</tbody>
 						</table>
-						
+
 						<span class="reportTotal"><strong><?php echo $totRefLeaseText; ?></strong> <?php echo $totalRef; ?></span>
 						<div class="clearfix mb-20"></div>
 					<?php } ?>
 				</div>
 			</div>
-		
+
 		<?php } else { ?>
 			<hr class="mt-0 mb-0" />
 			<h3><?php echo $accessErrorHeader; ?></h3>
