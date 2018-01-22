@@ -58,7 +58,7 @@
 										googleMap,
 										lastUpdated,
 										unitName,
-										courtName,
+										courtName
 									) VALUES (
 										?,
 										?,
