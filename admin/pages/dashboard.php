@@ -381,12 +381,12 @@
 								<tr>
 									<td>
 										<a href="index.php?action=viewProperty&propertyId=<?php echo $pay['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-											<?php echo clean($pay['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+											<?php echo clean($pay['propertyName']); ?> - <?php echo clean($pay['unitName']); ?>
 										</a>
 									</td>
 									<td>
-										<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-											<?php echo clean($row['propertyName']); ?>
+										<a href="index.php?action=viewParent&propertyId=<?php echo $pay['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+											<?php echo clean($pay['propertyName']); ?>
 										</a>
 									</td>
 									<td>
@@ -435,6 +435,7 @@
 				<thead>
 					<tr>
 						<th><?php echo $propertyHead; ?></th>
+						<th><?php echo $propertyMother; ?></th>
 						<th><?php echo $addressHead; ?></th>
 						<th class="text-center"><?php echo $rateText; ?></th>
 						<th class="text-center"><?php echo $depositText; ?></th>
@@ -453,6 +454,11 @@
 							<tr>
 								<td>
 									<a href="index.php?action=viewProperty&propertyId=<?php echo $ap['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+										<?php echo clean($ap['propertyName']); ?>
+									</a>
+								</td>
+								<td>
+									<a href="index.php?action=viewParent&propertyId=<?php echo $ap['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
 										<?php echo clean($ap['propertyName']); ?>
 									</a>
 								</td>
