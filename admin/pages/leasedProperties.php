@@ -70,6 +70,7 @@
 				<thead>
 					<tr>
 						<th><?php echo $propertyHead; ?></th>
+						<th><?php echo $propertyMother; ?></th>
 						<th><?php echo $tenantHead; ?></th>
 						<th><?php echo $assignedToHead; ?></th>
 						<th class="text-center"><?php echo $rentAmtHead; ?></th>
@@ -91,6 +92,11 @@
 								<td>
 									<a href="index.php?action=viewProperty&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
 										<?php echo clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+									</a>
+								</td>
+								<td>
+									<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+										<?php echo clean($row['propertyName']); ?>
 									</a>
 								</td>
 								<td>

@@ -335,6 +335,7 @@ $dashRentLateText			= "This month's rent is Past Due. Total Due:";
 $dashRentLateText1			= "(Rental Rate + Late Fee).";
 $dashCurrentLeaseText		= "Your Current Lease";
 $propertyHead				= "Property";
+$propertyMother     ="Parent Property";
 $monthlyRentHead			= "Monthly Rent";
 $feeLateHead				= "Fee if Late";
 $petsAllowedHead			= "Pets Allowed";
@@ -1004,6 +1005,7 @@ $newAdmAccMsg				= "The new Administrator account has been created.";
 // --------------------------------------------------------------------------------------------------
 $newPropertyPageTitle		= "Add a New Property";
 $propNameField				= "Property Name";
+
 $propUnitNameField    = "Unit Name";
 $propCourtNameField   = "Court Name";
 $propAddressField			= "Property Address";

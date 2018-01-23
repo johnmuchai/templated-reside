@@ -285,6 +285,7 @@
 							<thead>
 								<tr>
 									<th><?php echo $propertyHead; ?></th>
+									<th><?php echo $propertyMother; ?></th>
 									<th><?php echo $addressHead; ?></th>
 									<th><?php echo $tenantHead; ?></th>
 									<th class="text-center"><?php echo $rentAmtHead; ?></th>
@@ -302,7 +303,12 @@
 									<tr>
 										<td>
 											<a href="index.php?action=viewProperty&propertyId=<?php echo $late['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-												<?php echo clean($late['propertyName']); ?>
+												<?php echo clean($late['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+											</a>
+										</td>
+										<td>
+											<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+												<?php echo clean($row['propertyName']); ?>
 											</a>
 										</td>
 										<td><?php echo clean($late['propertyAddress']); ?></td>
@@ -349,6 +355,7 @@
 					<thead>
 						<tr>
 							<th><?php echo $propertyHead; ?></th>
+							<th><?php echo $propertyMother; ?></th>
 							<th><?php echo $tenantHead; ?></th>
 							<th class="text-center"><?php echo $paymentDateHead; ?></th>
 							<th class="text-center"><?php echo $renatlMonthHead; ?></th>
@@ -374,7 +381,12 @@
 								<tr>
 									<td>
 										<a href="index.php?action=viewProperty&propertyId=<?php echo $pay['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-											<?php echo clean($pay['propertyName']); ?>
+											<?php echo clean($pay['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+										</a>
+									</td>
+									<td>
+										<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+											<?php echo clean($row['propertyName']); ?>
 										</a>
 									</td>
 									<td>
