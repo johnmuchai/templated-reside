@@ -71,6 +71,7 @@ $propertyName = htmlspecialchars($_GET['propertyName']);
 $propertyId = htmlspecialchars($_GET['propertyId']);
 
 $qryP = "SELECT * from properties where propertyId=".$propertyId;
+
 $resP = mysqli_query($mysqli, $qryP) or die('-1' . mysqli_error($mysqli));
 $rowP = mysqli_fetch_assoc($resP);
 	$qry = "SELECT
@@ -79,7 +80,7 @@ $rowP = mysqli_fetch_assoc($resP);
 				properties
 			WHERE
 				properties.isLeased = 0 AND
-				properties.active = 1 and propertyName='"+$rowP["propertyName"]+"'";
+				properties.active = 1 and propertyName='".$rowP["propertyName"]."'";
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error($mysqli));
 
 
