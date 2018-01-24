@@ -79,13 +79,13 @@ $rowP = mysqli_fetch_assoc($resP);
 			FROM
 				properties
 			WHERE
-				properties.isLeased = 0 AND
-				properties.active = 1 and propertyName='".$rowP["propertyName"]."'";
+				 propertyName='".$rowP["propertyName"]."'";
+         echo $qry;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error($mysqli));
 
 
 	$propPage = 'true';
-	$pageTitle = $unlPropPageTitle;
+	$pageTitle = "Units under property : ".$rowP["propertyName"];
 	$addCss = '<link href="../css/dataTables.css" rel="stylesheet">';
 	$dataTables = 'true';
 	$jsFile = 'unleasedProperties';
