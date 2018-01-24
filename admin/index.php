@@ -105,7 +105,7 @@
 		} else if (isset($_GET['action']) && $_GET['action'] == 'importExport') { 		$page = 'importExport';
 		} else if (isset($_GET['action']) && $_GET['action'] == 'siteLogs') { 			$page = 'siteLogs';
 		}else if (isset($_GET['action']) && $_GET['action'] == 'viewParent') { 			$page = 'viewParent';
-		} else {																		$page = 'dashboard';}
+		} else {$page = 'dashboard';}
 
 		if (file_exists('pages/'.$page.'.php')) {
 			// Load the Page
