@@ -80,7 +80,7 @@ $rowP = mysqli_fetch_assoc($resP);
 				properties
 			WHERE
 				 propertyName='".$rowP["propertyName"]."'";
-         echo $qry;
+         //echo $qry;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error($mysqli));
 
 

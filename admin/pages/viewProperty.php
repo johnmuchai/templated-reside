@@ -844,7 +844,7 @@
 				properties
 			WHERE
 				propertyId = ".$propertyId;
-	$lcres = mysqli_query($mysqli, $lc) or die('-1' . mysqli_error());
+	$lcres = mysqli_query($mysqli, $lc) or die('-1' . mysqli_error($mysqli));
 	$lcrow = mysqli_fetch_assoc($lcres);
 	$leaseCheck = $lcrow['isLeased'];
 
@@ -870,14 +870,14 @@
 					leases.closed = 0 AND
 					properties.propertyId = ".$propertyId." AND
 					users.isResident = 0";
-		$res = mysqli_query($mysqli, $qry) or die('-2' . mysqli_error());
+		$res = mysqli_query($mysqli, $qry) or die('-2' . mysqli_error($mysqli));
 		$row = mysqli_fetch_assoc($res);
 
 		$priTenantId = $row['userId'];
 
 		// Get Residents
 		$resqry = "SELECT * FROM users WHERE isResident = 1 AND propertyId = ".$propertyId." AND leaseId = ".$row['leaseId'];
-		$qryres = mysqli_query($mysqli, $resqry) or die('-5' . mysqli_error());
+		$qryres = mysqli_query($mysqli, $resqry) or die('-5' . mysqli_error($mysqli));
 
 		if ($rs_isAdmin == '') {
 			$assignCheck = $row['assignedTo'];
@@ -889,7 +889,7 @@
 		$assignCheck = '';
 
 		$qry = "SELECT * FROM properties WHERE propertyId = ".$propertyId;
-		$res = mysqli_query($mysqli, $qry) or die('-3' . mysqli_error());
+		$res = mysqli_query($mysqli, $qry) or die('-3' . mysqli_error($mysqli));
 		$row = mysqli_fetch_assoc($res);
 	}
 
@@ -897,11 +897,11 @@
 
 	// Get Property Pictures
 	$stmt = "SELECT * FROM proppictures WHERE propertyId = ".$propertyId;
-	$results = mysqli_query($mysqli, $stmt) or die('-4' . mysqli_error());
+	$results = mysqli_query($mysqli, $stmt) or die('-4' . mysqli_error($mysqli));
 
 	// Get Property Files
 	$sqlstmt = "SELECT * FROM propfiles WHERE propertyId = ".$propertyId;
-	$sqlres = mysqli_query($mysqli, $sqlstmt) or die('-6' . mysqli_error());
+	$sqlres = mysqli_query($mysqli, $sqlstmt) or die('-6' . mysqli_error($mysqli));
 
 	// Get Active Service Requests
 	$srv = "SELECT
@@ -911,7 +911,7 @@
 				servicerequests
 				LEFT JOIN servicepriority ON servicerequests.requestPriority = servicepriority.priorityId
 			WHERE servicerequests.isClosed = 0 AND servicerequests.propertyId = ".$propertyId;
-	$srvres = mysqli_query($mysqli, $srv) or die('-7' . mysqli_error());
+	$srvres = mysqli_query($mysqli, $srv) or die('-7' . mysqli_error($mysqli));
 
 	if ($leaseCheck == '1') {
 		// Check if the Tenant is late on current month's rent
@@ -928,7 +928,7 @@
 					WHERE
 						users.leaseId = ".$row['leaseId']." AND
 						'".$todayDate."' >= leases.leaseStart";
-		$lateres1 = mysqli_query($mysqli, $latecheck1) or die('-8' . mysqli_error());
+		$lateres1 = mysqli_query($mysqli, $latecheck1) or die('-8' . mysqli_error($mysqli));
 
 		if (mysqli_num_rows($lateres1) > 0) {
 			$latecheck2 = "SELECT
@@ -942,7 +942,7 @@
 							users.leaseId = ".$row['leaseId']." AND
 							payments.rentMonth = '".$currentMonth."' AND
 							payments.rentYear = '".$currentYear."'";
-			$lateres = mysqli_query($mysqli, $latecheck2) or die('-9' . mysqli_error());
+			$lateres = mysqli_query($mysqli, $latecheck2) or die('-9' . mysqli_error($mysqli));
 			if (mysqli_num_rows($lateres) > 0) { $tenantIsLate = 'false'; } else { $tenantIsLate = 'true'; }
 		} else {
 			$tenantIsLate = 'false';
@@ -1544,7 +1544,7 @@
 															<div class="modal-body">
 																<?php
 																	$reassign = "SELECT * FROM admins WHERE isActive = 1 AND adminId != ".$row['adminId'];
-																	$reassignres = mysqli_query($mysqli, $reassign) or die('-1'.mysqli_error());
+																	$reassignres = mysqli_query($mysqli, $reassign) or die('-1'.mysqli_error($mysqli));
 																?>
 																<div class="form-group">
 																	<select class="form-control chosen-select" id="reassignAdmin" name="reassignAdmin">
@@ -1586,7 +1586,7 @@
 															<div class="modal-body">
 																<?php
 																	$assign = "SELECT * FROM admins WHERE isActive = 1";
-																	$assignres = mysqli_query($mysqli, $assign) or die('-1'.mysqli_error());
+																	$assignres = mysqli_query($mysqli, $assign) or die('-1'.mysqli_error($mysqli));
 																?>
 																<div class="form-group">
 																	<select class="form-control chosen-select" id="assignAdmin" name="assignAdmin">
@@ -1767,7 +1767,7 @@
 											<div class="modal-body">
 												<?php
 													$rsdnt = "SELECT * FROM users WHERE isActive = 1 AND isResident = 1 AND isLeased = 0";
-													$rsdntres = mysqli_query($mysqli, $rsdnt) or die('-10'.mysqli_error());
+													$rsdntres = mysqli_query($mysqli, $rsdnt) or die('-10'.mysqli_error($mysqli));
 												?>
 												<?php if(mysqli_num_rows($rsdntres) > 0) { ?>
 												<div class="form-group">
