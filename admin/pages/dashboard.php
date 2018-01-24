@@ -303,12 +303,12 @@
 									<tr>
 										<td>
 											<a href="index.php?action=viewProperty&propertyId=<?php echo $late['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-												<?php echo clean($late['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+												<?php echo clean($late['propertyName']); ?> - <?php echo clean($late['unitName']); ?>
 											</a>
 										</td>
 										<td>
-											<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-												<?php echo clean($row['propertyName']); ?>
+											<a href="index.php?action=viewParent&propertyId=<?php echo $late['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+												<?php echo clean($late['propertyName']); ?>
 											</a>
 										</td>
 										<td><?php echo clean($late['propertyAddress']); ?></td>
@@ -454,7 +454,7 @@
 							<tr>
 								<td>
 									<a href="index.php?action=viewProperty&propertyId=<?php echo $ap['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-										<?php echo clean($ap['propertyName']); ?>
+										<?php echo clean($ap['propertyName']); ?> - <?php echo clean($ap['unitName']); ?>
 									</a>
 								</td>
 								<td>

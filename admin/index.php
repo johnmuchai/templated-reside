@@ -22,7 +22,7 @@
 
 		// Include Sessions & Localizations
 		include('includes/sessions.php');
-		
+
 		// Set Week Day Name
 		$theDay = date('l');
 		switch ($theDay) {
@@ -34,7 +34,7 @@
 			case 'Friday':		$dayName = $friText;	break;
 			case 'Saturday':	$dayName = $satText;	break;
 		}
-		
+
 		// Set Month Name
 		$theMonth = date('F');
 		switch ($theMonth) {
@@ -104,6 +104,7 @@
 		} else if (isset($_GET['action']) && $_GET['action'] == 'sliderSettings') { 	$page = 'sliderSettings';
 		} else if (isset($_GET['action']) && $_GET['action'] == 'importExport') { 		$page = 'importExport';
 		} else if (isset($_GET['action']) && $_GET['action'] == 'siteLogs') { 			$page = 'siteLogs';
+		}else if (isset($_GET['action']) && $_GET['action'] == 'viewParent') { 			$page = 'viewParent';
 		} else {																		$page = 'dashboard';}
 
 		if (file_exists('pages/'.$page.'.php')) {
