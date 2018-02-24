@@ -1,227 +1,224 @@
-<?php
-	// Check if install.php is present
-	if(is_dir('install')) {
-		header("Location: install/install.php");
-	} else {
-		if(!isset($_SESSION)) session_start();
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
-		// Access DB Info
-		include('config.php');
+		<title>m-reside by Swift Cloud Ace</title>
 
-		// Get Settings Data
-		include ('includes/settings.php');
-		$set = mysqli_fetch_assoc($setRes);
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-		// Include Functions
-		include('includes/functions.php');
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="css/style.css">
 
-		// Include Sessions & Localizations
-		include('includes/sessions.php');
-		
-		// Logout
-		if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-			$sign_out = '';
-			if ($rs_adminId != '') {
-				// Add Recent Activity
-				$activityType = '12';
-				$rs_uid = '0';
-				$activityTitle = $rs_adminName.' '.$adminSignout;
-				updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
-				$sign_out = 'true';
-			} else if ($rs_userId != '') {
-				// Add Recent Activity
-				$activityType = '12';
-				$rs_aid = '0';
-				$activityTitle = $rs_userFull.' '.$userSignout;
-				updateActivity($rs_aid,$rs_userId,$activityType,$activityTitle);
-				$sign_out = 'true';
-			}
-			if ($sign_out == 'true') {
-				session_destroy();
-				header ('Location: index.php');
-			}
-		}
-		
-		// Get Featured Properties
-		$qry = "SELECT * FROM properties WHERE isLeased = 0 AND featured = 1 ORDER BY RAND() LIMIT 9";
-		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
-		
-		// Get Home Page Content
-		$pageCont = "SELECT * FROM sitecontent WHERE pageId = 1";
-		$pcres = mysqli_query($mysqli, $pageCont) or die('-2' . mysqli_error());
-		$pc = mysqli_fetch_assoc($pcres);
-		
-		// Get Site Alert Data
-		$alert = "SELECT
-						*,
-						UNIX_TIMESTAMP(alertDate) AS orderDate
-					FROM
-						sitealerts
-					WHERE
-						alertStart <= DATE_SUB(CURDATE(),INTERVAL 0 DAY) AND
-						alertExpires >= DATE_SUB(CURDATE(),INTERVAL 0 DAY) OR
-						isActive = 1 AND
-						alertType = 0
-					ORDER BY
-						orderDate DESC";
-		$alertres = mysqli_query($mysqli, $alert) or die('-2' . mysqli_error());
-		
-		$homePage = 'true';
-		$pageTitle = $homeNavLink;
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
 
-		include('includes/header.php');
-		
-		$slidercheck = "SELECT * FROM sliderpics";
-		$slidecheck = mysqli_query($mysqli, $slidercheck) or die('-3' . mysqli_error());
-?>
-		<div class="container page_block noTopBorder">
-			<?php if ($msgBox) { echo $msgBox; } ?>
+	</head>
 
-			<?php
-				if ($set['enableSlider'] == '1') {
-					if(mysqli_num_rows($slidecheck) > 0) {
-			?>
-					<div class="row header-bar">
-						<div id="sliderCarousel" class="carousel slide" data-ride="carousel">
-				
-							<ol class="carousel-indicators">
-								<?php
-									$csl1 = "SELECT * FROM sliderpics ORDER BY slideId";
-									$cres = mysqli_query($mysqli, $csl1) or die('-4' . mysqli_error());
 
-									$count1 = 0;
-									while ($r = mysqli_fetch_assoc($cres)) {
-										if ($count1 == 0) { $setActive = 'active'; } else { $setActive = ''; }
-								?>
-										<li data-target="#sliderCarousel" data-slide-to="<?php echo $count1; ?>" class="<?php echo $setActive; ?>"></li>
-								<?php
-										$count1++;
-									}
-								?>
-							</ol>
+	<body>
 
-							<div class="carousel-inner">
-								<?php
-									$csl2 = "SELECT * FROM sliderpics ORDER BY slideId";
-									$cslres = mysqli_query($mysqli, $csl2) or die('-5' . mysqli_error());
+		<div class="site-content">
+			<header class="site-header" data-bg-image="images/banner.png">
+				<div class="container">
+					<a href="#" class="branding">
+						<img src="images/newlogo.png" alt="Apartments">
+						<!--<h1 class="site-title">Swift Cloudace</h1>-->
+						<!--<small class="site-description">Manage better</small>-->
+					</a>
+				</div>
+				<div class="banner" >
+					<div class="banner-content">
+						<div class="container">
+							<div class="cta">
+								<a href="#">
+									<a href="#" class="arrow-button"><i class="fa fa-angle-right"></i></a>
+									<h2>Manage your real estate smoothly</h2>
+									<small>Forget the pain of managing your tenants and tracking their payments.</small>
+								</a>
+							</div>
 
-									$count2 = 0;
-									while ($r2 = mysqli_fetch_assoc($cslres)) {
-										if ($count2 == 0) { $setActive = 'active'; } else { $setActive = ''; }
-								?>
-										<div class="item <?php echo $setActive; ?>">
-											<img src="<?php echo $propPicsPath.$r2['slideUrl']; ?>">
-											<div class="header-text hidden-xs">
-												<div class="col-md-12 text-center">
-													<h2><?php echo clean($r2['slideTitle']); ?></h3>
-													<h4><?php echo clean($r2['slideText']); ?></h4>
-													<?php
-														if ((!isset($_SESSION['rs']['adminId'])) && (!isset($_SESSION['rs']['rs_userId']))) {
-															if ($set['allowRegistrations'] == '1') {
-																echo '<a class="btn btn-theme btn-sm btn-min-block" href="sign-in.php">Sign In/Up</a>';
-															} else {
-																echo '<a class="btn btn-theme btn-sm btn-min-block" href="sign-in.php">Sign In</a>';
-															}
-														}
-														if (!is_null($r2['buttonUrl']) && $r2['buttonUrl'] != '') {
-													?>
-														<a class="btn btn-theme btn-sm btn-min-block" href="<?php echo clean($r2['buttonUrl']); ?>"><?php echo clean($r2['btnText']); ?></a>
-													<?php } ?>
-												</div>
-											</div>
-										</div>
-								<?php
-										$count2++;
-									}
-								?>
+							<div class="subscribe-form">
+								<form action="#">
+									<small class="form-subtitle">Start using</small>
+									<h2 class="form-title">m-reside</h2>
+									<p>Fill the form below and we will get back to you on how you can enjoy this product</p>
+
+									<div class="control">
+										<input type="text" placeholder="Your name...">
+										<i class="fa fa-user"></i>
+									</div>
+									<div class="control">
+										<input type="text" placeholder="Email address...">
+										<i class="fa fa-envelope"></i>
+									</div>
+									<div class="control">
+										<input type="text" placeholder="Phone number...">
+										<i class="fa fa-phone"></i>
+									</div>
+									<input type="submit" value="Submit">
+								</form>
 							</div>
 						</div>
 					</div>
-			<?php
-					}
-				} else {
-					echo '<hr class="mt-0 mb-0" />';
-				}
-			?>
+				</div>
+			</header> <!-- .site-header -->
 
-			<div class="intro-text">
-				<?php echo htmlspecialchars_decode($pc['pageContent']); ?>
-			</div>
-			
-			<?php
-				if(mysqli_num_rows($alertres) > 0) {
-					echo '<hr class="pb-10" />';
-					while ($rows = mysqli_fetch_assoc($alertres)) {
-						// If Start Date is set, use the Start date, else the Date the Alert was created
-						if (!is_null($rows['alertStart'])) { $noticeDate = dateFormat($rows['alertStart']); } else { $noticeDate = dateFormat($rows['alertDate']); }
-			?>
-						<div class="box">
-							<span class="box-notify"><?php echo $noticeDate; ?></span>
-							<h4><i class="fa fa-bullhorn"></i> &nbsp; <?php echo clean($rows['alertTitle']); ?></h4>
-							<p><?php echo nl2br(htmlspecialchars_decode($rows['alertText'])); ?></p>
-						</div>
-				<?php
-					}
-					echo '<div class="mb-20"></div>';
-				}
-			?>
-		</div>
+			<main class="main-content">
+				<div class="fullwidth-block">
+					<div class="container">
+						<h2 class="section-title">What is so great about Swift Cloudace?</h2>
+						<div class="row">
+							<div class="col-md-5">
+								<ul class="arrow-list">
+									<li>Manage all your tenants and properties</li>
+									<li>Manage tenant rental payments and penalties</li>
+									<li>Accept payments via MPESA, Bank or Card</li>
+									<li>View reports on payments, re</li>
+									<li>Tenants can raise service request with you</li>
+									<li>Communicate with your tenants seamlessly</li>
+								</ul>
+							</div>
+							<div class="col-md-7">
+								<div class="feature-slider">
+									<ul class="slides">
+										<li>
+											<figure>
+												<img src="images/feature-1.png" alt="Feature 1">
+												<figcaption>
+													<h3 class="feature-title">View instant statistics quickly</h3>
+													<small class="feature-desc">Velit esse cillum dolore pariatur</small>
+												</figcaption>
+											</figure>
+										</li>
+										<li>
+											<figure>
+												<img src="images/feature-2.png" alt="Feature 2">
+												<figcaption>
+													<h3 class="feature-title">View tenants with late payment</h3>
+													<small class="feature-desc">Reprehenderit in voluptate velit</small>
+												</figcaption>
+											</figure>
+										</li>
+										<li>
+											<figure>
+												<img src="images/feature-3.png" alt="Feature 3">
+												<figcaption>
+													<h3 class="feature-title">View payments received</h3>
+													<small class="feature-desc">Quia dolor ipsum quia dolor sit</small>
+												</figcaption>
+											</figure>
+										</li>
+									</ul>
 
-		<?php if(mysqli_num_rows($res) > 0) {	?>
-			<div class="container page_block mt-20">
-				<h3><?php echo $featuredPropText; ?></h3>
-				
-				<div class="row">
-					<?php
-						while ($rows = mysqli_fetch_assoc($res)) {
-							$propurl = preg_replace('/ /', '-', clean(strip($rows['propertyName'])));
-					?>
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<?php if ($rows['featured'] == '1') { ?>
-										<span class="ribbon top-left propLists ribbon-primary">
-											<small><?php echo $featuredText; ?></small>
-										</span>
-									<?php } ?>
-									<a href="view-property.php?property=<?php echo $propurl; ?>">
-										<img src="<?php echo $propPicsPath.clean($rows['propertyImage']); ?>" alt="<?php echo clean($rows['propertyName']); ?>" class="img-responsive" />
-									</a>
-									<div class="caption">
-										<h3 id="thumbnail-label"><a href="view-property.php?property=<?php echo $propurl; ?>"><?php echo clean($rows['propertyName']); ?></a></h3>
-										<p><?php echo ellipsis($rows['propertyDesc'],150); ?></p>
-										<?php
-											if (!is_null($rows['propertyStyle'])) {
-												echo '<span class="label label-list">'.clean($rows['propertyStyle']).'</span> ';
-											}
-											if (!is_null($rows['yearBuilt'])) {
-												echo '<span class="label label-list">Year: '.clean($rows['yearBuilt']).'</span> ';
-											}
-											if (!is_null($rows['bedrooms'])) {
-												echo '<span class="label label-list">Bedrooms: '.clean($rows['bedrooms']).'</span> ';
-											}
-											if (!is_null($rows['bathrooms'])) {
-												echo '<span class="label label-list">Baths: '.clean($rows['bathrooms']).'</span> ';
-											}
-											if (!is_null($rows['propertySize'])) {
-												echo '<span class="label label-list">'.clean($rows['propertySize']).'</span> ';
-											}
-											if ($rows['petsAllowed'] == '1') {
-												echo '<span class="label label-list">Pets: Yes</span> ';
-											} else {
-												echo '<span class="label label-list">Pets: No</span> ';
-											}
-											echo '<span class="label label-list">Rate: '.formatCurrency($rows['propertyRate'],$currCode).'</span> ';
-										?>
-									</div>
 								</div>
 							</div>
-					<?php
-						}
-					?>
+						</div>
+					</div>
 				</div>
-			</div>
-		<?php } ?>
-<?php
-		include('includes/footer.php');
-	}
-?>
+
+				<div class="fullwidth-block" data-bg-color="#f0f0f0">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="feature">
+									<div class="feature-icon"><img src="images/icon-money.png" alt=""></div>
+									<h3 class="feature-title">Easy Payment Reconciliation</h3>
+									<p>See all your due and received payments in one place.</p>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="feature">
+									<div class="feature-icon"><img src="images/icon-report.png" alt=""></div>
+									<h3 class="feature-title">24/7 access to reports</h3>
+									<p>We give you access to realtime summary and detailed reports to support your business.</p>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="feature">
+									<div class="feature-icon"><img src="images/icon-comm.png" alt=""></div>
+									<h3 class="feature-title">Easy Communication with tenants</h3>
+									<p>Your tenants can raise service requests with you thus ensuring quick turnaround time.</p>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="feature">
+									<div class="feature-icon"><img src="images/logo1.png" alt=""></div>
+									<h3 class="feature-title">Everything in one place</h3>
+									<p>Everything you need to manage your real estate business in one place.</p>
+								</div>
+							</div>
+						</div>
+
+						<!--<div class="post-list">
+							<article class="post">
+								<figure class="feature-image" data-bg-image="images/figure-1.jpg"></figure>
+								<div class="post-detail">
+									<h2 class="entry-title">Lorem porro quisquam dolorem</h2>
+									<p>Omnis iste natus error sit voluptatem doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia.</p>
+									<a href="#" class="button">See more</a>
+								</div>
+							</article>
+							<article class="post">
+								<figure class="feature-image" data-bg-image="images/figure-1.jpg"></figure>
+								<div class="post-detail">
+									<h2 class="entry-title">Lorem porro quisquam dolorem</h2>
+									<p>Omnis iste natus error sit voluptatem doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia.</p>
+									<a href="#" class="button">See more</a>
+								</div>
+							</article>
+							<article class="post">
+								<figure class="feature-image">
+									<iframe width="854" height="510" src="https://www.youtube.com/embed/B8dmbnTsy3g" frameborder="0" allowfullscreen></iframe>
+								</figure>
+								<div class="post-detail">
+									<h2 class="entry-title">Lorem porro quisquam dolorem</h2>
+									<p>Omnis iste natus error sit voluptatem doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia.</p>
+									<a href="#" class="button">See more</a>
+								</div>
+							</article>
+						</div>-->
+
+
+					</div>
+				</div>
+				<!--<div class="fullwidth-block">
+					<div class="container">
+						<h2 class="section-title">Meet our partners</h2>
+						<div class="partners">
+							<a href="#"><img src="images/partner-1.png" alt=""></a>
+							<a href="#"><img src="images/partner-2.png" alt=""></a>
+							<a href="#"><img src="images/partner-3.png" alt=""></a>
+							<a href="#"><img src="images/partner-4.png" alt=""></a>
+							<a href="#"><img src="images/partner-5.png" alt=""></a>
+						</div>
+					</div>
+				</div>-->
+			</main>
+
+			<footer class="site-footer">
+				<div class="container">
+					<p>Copyright 2018 Swift Cloudace. Designed by Themezy. All rights reserved</p>
+					<div class="social-links">
+						<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+						<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+						<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+						<a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/app.js"></script>
+
+	</body>
+
+</html>
