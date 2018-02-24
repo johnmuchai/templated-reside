@@ -25,7 +25,7 @@
 	<body>
 
 		<div class="site-content">
-			<header class="site-header" data-bg-image="images/banner.png">
+			<header class="site-header" data-bg-image="images/banner.jpg">
 				<div class="container">
 					<a href="#" class="branding">
 						<img src="images/newlogo.png" alt="Apartments">
