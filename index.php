@@ -12,7 +12,7 @@
 		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 		<!-- Loading main css file -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="style.css">
 
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
@@ -25,7 +25,7 @@
 	<body>
 
 		<div class="site-content">
-			<header class="site-header" data-bg-image="images/banner.jpg">
+			<header class="site-header" data-bg-image="images/banner.png">
 				<div class="container">
 					<a href="#" class="branding">
 						<img src="images/newlogo.png" alt="Apartments">
@@ -45,25 +45,24 @@
 							</div>
 
 							<div class="subscribe-form">
-								<form action="#">
-									<small class="form-subtitle">Start using</small>
-									<h2 class="form-title">m-reside</h2>
-									<p>Fill the form below and we will get back to you on how you can enjoy this product</p>
+							<ul class="arrow-list">
+							<li>
+								<a href="sign-in.php">Sign In</a>
+							</li>
+							<li>
+								<a href="view-property.php">Available properties</a>
+							</li>
+							<li>
+								<a href="rental-application.php">Rental application</a>
+							</li>
+							<li>
+								<a href="about-us.php">About us</a>
+							</li>
+							<li>
+								<a href="contact-us.php">Contact us</a>
+							</li>
+							</ul>
 
-									<div class="control">
-										<input type="text" placeholder="Your name...">
-										<i class="fa fa-user"></i>
-									</div>
-									<div class="control">
-										<input type="text" placeholder="Email address...">
-										<i class="fa fa-envelope"></i>
-									</div>
-									<div class="control">
-										<input type="text" placeholder="Phone number...">
-										<i class="fa fa-phone"></i>
-									</div>
-									<input type="submit" value="Submit">
-								</form>
 							</div>
 						</div>
 					</div>
