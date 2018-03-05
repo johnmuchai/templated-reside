@@ -114,7 +114,40 @@
 			// Clear the form of Values
 			$_POST['userFirstName'] = $_POST['userLastName'] = $_POST['userEmail'] = $_POST['userEmail_r'] = $_POST['primaryPhone'] = $_POST['altPhone'] = '';
 
-			$msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success");
+///generate invoice in the payment gateway
+
+
+		$data =
+		array(
+		 "createdBy" => "swiftcloudace",
+		 "invoiceNumber" => $unitName,
+		 "customerRef" => $unitName,
+		 "name" => $propertyName,
+		 "recurring" => "Y",
+		 "remarks" => $propertyName."payments",
+		 "status" => "ACTIVE",
+		 "serviceCode" => "01",
+		 "type" => "1",
+		  "merchantId" => "1002",
+			"amount" => $propertyRate
+		);
+		$data_string = json_encode($data);
+
+		$ch = curl_init('http://localhost:8094/invoice/create/v1');
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		    'Content-Type: application/json',
+		    'Content-Length: ' . strlen($data_string))
+		);
+
+		$result = curl_exec($ch);
+
+
+$msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success");
+
+
 		}
 	}
 
