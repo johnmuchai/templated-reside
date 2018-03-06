@@ -1,4 +1,6 @@
 <?php
+// Access DB Info
+include('config.php');
 
 
 if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') != 0){
@@ -18,21 +20,29 @@ $data = json_decode(trim(file_get_contents('php://input')), true);
 if(!is_array($data)){
     throw new Exception('Received content contained invalid JSON!');
 }
+//$data= file_get_contents('php://input');
 
-$payment_source =$data->paymentSource;
-$paymentAmount =$data->paymentAmount;
-$paymentRef =$data->paymentRef;
-$paidInByName =$data->paidInByName;
-$payidInByMobile =$data->payidInByMobile;
-$status =$data->status;
-$merchantCode =$data->merchantCode;
+var_dump($data);
+echo $data."---------------------";
+$payment_source =$data['paymentSource'];
+$paymentAmount =$data['paymentAmount'];
+$paymentRef =$data['paymentRef'];
+$paidInByName =$data['paidInByName'];
+$payidInByMobile =$data['payidInByMobile'];
+$status =$data['status'];
+$merchantCode =$data['merchantCode'];
+
+var_dump( $payment_source."*******************");
 
 $propqry = "SELECT propertyId, propertyName, isLeased FROM properties where unitName ='".$paymentRef."'";
+var_dump( $propqry);
 
 $propres = mysqli_query($mysqli, $propqry) or die('-1'.mysqli_error());
 
 while ($prop = mysqli_fetch_assoc($propres)) {
   $prodid =$prop['propertyId'];
+
+ var_dump( $prodid);
 
   $leaseQuery ="SELECT *  FROM leases  where propertyId ='".$prodid."'";
 
@@ -42,7 +52,7 @@ while ($prop = mysqli_fetch_assoc($propres)) {
 
      $leaseid =$ls['leaseId'];
 
-
+var_dump( $leaseid);
 
 $stmt = $mysqli->prepare("
           INSERT INTO
