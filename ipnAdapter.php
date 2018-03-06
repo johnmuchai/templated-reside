@@ -90,7 +90,7 @@ $stmt2 = "INSERT INTO
                   '".$paidInByName."',
               NOW(),
 
-            )");
+            )";
 
 mysqli_query($con, $stmt2);
 
