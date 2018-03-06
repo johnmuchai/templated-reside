@@ -86,7 +86,7 @@ $stmt = $mysqli->prepare("
               NOW(),
 
             )");
-$stmt->bind_param('sssssssssssssssssss',
+$stmt->bind_param(
   $leaseid,
   $prodid,
   $paymentAmount,
