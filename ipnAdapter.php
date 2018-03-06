@@ -24,13 +24,13 @@ if(!is_array($data)){
 
 var_dump($data);
 echo $data."---------------------";
-$payment_source =$data['paymentSource'];
-$paymentAmount =$data['paymentAmount'];
-$paymentRef =$data['paymentRef'];
-$paidInByName =$data['paidInByName'];
-$payidInByMobile =$data['payidInByMobile'];
-$status =$data['status'];
-$merchantCode =$data['merchantCode'];
+$payment_source =htmlspecialchars($data['paymentSource']);
+$paymentAmount =htmlspecialchars($data['paymentAmount']);
+$paymentRef =htmlspecialchars($data['paymentRef']);
+$paidInByName =htmlspecialchars($data['paidInByName']);
+$payidInByMobile =htmlspecialchars($data['payidInByMobile']);
+$status =htmlspecialchars($data['status');
+$merchantCode =htmlspecialchars($data['merchantCode']);
 
 var_dump( $payment_source."*******************");
 
