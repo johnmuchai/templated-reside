@@ -74,7 +74,7 @@ $stmt2 = "INSERT INTO
               paymentFor,
               paymentType,
               isRent,
-              rentYear,
+          
               notes,
               lastUpdated
             ) VALUES (
@@ -88,9 +88,9 @@ $stmt2 = "INSERT INTO
               'rent',
               '$payment_source',
               '1',
-                NOW(),
+
                   '".$paidInByName."',
-              NOW(),
+              NOW()
 
             )";
 
