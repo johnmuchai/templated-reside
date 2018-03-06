@@ -32,17 +32,17 @@ $payidInByMobile =htmlspecialchars($data['payidInByMobile']);
 $status =htmlspecialchars($data['status']);
 $merchantCode =htmlspecialchars($data['merchantCode']);
 
-var_dump( $payment_source."*******************");
+echo  $payment_source."*******************";
 
 $propqry = "SELECT propertyId, propertyName, isLeased FROM properties where unitName ='".$paymentRef."'";
-var_dump( $propqry);
+echo  $propqry;
 
 $propres = mysqli_query($mysqli, $propqry) or die('-1'.mysqli_error());
 
 while ($prop = mysqli_fetch_assoc($propres)) {
   $prodid =$prop['propertyId'];
 
- var_dump( $prodid);
+ echo  $prodid;
 
   $leaseQuery ="SELECT *  FROM leases  where propertyId ='".$prodid."'";
 
@@ -52,7 +52,7 @@ while ($prop = mysqli_fetch_assoc($propres)) {
 
      $leaseid =$ls['leaseId'];
 
-var_dump( $leaseid);
+echo  $leaseid;
 
 $stmt = $mysqli->prepare("
           INSERT INTO
