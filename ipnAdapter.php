@@ -2,7 +2,7 @@
 // Access DB Info
 include('config.php');
 
-$con=mysqli_connect("localhost","root","mypay","reside");
+$con=mysqli_connect("localhost","root","notrust2015","reside");
 // Check connection
 if (mysqli_connect_errno())
   {
