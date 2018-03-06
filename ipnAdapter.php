@@ -2,6 +2,14 @@
 // Access DB Info
 include('config.php');
 
+$con=mysqli_connect("localhost","root","mypay","reside");
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Error Try again later: " . mysqli_connect_error();
+  }
+
+
 
 if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') != 0){
     throw new Exception('Request method must be POST!');
@@ -22,8 +30,7 @@ if(!is_array($data)){
 }
 //$data= file_get_contents('php://input');
 
-var_dump($data);
-echo $data."---------------------";
+
 $payment_source =htmlspecialchars($data['paymentSource']);
 $paymentAmount =htmlspecialchars($data['paymentAmount']);
 $paymentRef =htmlspecialchars($data['paymentRef']);
@@ -32,17 +39,16 @@ $payidInByMobile =htmlspecialchars($data['payidInByMobile']);
 $status =htmlspecialchars($data['status']);
 $merchantCode =htmlspecialchars($data['merchantCode']);
 
-echo  $payment_source."*******************";
+
 
 $propqry = "SELECT propertyId, propertyName, isLeased FROM properties where unitName ='".$paymentRef."'";
-echo  $propqry;
 
 $propres = mysqli_query($mysqli, $propqry) or die('-1'.mysqli_error());
 
 while ($prop = mysqli_fetch_assoc($propres)) {
   $prodid =$prop['propertyId'];
 
- echo  $prodid;
+
 
   $leaseQuery ="SELECT *  FROM leases  where propertyId ='".$prodid."'";
 
@@ -52,10 +58,9 @@ while ($prop = mysqli_fetch_assoc($propres)) {
 
      $leaseid =$ls['leaseId'];
 
-echo  $leaseid;
 
-$stmt = $mysqli->prepare("
-          INSERT INTO
+
+$stmt2 = "INSERT INTO
             payments(
               leaseId,
               propertyId,
@@ -71,30 +76,25 @@ $stmt = $mysqli->prepare("
               notes,
               lastUpdated
             ) VALUES (
-              ?,
-              ?,
+              '".$leaseid."',
+              '".$prodid."',
               '1',
               '1',
               '0',
               NOW(),
-              ?,
+              '".  $paymentAmount."',
               'rent',
-              ?,
+              '$payment_source',
               '1',
                 NOW(),
-                  ?,
+                  '".$paidInByName."',
               NOW(),
 
             )");
-$stmt->bind_param(
-  $leaseid,
-  $prodid,
-  $paymentAmount,
-  $payment_source,
-  $paidInByName."/".$payidInByMobile
-);
-$stmt->execute();
-$stmt->close();
+
+mysqli_query($con, $stmt2);
+
+mysqli_close($con);
 
 $jsonData = array(
     'responsecode' => 'OK',
