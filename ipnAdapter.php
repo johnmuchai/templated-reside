@@ -29,7 +29,7 @@ $paymentAmount =htmlspecialchars($data['paymentAmount']);
 $paymentRef =htmlspecialchars($data['paymentRef']);
 $paidInByName =htmlspecialchars($data['paidInByName']);
 $payidInByMobile =htmlspecialchars($data['payidInByMobile']);
-$status =htmlspecialchars($data['status');
+$status =htmlspecialchars($data['status']);
 $merchantCode =htmlspecialchars($data['merchantCode']);
 
 var_dump( $payment_source."*******************");
