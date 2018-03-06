@@ -48,6 +48,7 @@ $propres = mysqli_query($mysqli, $propqry) or die('-1'.mysqli_error());
 while ($prop = mysqli_fetch_assoc($propres)) {
   $prodid =$prop['propertyId'];
 
+echo $prodid;
 
 
   $leaseQuery ="SELECT *  FROM leases  where propertyId ='".$prodid."'";
@@ -57,6 +58,7 @@ while ($prop = mysqli_fetch_assoc($propres)) {
   while ($ls= mysqli_fetch_assoc($leaseres)) {
 
      $leaseid =$ls['leaseId'];
+     echo $leaseid;
 
 
 
@@ -92,6 +94,8 @@ $stmt2 = "INSERT INTO
 
             )";
 
+            echo $stmt2;
+
 mysqli_query($con, $stmt2);
 
 mysqli_close($con);
@@ -107,12 +111,6 @@ echo json_encode($jsonData);
 
 }
 
-$jsonData = array(
-    'responsecode' => 'FAILED',
-    'response_message' => 'Failed'
-);
-
-echo json_encode($jsonData);
 
 
 
