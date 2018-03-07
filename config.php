@@ -6,7 +6,8 @@ date_default_timezone_set('America/New_York');
 
 $dbhost = 'localhost';
 $dbuser = 'root';
-$dbpass = 'notrust2015';
+//$dbpass = 'notrust2015';
+$dbpass = 'sajoda12';
 $dbname = 'reside';
 
 //Connect
