@@ -105,6 +105,9 @@
 		} else if (isset($_GET['action']) && $_GET['action'] == 'importExport') { 		$page = 'importExport';
 		} else if (isset($_GET['action']) && $_GET['action'] == 'siteLogs') { 			$page = 'siteLogs';
 		}else if (isset($_GET['action']) && $_GET['action'] == 'viewParent') { 			$page = 'viewParent';
+		}else if (isset($_GET['action']) && $_GET['action'] == 'newManager') { 			$page = 'newManager';
+		}else if (isset($_GET['action']) && $_GET['action'] == 'newManagerUser') { 			$page = 'newManagerUser';
+		}else if (isset($_GET['action']) && $_GET['action'] == 'imports') { 			$page = 'imports';
 		} else {$page = 'dashboard';}
 
 		if (file_exists('pages/'.$page.'.php')) {

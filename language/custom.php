@@ -246,8 +246,8 @@ $contUsFormPhone			= "Phone";
 $contUsFormComments			= "Enter your massage. We will get back to you within 2 business days.";
 $contUsFormBtn				= "Send Contact Request";
 $copyrightText				= "Copyright";
-$copyrightLink				= "<a class=\"copyright_logo\" href=\"http://codecanyon.net/item/reside-rental-property-management/5263078?ref=Luminary\">Reside Property Management</a>";
-$getToKnowTitle				= "Get to Know Your Management Team";
+$copyrightLink				= "<a class=\"copyright_logo\" href=\"http://codecanyon.net/item/reside-rental-property-management/5263078?ref=Luminary\">M-Reside Property Management</a>";
+$getToKnowTitle				= "Get to Know Us";
 $admAvatarAlt				= "Admin Avatar";
 $allPropRentedText			= "All Properties Rented";
 $recentActTitle				= "Recent Activty";
@@ -780,7 +780,7 @@ $viewTemplText				= "View Template";
 $premadeFormsH3				= "Pre-Made Forms";
 $premadeFormsQuip			= "comes with some pre-made Forms & Templates.";
 $premadeFormsQuip1			= "These are great to use with your Tenants, just fill in the PDF fields with the Tenant's information.
-These pre-made forms are designed to be filled out, printed and then given to the Tenant. If you have the full version of 
+These pre-made forms are designed to be filled out, printed and then given to the Tenant. If you have the full version of
 <a href=\"http://www.adobe.com/products/acrobat.html\" target=\"_blank\">Adobe Acrobat,</a> you can also save the completed form,
 and then upload it to the Tenant's account.";
 $formNameHead				= "Form Name";

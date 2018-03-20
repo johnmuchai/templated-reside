@@ -3,7 +3,7 @@
 	ini_set('session.session.use_only_cookies', TRUE);	// Prevents session fixation
 	ini_set('session.cookie_lifetime', FALSE);			// Smaller exploitation window for xss/csrf/clickjacking...
 	ini_set('session.cookie_secure', TRUE);				// Owasp a9 violations
-
+	
 	// Start Sessions
 	if(!isset($_SESSION))session_start();				// Session Start
 
@@ -25,23 +25,6 @@
 		$rs_adminLoc 	= $_SESSION['rs']['location'];
 	} else {
 		$rs_adminId = $rs_adminEmail = $rs_adminName = $rs_isAdmin = $rs_adminRole = $rs_adminLoc = '';
-	}
-
-	if ((isset($_SESSION['rs']['userId'])) && ($_SESSION['rs']['userId'] != '')) {
-		// Keep some User data available
-		$rs_userId 		= $_SESSION['rs']['userId'];
-		$rs_userEmail 	= $_SESSION['rs']['userEmail'];
-		$rs_userFirst 	= $_SESSION['rs']['userFirstName'];
-		$rs_userLast 	= $_SESSION['rs']['userLastName'];
-		$rs_userFull 	= $_SESSION['rs']['userFirstName'].' '.$_SESSION['rs']['userLastName'];
-		$rs_userLoc		= $_SESSION['rs']['location'];
-		$rs_leaseId		= $_SESSION['rs']['leaseId'];
-		$rs_isResident	= $_SESSION['rs']['isResident'];
-		if ((isset($_SESSION['rs']['isManager'])) && ($_SESSION['rs']['isManager'] != '')) {
-			$rs_managerId = $_SESSION['rs']['managerId'];
-		}
-	} else {
-		$rs_userId = $rs_userEmail = $rs_userFirst = $rs_userLast = $rs_userFull = $rs_userLoc = $rs_leaseId = $rs_isResident = '';
 	}
 
 	$msgBox = '';

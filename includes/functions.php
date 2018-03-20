@@ -10,7 +10,7 @@
 		$auths = array();
 
 		$authqry = "SELECT * FROM appauth WHERE adminId = ".$aid;
-		$authres = mysqli_query($mysqli, $authqry) or die('Error: getAdminAuth() Function'.mysqli_error());
+		$authres = mysqli_query($mysqli, $authqry) or die('Error: getAdminAuth() Function'.mysqli_error($mysqli));
 
 		while($authrow = mysqli_fetch_assoc($authres)) {
 			$authrows = array_map(null, $authrow);
@@ -398,7 +398,7 @@
 
 		return $str;
 	}
-	
+
 	/*
      * Function to strip Special Characters from a string
      *
@@ -421,7 +421,7 @@
      */
 	function updateActivity($aid,$uid,$type,$title) {
 		global $mysqli;
-		
+
 		$activityIp = $_SERVER['REMOTE_ADDR'];
 
 		$stmt = $mysqli->prepare("
@@ -452,7 +452,7 @@
 		$stmt->execute();
 		$stmt->close();
 	}
-	
+
 	/*
      * Function to get a CSV of emails for use in notifications to Tenants
      *
@@ -462,7 +462,7 @@
      */
 	function assignedAdmins($pid,$siteEmail) {
 		global $mysqli;
-		
+
 		$assignedsql = "SELECT
 							admins.adminEmail
 						FROM
@@ -478,10 +478,10 @@
 			array_push($assignedEmails, $siteEmail);
 		}
 		$assignedList = implode(',',$assignedEmails);
-		
+
 		return $assignedList;
 	}
-	
+
 	/*
      * Function to get a CSV of emails for use in Service Request notifications to Tenants
      *
@@ -492,7 +492,7 @@
      */
 	function serviceManagers($pid,$admnEmail,$siteEmail) {
 		global $mysqli;
-		
+
 		$servicesql = "SELECT
 						admins.adminEmail
 					FROM
@@ -508,10 +508,10 @@
 			array_push($serviceEmails, $admnEmail, $siteEmail);
 		}
 		$serviceList = implode(',',$serviceEmails);
-		
+
 		return $serviceList;
 	}
-	
+
 	/*
      * Function to get a CSV of emails for use in notifications to Tenants
      *
@@ -519,7 +519,7 @@
      */
 	function emailUsers() {
 		global $mysqli;
-		
+
 		$tenantsql = "SELECT userEmail FROM users WHERE isActive = 1";
 		$tenantresult = mysqli_query($mysqli, $tenantsql) or die('Error, retrieving User email list failed. ' . mysqli_error());
 
@@ -529,6 +529,6 @@
 			$emailTenants[] = $tenants['userEmail'];
 		}
 		$allTenants = implode(',',$emailTenants);
-		
+
 		return $allTenants;
 	}

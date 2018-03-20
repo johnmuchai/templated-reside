@@ -3,7 +3,7 @@
 			<div class="col-md-3">
 				<h4 class="footer-hLine"><?php echo $availPropNavLink; ?></h4>
 				<div class="footerTags">
-
+					
 				</div>
 			</div>
 

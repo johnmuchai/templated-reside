@@ -3,9 +3,10 @@
 	if(is_dir('install')) {
 		header("Location: ../install/install.php");
 	} else {
+
 		if(!isset($_SESSION)) session_start();
 
-		if (!isset($_SESSION['rs']['adminId'])) {
+		if (!isset($_SESSION['rs']['userId'])) {
 			header ('Location: ../index.php');
 			exit;
 		}
@@ -57,7 +58,10 @@
 		} else if (isset($_GET['action']) && $_GET['action'] == 'payments') {		$page = 'payments';
 		} else if (isset($_GET['action']) && $_GET['action'] == 'properties') {	$page = 'properties';
 		} else if (isset($_GET['action']) && $_GET['action'] == 'tenants') {	$page = 'tenants';
-		} else if (isset($_GET['action']) && $_GET['action'] == 'property') {			$page = 'property';
+		} else if (isset($_GET['action']) && $_GET['action'] == 'viewProperty') {			$page = 'viewProperty';
+		} else if (isset($_GET['action']) && $_GET['action'] == 'leaseProperty') {			$page = 'leaseProperty';
+		} else if (isset($_GET['action']) && $_GET['action'] == 'leasedProperties') {			$page = 'leasedProperties';
+		} else if (isset($_GET['action']) && $_GET['action'] == 'leasedTenants') {			$page = 'leasedTenants';
 		} else if (isset($_GET['action']) && $_GET['action'] == 'unit') {			$page = 'unit';
 
 		} else {$page = 'dashboard';}
