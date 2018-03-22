@@ -105,6 +105,7 @@
 											<li><a href="index.php?action=unleasedProperties"><?php echo $unleasedPropNavLink; ?></a></li>
 											<li><a href="index.php?action=newProperty"><?php echo $newPropNavLink; ?></a></li>
 											<li><a href="index.php?action=propertyLeases"><?php echo $propLeasesNavLink; ?></a></li>
+											<li><a href="index.php?action=imports">Import Properties and Tenants</a></li>
 										</ul>
 									</li>
 							<?php
@@ -128,6 +129,7 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="index.php?action=adminAccounts"><?php echo $adminAccNavLink; ?></a></li>
 									<li><a href="index.php?action=newAdmin"><?php echo $newAdminNavLink; ?></a></li>
+									<li><a href="index.php?action=newManager">Create Property Manager</a></li>
 									<?php if ((checkArray('APPAUTH', $auths)) || $rs_isAdmin != '') { ?>
 										<li><a href="index.php?action=adminAuths"><?php echo $adminAuthNavLink; ?></a></li>
 									<?php } ?>
