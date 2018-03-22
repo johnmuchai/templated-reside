@@ -1,3 +1,47 @@
+<?php
+
+if(is_dir('install')) {
+	header("Location: install/install.php");
+} else {
+	if(!isset($_SESSION)) session_start();
+
+	// Access DB Info
+	include('config.php');
+
+	// Get Settings Data
+	include ('includes/settings.php');
+	$set = mysqli_fetch_assoc($setRes);
+
+	// Include Functions
+	include('includes/functions.php');
+
+	// Include Sessions & Localizations
+	include('includes/sessions.php');
+
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+	$sign_out = '';
+	if ($rs_adminId != '') {
+		// Add Recent Activity
+		$activityType = '12';
+		$rs_uid = '0';
+		$activityTitle = $rs_adminName.' '.$adminSignout;
+		updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
+		$sign_out = 'true';
+	} else if ($rs_userId != '') {
+		// Add Recent Activity
+		$activityType = '12';
+		$rs_aid = '0';
+		$activityTitle = $rs_userFull.' '.$userSignout;
+		updateActivity($rs_aid,$rs_userId,$activityType,$activityTitle);
+		$sign_out = 'true';
+	}
+	if ($sign_out == 'true') {
+		session_destroy();
+		header ('Location: index.php');
+	}
+}
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>

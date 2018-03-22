@@ -31,7 +31,7 @@
 			$parking = htmlspecialchars($_POST['parking']);
 			$heating = htmlspecialchars($_POST['heating']);
 			$googleMap = htmlspecialchars($_POST['googleMap']);
-
+			$propManager = htmlspecialchars($_POST['propManager']);
 			$unitName = htmlspecialchars($_POST['unitName']);
 			$courtName = htmlspecialchars($_POST['courtName']);
 
@@ -58,7 +58,8 @@
 										googleMap,
 										lastUpdated,
 										unitName,
-										courtName
+										courtName,
+										landlordId
 									) VALUES (
 										?,
 										?,
@@ -76,12 +77,13 @@
 										?,
 										?,
 										?,
-										?,
+										?,										
 										NOW(),
+										?,
 										?,
 										?
 									)");
-			$stmt->bind_param('sssssssssssssssssss',
+			$stmt->bind_param('ssssssssssssssssssss',
 				$rs_adminId,
 				$propertyName,
 				$propertyDesc,
@@ -100,9 +102,12 @@
 				$bathrooms,
 				$googleMap,
 				$unitName,
-				$courtName
+				$courtName,
+				$propManager
 			);
 			$stmt->execute();
+
+			echo $stmt->error;
 			$stmt->close();
 
 			// Add Recent Activity
@@ -168,22 +173,42 @@ $msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success")
 				<h3><?php echo $pageTitle; ?></h3>
 
 				<form action="" method="post" class="mb-20">
+					<div class="row">
+						<div class="col-md-6">
 					<div class="form-group">
 						<label for="propertyName"><?php echo $propNameField; ?></label>
-						<input type="text" class="form-control" name="propertyName" id="propertyName" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+						<input type="text" class="form-control" name="propertyName" id="propertyName" required="required" value="<?php echo isset($_POST['propertyName']) ? $_POST['paymentDate'] : ''; ?>" />
 					</div>
+				</div>
+				<div class="col-md-6">
+					<label for="propManager"><?php echo $propManagerHead; ?></label>
+					<select class="form-control chosen-select" name="propManager" id="propManager">
+						<?php
+
+						$sql = "SELECT * FROM managers order by name asc";
+						$res = mysqli_query($mysqli, $sql) or die('-1' . mysqli_error($mysqli));
+						//$rows = mysqli_fetch_assoc($res);
+
+						while ($row = mysqli_fetch_assoc($res)) { ?>
+						<option value="<?php echo $row["id"];?>"><?php echo $row["name"]; ?></option>
+						<?php
+					}
+						?>
+					</select>
+				</div>
+			</div>
 
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="unitName"><?php echo $propUnitNameField; ?></label>
-								<input type="text" class="form-control" name="unitName" id="unitName" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+								<input type="text" class="form-control" name="unitName" id="unitName" required="required" value="<?php echo isset($_POST['unitName']) ? $_POST['paymentDate'] : ''; ?>" />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="courtName"><?php echo $propCourtNameField; ?></label>
-								<input type="text" class="form-control" name="courtName" id="courtName" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+								<input type="text" class="form-control" name="courtName" id="courtName" required="required" value="<?php echo isset($_POST['courtName']) ? $_POST['paymentDate'] : ''; ?>" />
 							</div>
 						</div>
 					</div>
@@ -192,7 +217,7 @@ $msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success")
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="propertyAddress"><?php echo $propAddressField; ?></label>
-								<textarea class="form-control" name="propertyAddress" id="propertyAddress" required="required" rows="3"><?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?></textarea>
+								<textarea class="form-control" name="propertyAddress" id="propertyAddress" required="required" rows="3"><?php echo isset($_POST['propertyAddress']) ? $_POST['paymentDate'] : ''; ?></textarea>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -202,6 +227,32 @@ $msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success")
 							</div>
 						</div>
 					</div>
+					<!-- <div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="propertyStyle"><?php echo $propStyleField; ?></label>
+								<select class="form-control chosen-select" name="propertyStyle" id="propertyStyle">
+									<option value="Apartment">Apartment</option>
+									<option value="Bungalow">Bungalow</option>
+									<option value="Mansion">Mansion</option>
+									<option value="Town House">Town House</option>
+								</select>
+
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="noofunits">Number of Units</label>
+								<textarea class="form-control" name="noofunits" id="noofunits" rows="3"><?php echo isset($_POST['noofunits']) ? $_POST['noofunits'] : ''; ?></textarea>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="unitprefix">Unit Prefix</label>
+								<textarea class="form-control" name="unitprefix" id="unitprefix" rows="3"><?php echo isset($_POST['unitprefix']) ? $_POST['unitprefix'] : ''; ?></textarea>
+							</div>
+						</div>
+					</div> -->
 
 					<div class="row">
 						<div class="col-md-4">
@@ -221,7 +272,7 @@ $msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success")
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="latePenalty"><?php echo $propLateFeeField; ?></label>
-								<input type="text" class="form-control" name="latePenalty" id="latePenalty" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+								<input type="text" class="form-control" name="latePenalty" id="latePenalty" value="<?php echo isset($_POST['latePenalty']) ? $_POST['latePenalty'] : ''; ?>" />
 								<span class="help-block"><?php echo $numbersOnlyHelp; ?></span>
 							</div>
 						</div>
@@ -231,15 +282,20 @@ $msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success")
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="propertyType"><?php echo $propTypeField; ?></label>
-								<input type="text" class="form-control" name="propertyType" id="propertyType" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+								<input type="text" class="form-control" name="propertyType" id="propertyType" required="required" value="<?php echo isset($_POST['propertyType']) ? $_POST['propertyType'] : ''; ?>" />
 								<span class="help-block"><?php echo $propTypeFieldHelp; ?></span>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="propertyStyle"><?php echo $propStyleField; ?></label>
-								<input type="text" class="form-control" name="propertyStyle" id="propertyStyle" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
-								<span class="help-block"><?php echo $propStyleFieldHelp; ?></span>
+								<select class="form-control chosen-select" name="propertyStyle" id="propertyStyle">
+									<option value="Apartment">Apartment</option>
+									<option value="Bungalow">Bungalow</option>
+									<option value="Mansion">Mansion</option>
+									<option value="Town House">Town House</option>
+								</select>
+
 							</div>
 						</div>
 						<div class="col-md-4">

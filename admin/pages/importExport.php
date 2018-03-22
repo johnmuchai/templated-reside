@@ -46,7 +46,7 @@
 				}
 				$i++;
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -60,7 +60,7 @@
 			$msgBox = alertBox($selFileWrongTypeMsg, "<i class='fa fa-times-circle'></i>", "danger");
 		}
 	}
-	
+
 	if (isset($_POST['submit']) && $_POST['submit'] == 'importUsers') {
 		$fname = $_FILES['importfile']['name'];
 		$chk_ext = explode(".",$fname);
@@ -68,7 +68,7 @@
 		if(strtolower($chk_ext[1]) == "csv") {
 			$filename = $_FILES['importfile']['tmp_name'];
 			$handle = fopen($filename, "r");
-			
+
 			// Get Documents Directory
 			$docUploadPath = '../'.$set['userDocsPath'];
 
@@ -82,7 +82,7 @@
 				// And set to all lower-case
 				$userFolder = str_replace(' ', '_', $data[6].'_'.$data[7]);
 				$usersFolder = strtolower($userFolder);
-				
+
 				// Set the User Document Directory using the User's Names
 				// Replace any spaces with an underscore and set to all lower-case
 				$docFolderName = $usersFolder.'-'.$randHash;
@@ -93,10 +93,10 @@
 				if (mkdir($docUploadPath.$userDocsFolder, 0755, true)) {
 					$newDir = $docUploadPath.$userDocsFolder;
 				}
-				
+
 				if ($data[2] != '0') { $isLeased = '1'; } else { $isLeased = '0'; }
 				$tempPass = encryptIt('pa55w0rd');
-			
+
 				$stmt = $mysqli->prepare("
 									INSERT INTO users (
 										userId,
@@ -142,7 +142,7 @@
 				");
 				$stmt->execute();
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -156,7 +156,7 @@
 			$msgBox = alertBox($selFileWrongTypeMsg, "<i class='fa fa-times-circle'></i>", "danger");
 		}
 	}
-	
+
 	if (isset($_POST['submit']) && $_POST['submit'] == 'importProperties') {
 		$fname = $_FILES['importfile']['name'];
 		$chk_ext = explode(".",$fname);
@@ -230,7 +230,7 @@
 				");
 				$stmt->execute();
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -244,7 +244,7 @@
 			$msgBox = alertBox($selFileWrongTypeMsg, "<i class='fa fa-times-circle'></i>", "danger");
 		}
 	}
-	
+
 	if (isset($_POST['submit']) && $_POST['submit'] == 'importLeases') {
 		$fname = $_FILES['importfile']['name'];
 		$chk_ext = explode(".",$fname);
@@ -283,7 +283,7 @@
 				");
 				$stmt->execute();
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -297,7 +297,7 @@
 			$msgBox = alertBox($selFileWrongTypeMsg, "<i class='fa fa-times-circle'></i>", "danger");
 		}
 	}
-	
+
 	if (isset($_POST['submit']) && $_POST['submit'] == 'importPayments') {
 		$fname = $_FILES['importfile']['name'];
 		$chk_ext = explode(".",$fname);
@@ -348,7 +348,7 @@
 				");
 				$stmt->execute();
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -362,7 +362,7 @@
 			$msgBox = alertBox($selFileWrongTypeMsg, "<i class='fa fa-times-circle'></i>", "danger");
 		}
 	}
-	
+
 	if (isset($_POST['submit']) && $_POST['submit'] == 'importRefunds') {
 		$fname = $_FILES['importfile']['name'];
 		$chk_ext = explode(".",$fname);
@@ -403,7 +403,7 @@
 				");
 				$stmt->execute();
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -417,7 +417,7 @@
 			$msgBox = alertBox($selFileWrongTypeMsg, "<i class='fa fa-times-circle'></i>", "danger");
 		}
 	}
-	
+
 	if (isset($_POST['submit']) && $_POST['submit'] == 'importRequests') {
 		$fname = $_FILES['importfile']['name'];
 		$chk_ext = explode(".",$fname);
@@ -473,7 +473,7 @@
 				");
 				$stmt->execute();
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -487,7 +487,7 @@
 			$msgBox = alertBox($selFileWrongTypeMsg, "<i class='fa fa-times-circle'></i>", "danger");
 		}
 	}
-	
+
 	if (isset($_POST['submit']) && $_POST['submit'] == 'importDiscussions') {
 		$fname = $_FILES['importfile']['name'];
 		$chk_ext = explode(".",$fname);
@@ -524,7 +524,7 @@
 				");
 				$stmt->execute();
 			}
-			
+
 			// Add Recent Activity
 			$activityType = '8';
 			$rs_uid = '0';
@@ -566,7 +566,7 @@
 	// Check for Service Requests
 	$requestCk = $mysqli->query("SELECT 'X' FROM servicerequests");
 	$totalRequests = mysqli_num_rows($requestCk);
-	
+
 	// Check for Service Request Discussions
 	$discCk = $mysqli->query("SELECT 'X' FROM servicenotes");
 	$totalDisc = mysqli_num_rows($discCk);

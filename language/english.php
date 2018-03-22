@@ -246,8 +246,8 @@ $contUsFormPhone			= "Phone";
 $contUsFormComments			= "Enter your massage. We will get back to you within 2 business days.";
 $contUsFormBtn				= "Send Contact Request";
 $copyrightText				= "Copyright";
-$copyrightLink				= "<a class=\"copyright_logo\" href=\"http://codecanyon.net/item/reside-rental-property-management/5263078?ref=Luminary\">Reside Property Management</a>";
-$getToKnowTitle				= "Get to Know Your Management Team";
+$copyrightLink				= "<a class=\"copyright_logo\" href=\"http://codecanyon.net/item/reside-rental-property-management/5263078?ref=Luminary\">M-Reside Property Management</a>";
+$getToKnowTitle				= "Get to Know Your Us";
 $admAvatarAlt				= "Admin Avatar";
 $allPropRentedText			= "All Properties Rented";
 $recentActTitle				= "Recent Activty";
@@ -383,6 +383,7 @@ $currEmailAddrField			= "Current Email Address";
 $newEmailAddrField			= "New Email Address";
 $newEmailAddrFieldHelp		= "A Valid email. Used for logging in and notifications.";
 $rptEmailAddrField			= "Repeat New Email";
+$rptEmailAddrField1= "Repeat Email";
 $rptEmailAddrFieldHelp		= "Type the new email address again. Emails MUST Match.";
 $passwordTabH3				= "Change Account Password";
 $currPasswordField			= "Current Password";
@@ -1005,7 +1006,7 @@ $newAdmAccMsg				= "The new Administrator account has been created.";
 // --------------------------------------------------------------------------------------------------
 $newPropertyPageTitle		= "Add a New Property";
 $propNameField				= "Property Name";
-
+$propManagerHead      ="Property Manager";
 $propUnitNameField    = "Unit Name";
 $propCourtNameField   = "Court Name";
 $propAddressField			= "Property Address";

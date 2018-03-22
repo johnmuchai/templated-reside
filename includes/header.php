@@ -7,7 +7,7 @@
 	//	header("Location: $url");
 	//	exit;
 	//}
-	
+
 	// Set the Active State on the Navigation
 	$homeNav = $propNav = $aboutNav = $contactNav = $userNav = $manageNav = '';
 	if (isset($homePage)) { $homeNav = 'active'; } else { $homeNav = ''; }
@@ -16,16 +16,16 @@
 	if (isset($contactPage)) { $contactNav = 'active'; } else { $contactNav = ''; }
 	if (isset($userPage)) { $userNav = 'active'; } else { $userNav = ''; }
 	if (isset($managePage)) { $manageNav = 'active'; } else { $manageNav = ''; }
-	
+
 	// Get Pictures Directory
 	$propPicsPath = $set['propPicsPath'];
-	
+
 	// Get Documents Directory
 	$docUploadPath = $set['uploadPath'];
-	
+
 	// Get the Avatar Directory
 	$avatarDir = $set['avatarFolder'];
-	
+
 	// Get Social Network Icons & Links
 	if (!empty($set['facebook'])) {
 		$facebook = '<a href="'.clean($set['facebook']).'" class="facebook" data-toggle="tooltip" data-placement="bottom" title="'.$facebookText.'"><i class="fa fa-facebook"></i></a>';
@@ -45,7 +45,7 @@
 	if (!empty($set['youtube'])) {
 		$youtube = '<a href="'.clean($set['youtube']).'" class="youtube" data-toggle="tooltip" data-placement="bottom" title="'.$youtubeText.'"><i class="fa fa-youtube"></i></a>';
 	} else { $youtube = ''; }
-	
+
 	// Contact Request Form
 	if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 		// User Validations
@@ -70,7 +70,7 @@
 				$crEmail = htmlspecialchars($_POST['crEmail']);
 				$crPhone = htmlspecialchars($_POST['crPhone']);
 				$crMessage = allowedHTML(htmlspecialchars($_POST['crMessage']));
-				
+
 				// Add Recent Activity
 				$activityType = '15';
 				if ($rs_adminId != '') { $rs_aid = $rs_adminId; } else { $rs_aid = '0'; }
@@ -109,7 +109,7 @@
 			}
 		}
 	}
-	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -206,7 +206,7 @@
 									<li><a href="sign-in.php"><?php echo $signInNavLink; ?></a></li>
 							<?php
 									}
-								}	
+								}
 							?>
 						</ul>
 					</div>
@@ -214,7 +214,7 @@
 			</nav>
 		</div>
 	</div>
-	
+
 	<?php if (($rs_adminId != '') || ($rs_userId != '')) { ?>
 	<div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="signOutLabel" aria-hidden="true">
 		<div class="modal-dialog">

@@ -16,10 +16,10 @@
 	if (isset($servPage)) { $servNav = 'active'; } else { $servNav = ''; }
 	if (isset($adminPage)) { $adminNav = 'active'; } else { $adminNav = ''; }
 	if (isset($managePage)) { $manageNav = 'active'; } else { $manageNav = ''; }
-	
+
 	// Get the Avatar Directory
 	$avatarDir = $set['avatarFolder'];
-	
+
 	$auths = getAdminAuth($rs_adminId);
 ?>
 <!DOCTYPE html>
@@ -76,7 +76,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.php"><img src="../images/logo.png" /></a>
+						<a class="navbar-brand" href="index.php" style="height:169px;"><img src="../images/newlogo.png" /></a>
 					</div>
 
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

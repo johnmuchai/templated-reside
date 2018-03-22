@@ -17,7 +17,7 @@
 
 		// Include Sessions & Localizations
 		include('includes/sessions.php');
-		
+
 		// Logout
 		if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 			$sign_out = '';
@@ -41,16 +41,16 @@
 				header ('Location: index.php');
 			}
 		}
-		
+
 		// Get Featured Properties
 		$qry = "SELECT * FROM properties WHERE isLeased = 0 AND featured = 1 ORDER BY RAND() LIMIT 9";
 		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
-		
+
 		// Get Home Page Content
 		$pageCont = "SELECT * FROM sitecontent WHERE pageId = 1";
 		$pcres = mysqli_query($mysqli, $pageCont) or die('-2' . mysqli_error());
 		$pc = mysqli_fetch_assoc($pcres);
-		
+
 		// Get Site Alert Data
 		$alert = "SELECT
 						*,
@@ -65,12 +65,12 @@
 					ORDER BY
 						orderDate DESC";
 		$alertres = mysqli_query($mysqli, $alert) or die('-2' . mysqli_error());
-		
+
 		$homePage = 'true';
 		$pageTitle = $homeNavLink;
 
 		include('includes/header.php');
-		
+
 		$slidercheck = "SELECT * FROM sliderpics";
 		$slidecheck = mysqli_query($mysqli, $slidercheck) or die('-3' . mysqli_error());
 ?>
@@ -83,7 +83,7 @@
 			?>
 					<div class="row header-bar">
 						<div id="sliderCarousel" class="carousel slide" data-ride="carousel">
-				
+
 							<ol class="carousel-indicators">
 								<?php
 									$csl1 = "SELECT * FROM sliderpics ORDER BY slideId";
@@ -147,7 +147,7 @@
 			<div class="intro-text">
 				<?php echo htmlspecialchars_decode($pc['pageContent']); ?>
 			</div>
-			
+
 			<?php
 				if(mysqli_num_rows($alertres) > 0) {
 					echo '<hr class="pb-10" />';
@@ -170,7 +170,7 @@
 		<?php if(mysqli_num_rows($res) > 0) {	?>
 			<div class="container page_block mt-20">
 				<h3><?php echo $featuredPropText; ?></h3>
-				
+
 				<div class="row">
 					<?php
 						while ($rows = mysqli_fetch_assoc($res)) {
