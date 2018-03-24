@@ -108,6 +108,7 @@
 		}else if (isset($_GET['action']) && $_GET['action'] == 'newManager') { 			$page = 'newManager';
 		}else if (isset($_GET['action']) && $_GET['action'] == 'newManagerUser') { 			$page = 'newManagerUser';
 		}else if (isset($_GET['action']) && $_GET['action'] == 'imports') { 			$page = 'imports';
+		}else if (isset($_GET['action']) && $_GET['action'] == 'bulkApartments') { 			$page = 'bulkApartments';
 		} else {$page = 'dashboard';}
 
 		if (file_exists('pages/'.$page.'.php')) {
