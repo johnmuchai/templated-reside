@@ -148,7 +148,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addUnits') {
           $result = curl_exec($ch);
         }
 
-
+        header("Location: index.php?action=viewParent&propertyId=".$propertyId);
         $msgBox = alertBox($newPropMsg, "<i class='fa fa-check-square'></i>", "success");
       }
     }
