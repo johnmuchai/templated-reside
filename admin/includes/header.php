@@ -106,6 +106,7 @@
 											<li><a href="index.php?action=newProperty"><?php echo $newPropNavLink; ?></a></li>
 											<li><a href="index.php?action=propertyLeases"><?php echo $propLeasesNavLink; ?></a></li>
 											<li><a href="index.php?action=imports">Import Properties and Tenants</a></li>
+											<li><a href="index.php?action=bulkApartments">Add bulk units</a></li>
 										</ul>
 									</li>
 							<?php
