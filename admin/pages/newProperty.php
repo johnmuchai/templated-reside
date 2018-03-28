@@ -351,21 +351,21 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="propertyRate"><?php echo $propRateField; ?></label>
-							<input type="text" class="form-control" name="propertyRate" id="propertyRate" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+							<input type="text" class="form-control" name="propertyRate" id="propertyRate" onkeypress="return isNumberKey(event)" required="required" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
 							<span class="help-block"><?php echo $numbersOnlyHelp; ?></span>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="propertyDeposit"><?php echo $propDepAmtField; ?></label>
-							<input type="text" class="form-control" name="propertyDeposit" id="propertyDeposit" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
+							<input type="text" class="form-control" name="propertyDeposit" id="propertyDeposit" onkeypress="return isNumberKey(event)" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
 							<span class="help-block"><?php echo $numbersOnlyHelp; ?></span>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="latePenalty"><?php echo $propLateFeeField; ?></label>
-							<input type="text" class="form-control" name="latePenalty" id="latePenalty" value="<?php echo isset($_POST['latePenalty']) ? $_POST['latePenalty'] : ''; ?>" />
+							<input type="text" class="form-control" name="latePenalty" id="latePenalty" onkeypress="return isNumberKey(event)" value="<?php echo isset($_POST['latePenalty']) ? $_POST['latePenalty'] : ''; ?>" />
 							<span class="help-block"><?php echo $numbersOnlyHelp; ?></span>
 						</div>
 					</div>

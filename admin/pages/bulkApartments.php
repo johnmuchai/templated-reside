@@ -8,9 +8,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addUnits') {
     $msgBox = alertBox("Count should greater than 1", "<i class='fa fa-times-circle'></i>", "danger");
   } else if($_POST['unitPrefix'] == '') {
     $msgBox = alertBox("Enter a prefix", "<i class='fa fa-times-circle'></i>", "danger");
-  } else if($_POST['courtName'] == '') {
-    $msgBox = alertBox("Enter court name", "<i class='fa fa-times-circle'></i>", "danger");
-  }  else {
+  }   else {
     // Set some variables
     $propertyId = htmlspecialchars($_POST['propertyId']);
     $unitCount = htmlspecialchars($_POST['unitCount']);
@@ -202,11 +200,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addUnits') {
         </div>
         <div class="row">
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="courtName">Court Name</label>
-              <input type="text" class="form-control" name="courtName" id="courtName" required="required" value="<?php echo isset($_POST['courtName']) ? $_POST['courtName'] : ''; ?>" />
-            </div>
+
           </div>
         </div>
 
