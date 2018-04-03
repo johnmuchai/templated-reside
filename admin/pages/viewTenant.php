@@ -1,9 +1,9 @@
 <?php
 	$userId = $mysqli->real_escape_string($_GET['userId']);
 	$avatarDir = $set['avatarFolder'];
-	$acctTab = 'active';
-	$emailTab = $passTab = $avatarTab = $statusTab = $notesTab = $docsTab = '';
-	
+	$leaseTab = 'active';
+	$acctTab=$emailTab = $passTab = $avatarTab = $statusTab = $notesTab = $docsTab = '';
+
 	// Get the Max Upload Size allowed
     $maxUpload = (int)(ini_get('upload_max_filesize'));
 
@@ -14,9 +14,9 @@
 	$filesAllowed = $set['fileTypesAllowed'];
 	// Replace the commas with a comma space
 	$fileTypesAllowed = preg_replace('/,/', ', ', $filesAllowed);
-	
+
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
-	
+
 	// Update Account
 	if (isset($_POST['submit']) && $_POST['submit'] == 'accInfo') {
 		// Validation
@@ -78,7 +78,7 @@
 			);
 			$stmt->execute();
 			$stmt->close();
-			
+
 			// Add Recent Activity
 			$activityType = '16';
 			$rs_uid = '0';
@@ -88,7 +88,7 @@
 			$msgBox = alertBox($updTenatAccMsg." ".$userFirstName.' '.$userLastName." ".$servReqUpdatedMsg2, "<i class='fa fa-check-square'></i>", "success");
 		}
     }
-	
+
 	// Update Email
 	if (isset($_POST['submit']) && $_POST['submit'] == 'accEmail') {
 		// Validation
@@ -113,7 +113,7 @@
 			);
 			$stmt->execute();
 			$stmt->close();
-			
+
 			// Add Recent Activity
 			$activityType = '16';
 			$rs_uid = '0';
@@ -121,14 +121,14 @@
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 
 			$msgBox = alertBox($updTenantEmailMsg, "<i class='fa fa-check-square'></i>", "success");
-			
+
 			$_POST['newEmail'] = $_POST['newEmailr'] = '';
 		}
-		
+
 		$emailTab = 'active';
 		$acctTab = $passTab = $avatarTab = $statusTab = $notesTab = $docsTab = '';
     }
-	
+
 	// Change Password
 	if (isset($_POST['submit']) && $_POST['submit'] == 'cngePass') {
 		// Validation
@@ -159,7 +159,7 @@
 			);
 			$stmt->execute();
 			$stmt->close();
-			
+
 			// Add Recent Activity
 			$activityType = '16';
 			$rs_uid = '0';
@@ -168,11 +168,11 @@
 
 			$msgBox = alertBox($updTntPassMsg, "<i class='fa fa-check-square'></i>", "success");
 		}
-		
+
 		$passTab = 'active';
 		$acctTab = $emailTab = $avatarTab = $statusTab = $notesTab = $docsTab = '';
     }
-	
+
 	// Delete Avatar Image
 	if (isset($_POST['submit']) && $_POST['submit'] == 'deleteAvatar') {
 		$userAvatar = htmlspecialchars($_POST['userAvatar']);
@@ -203,7 +203,7 @@
 			$rs_uid = '0';
 			$activityTitle = $rs_adminName.' '.$delTntAvatarAct.' '.$tenantsName;
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
-			
+
 			$msgBox = alertBox($delTntAvatarMsg, "<i class='fa fa-check-square'></i>", "success");
 		} else {
 			$msgBox = alertBox($delTntAvatarError, "<i class='fa fa-warning'></i>", "warning");
@@ -214,17 +214,17 @@
 			$activityTitle = $rs_adminName.' '.$delTntAvatarAct2.' '.$tenantsName;
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 		}
-		
+
 		$avatarTab = 'active';
 		$acctTab = $emailTab = $passTab = $statusTab = $notesTab = $docsTab = '';
 	}
-	
+
 	// Update Account Status
 	if (isset($_POST['submit']) && $_POST['submit'] == 'accStatus') {
 		$isDisabled = htmlspecialchars($_POST['isDisabled']);
 		$isArchived = htmlspecialchars($_POST['isArchived']);
 		$tenantsName = htmlspecialchars($_POST['tenantsName']);
-		
+
 		if ($isArchived == '1') { $archiveDate = date("Y-m-d H:i:s"); } else { $archiveDate = '0000-00-00 00:00:00'; }
 
 		$stmt = $mysqli->prepare("UPDATE
@@ -244,7 +244,7 @@
 		);
 		$stmt->execute();
 		$stmt->close();
-		
+
 		// Add Recent Activity
 		$activityType = '16';
 		$rs_uid = '0';
@@ -256,7 +256,7 @@
 		$statusTab = 'active';
 		$acctTab = $emailTab = $passTab = $avatarTab = $notesTab = $docsTab = '';
     }
-	
+
 	// Update Tenant Notes
 	if (isset($_POST['submit']) && $_POST['submit'] == 'tenNotes') {
 		$notes = htmlspecialchars($_POST['notes']);
@@ -275,7 +275,7 @@
 		);
 		$stmt->execute();
 		$stmt->close();
-		
+
 		// Add Recent Activity
 		$activityType = '16';
 		$rs_uid = '0';
@@ -287,7 +287,7 @@
 		$notesTab = 'active';
 		$acctTab = $emailTab = $passTab = $avatarTab = $statusTab = $docsTab = '';
     }
-	
+
 	// Upload Document
 	if (isset($_POST['submit']) && $_POST['submit'] == 'uploadDoc') {
 		// User Validations
@@ -371,17 +371,17 @@
 					$stmt->execute();
 					$msgBox = alertBox($tntDocUplMsg." ".$docTitle." ".$hasBeenUplAct, "<i class='fa fa-check-square'></i>", "success");
 					$stmt->close();
-					
+
 					$emailsql = "SELECT userEmail FROM users WHERE userId = ".$userId;
 					$emailresult = mysqli_query($mysqli, $emailsql) or die('-0' . mysqli_error());
 					$col = mysqli_fetch_assoc($emailresult);
 					$userEmail = $col['userEmail'];
-					
+
 					$siteName = $set['siteName'];
 					$siteEmail = $set['siteEmail'];
-					
+
 					$subject = $siteName.' '.$tntDocUplEmailSubject;
-								
+
 					$message = '<html><body>';
 					$message .= '<h3>'.$subject.'</h3>';
 					$message .= '<p><strong>'.$uploadedByText.'</strong> '.$rs_adminName.'</p>';
@@ -390,12 +390,12 @@
 					$message .= '<hr>';
 					$message .= '<p>'.$emailTankYouTxt.'<br>'.$siteName.'</p>';
 					$message .= '</body></html>';
-					
+
 					$headers = "From: ".$siteName." <".$siteEmail.">\r\n";
 					$headers .= "Reply-To: ".$siteEmail."\r\n";
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-					
+
 					mail($userEmail, $subject, $message, $headers);
 
 					// Add Recent Activity
@@ -414,11 +414,11 @@
 				}
 			}
 		}
-		
+
 		$docsTab = 'active';
 		$acctTab = $emailTab = $passTab = $avatarTab = $statusTab = $notesTab = '';
 	}
-	
+
 	// Delete Document
 	if (isset($_POST['submit']) && $_POST['submit'] == 'deleteDoc') {
 		$deleteId = htmlspecialchars($_POST['deleteId']);
@@ -453,26 +453,26 @@
 			$activityTitle = $TntDocUplErr1.' '.$tenantsName.' '.$deleteFileAct2;
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 		}
-		
+
 		$docsTab = 'active';
 		$acctTab = $emailTab = $passTab = $avatarTab = $statusTab = $notesTab = '';
 	}
-	
+
 	// Get Data
 	$qry = "SELECT * FROM users WHERE userId = ".$userId;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
 	$row = mysqli_fetch_assoc($res);
-	
+
 	// Decrypt data
 	if ($row['primaryPhone'] != '') { $primaryPhone = decryptIt($row['primaryPhone']); } else { $primaryPhone = '';  }
 	if ($row['altPhone'] != '') { $altPhone = decryptIt($row['altPhone']); } else { $altPhone = '';  }
 	if ($row['userAddress'] != '') { $userAddress = decryptIt($row['userAddress']); } else { $userAddress = '';  }
-	
+
 	if ($row['lastVisited'] == '0000-00-00 00:00:00') { $lastVisited = $noneText; } else { $lastVisited = dateFormat($row['lastVisited']); }
 	if ($row['isResident'] == '1') { $accType = $residentText; } else { $accType = $tenantText;  }
 	if ($row['isDisabled'] == '1') {
 		$isDisabled = 'selected';
-		$actAcc = $disabledText; 
+		$actAcc = $disabledText;
 	} else {
 		$isDisabled = '';
 		$actAcc = $tntEnabledText;
@@ -484,7 +484,7 @@
 		$isArchived = '';
 		$accArch = '';
 	}
-	
+
 	if ($row['isResident'] == '0') {
 		if ($row['isLeased'] == '1') {
 			// Get Property Data
@@ -505,7 +505,7 @@
 			$rows = mysqli_fetch_assoc($result);
 		}
 	}
-	
+
 	// Get Documents
 	$qrystmt = "SELECT
 					userdocs.*,
@@ -516,6 +516,20 @@
 				WHERE
 					userdocs.userId = ".$userId;
 	$results = mysqli_query($mysqli, $qrystmt) or die('-3' . mysqli_error());
+
+	//Get Invoices
+$inv = "SELECT * FROM invoices where tenantId=".$userId." and status=1";
+ $invoiceres = mysqli_query($mysqli, $inv) or die('-3' . mysqli_error());
+
+//Get accounts
+ $acc = "SELECT * FROM accounts where tenantId=".$userId;
+ $accRes = mysqli_query($mysqli, $acc) or die('-3' . mysqli_error());
+ $ov = mysqli_fetch_assoc($accRes);
+	//Get payments
+	$pymts = "SELECT payments.*,properties.propertyName,properties.unitName FROM payments inner join properties on payments.propertyId=properties.propertyId where payments.userId=".$userId." and payments.hasRefund=0";
+	 $pymtsres = mysqli_query($mysqli, $pymts) or die('-4' . mysqli_error($mysqli));
+
+
 
 	$tenPage = 'true';
 	$pageTitle = $viewTenantPageTitle;
@@ -534,7 +548,7 @@
 				if ($msgBox) { echo $msgBox; }
 		?>
 				<h3><?php echo $pageTitle; ?></h3>
-		
+
 				<div class="row">
 					<div class="col-md-4">
 						<div class="profileBox">
@@ -557,39 +571,100 @@
 								</p>
 							</div>
 						</div>
-						
-						<?php
-							if ($row['isResident'] == '0') {
-								if ($row['isLeased'] == '1') {
-						?>
-								<ul class="list-group">
-									<li class="list-group-item">
-										<strong><?php echo $leasedPropText; ?>:</strong>
-										<a href="index.php?action=viewProperty&propertyId=<?php echo $rows['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-											<?php echo clean($rows['propertyName']); ?>
-										</a>
-									</li>
-									<li class="list-group-item">
-										<strong><?php echo $leaseTermText; ?></strong>
-										<?php echo clean($rows['leaseTerm']); ?><br />
-										<small><?php echo dateFormat($rows['leaseStart']).' &mdash; '.dateFormat($rows['leaseEnd']); ?></small>
-									</li>
-								</ul>
-						<?php } else { ?>
-								<div class="alertMsg default">
-									<div class="msgIcon pull-left">
-										<i class="fa fa-info-circle"></i>
-									</div>
-									<?php echo $noTntActLeaseFoundMsg.' '.$accType; ?>.
-								</div>
-						<?php
-								}
-							}
-						?>
+
+
 					</div>
 					<div class="col-md-8">
 						<div class="tabs mt-0">
 							<ul class="tabsBody">
+								<li  class="<?php echo $leaseTab; ?>">
+									<h4 class="tabHeader" tabindex="0">Lease</h4>
+									<section class="tabContent" id="lease">
+										<?php
+											if ($row['isResident'] == '0') {
+												if ($row['isLeased'] == '1') {
+										?>
+												<ul class="list-group">
+													<li class="list-group-item">
+														<strong><?php echo $leasedPropText; ?>:</strong>
+														<a href="index.php?action=viewProperty&propertyId=<?php echo $rows['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+															<?php echo clean($rows['propertyName']); ?>
+														</a>
+													</li>
+													<li class="list-group-item">
+														<strong><?php echo $leaseTermText; ?></strong>
+														<?php echo clean($rows['leaseTerm']); ?><br />
+														<small><?php echo dateFormat($rows['leaseStart']).' &mdash; '.dateFormat($rows['leaseEnd']); ?></small>
+													</li>
+													<li class="list-group-item">
+														<strong> Overdue rent amount: </strong>
+														<?php echo formatCurrency($ov['balance']); ?>
+													</li>
+												</ul>
+										<?php } else { ?>
+												<div class="alertMsg default">
+													<div class="msgIcon pull-left">
+														<i class="fa fa-info-circle"></i>
+													</div>
+													<?php echo $noTntActLeaseFoundMsg.' '.$accType; ?>.
+												</div>
+										<?php
+												}
+											}
+
+										?>
+										<h3>Outstanding Invoices</h3>
+
+											<table id="invoices" class="display" cellspacing="0">
+												<thead>
+													<tr>
+														<th>Date Raised</th>
+														<th>Description</th>
+														<th>Amount</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+													while ($row = mysqli_fetch_assoc($invoiceres)) {
+														 ?><tr>
+															 <td><?php echo $row["dateRaised"]; ?></td>
+															 <td><?php echo $row["description"]; ?></td>
+															 <td><?php echo formatCurrency($row["amount"]); ?></td>
+														 </tr>
+
+													 <?php } ?>
+												</tbody>
+										</table>
+
+										<h3>Payments</h3>
+
+											<table id="payments" class="display" cellspacing="0">
+												<thead>
+													<tr>
+														<th>Date Paid</th>
+														<th>Payment Type</th>
+														<th>Payment Reference</th>
+														<th>Narration</th>
+														<th>Amount</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+													while ($row = mysqli_fetch_assoc($pymtsres)) {
+														 ?><tr>
+															 <td><?php echo $row["paymentDate"]; ?></td>
+															 <td><?php echo $row["paymentType"]; ?></td>
+															 <td><?php echo $row["reference"]; ?></td>
+															 <td><?php echo $row["narration"]; ?></td>
+															 <td><?php echo formatCurrency($row["amountPaid"]); ?></td>
+														 </tr>
+
+													 <?php } ?>
+												</tbody>
+										</table>
+
+									</section>
+								</li>
 								<li class="<?php echo $acctTab; ?>">
 									<h4 class="tabHeader" tabindex="0"><?php echo $accountTabTitle; ?></h4>
 									<section class="tabContent" id="account">
@@ -637,7 +712,7 @@
 													<input type="text" class="form-control" name="pets" id="pets" value="<?php echo clean($row['pets']); ?>" />
 												</div>
 											</div>
-											
+
 											<div class="form-group">
 												<div class="col-sm-offset-3 col-sm-9">
 													<button type="input" name="submit" value="accInfo" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> <?php echo $saveChangesBtn; ?></button>
@@ -718,7 +793,7 @@
 										<?php } else { ?>
 											<p><?php echo $profAvatarText2.' '.$accType; ?><?php echo $profAvatarText3; ?> <?php echo $accType.' '.$profAvatarText4; ?></p>
 											<a data-toggle="modal" href="#deleteAvatar" class="btn btn-warning btn-icon mt-20" data-dismiss="modal"><i class="fa fa-ban"></i> <?php echo $remAvatarBtn; ?></a>
-											
+
 											<div id="deleteAvatar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 												<div class="modal-dialog">
 													<div class="modal-content">
@@ -766,7 +841,7 @@
 														<span class="help-block"><?php echo $arcAccHelp.' '.$accType.$arcAccHelp1; ?></span>
 													</div>
 												</div>
-												
+
 												<div class="form-group">
 													<div class="col-sm-offset-3 col-sm-9">
 														<input type="hidden" name="tenantsName" value="<?php echo clean($row['userFirstName']).' '.clean($row['userLastName']); ?>" />
@@ -791,7 +866,7 @@
 													<span class="help-block"><?php echo $intNotesFieldHelp1.' '.$accType.' '.$intNotesFieldHelp2; ?></span>
 												</div>
 											</div>
-											
+
 											<div class="form-group">
 												<div class="col-sm-offset-3 col-sm-9">
 													<input type="hidden" name="tenantsName" value="<?php echo clean($row['userFirstName']).' '.clean($row['userLastName']); ?>" />
@@ -808,7 +883,7 @@
 										<p class="text-right">
 											<a data-toggle="modal" href="#uploadDoc" class="btn btn-success btn-xs btn-icon mb-10"><i class="fa fa-upload"></i> <?php echo $uplDocBtn; ?></a>
 										</p>
-										
+
 										<div class="modal fade" id="uploadDoc" tabindex="-1" role="dialog" aria-hidden="true">
 											<div class="modal-dialog modal-lg">
 												<div class="modal-content">
@@ -857,7 +932,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<?php if(mysqli_num_rows($results) < 1) { ?>
 											<div class="alertMsg default mb-20">
 												<div class="msgIcon pull-left">
@@ -925,7 +1000,7 @@
 						</div>
 					</div>
 				</div>
-		
+
 		<?php } else { ?>
 			<hr class="mt-0 mb-0" />
 			<h3><?php echo $accessErrorHeader; ?></h3>

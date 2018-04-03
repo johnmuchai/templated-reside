@@ -6,7 +6,7 @@
 	$propPicsPath	= $set['propPicsPath'];	// Get the Property Pictures Directory
 
 	$hasLateRent = '';
-	
+
 	if ($rs_isResident == '1') {
 		$q = "SELECT
 				users.primaryTenantId,
@@ -85,7 +85,7 @@
 			} else {
 				$hasLateRent = '';
 			}
-			
+
 			// Get latest payment data
 			$payment = "SELECT
 							payments.*,
@@ -119,8 +119,15 @@
 					orderDate DESC";
     $alertres = mysqli_query($mysqli, $alert) or die('-5' . mysqli_error());
 
+		//Get Invoices
+	$inv = "SELECT * FROM invoices where tenantId=".$primaryTenId." and status=1";
+	 $invoiceres = mysqli_query($mysqli, $inv) or die('-3' . mysqli_error());
+
 	$dashPage = 'true';
 	$pageTitle = $dashPageTitle;
+	$dataTables=true;
+	$jsFile = "dashboard";
+	$addCss = '<link href="css/dataTables.css" rel="stylesheet"><link href="css/chosen.css" rel="stylesheet">';
 	include 'includes/user_header.php';
 ?>
 	<div class="container page_block noTopBorder">
@@ -136,7 +143,7 @@
 					<?php echo $welcomeText; ?>, <?php echo $rs_userFull; ?>
 				</p>
 				<p class="mt-0">The <?php echo $set['siteName'].' '.$welcomeQuipText; ?></p>
-				
+
 				<?php
 					if ($set['enablePayments'] == '1') {
 						if ($hasLease == 'true') {
@@ -180,7 +187,7 @@
 		<h3><?php echo $dashCurrentLeaseText; ?></h3>
 		<?php if ($hasLease == 'true') { ?>
 			<div class="table-responsive">
-				<table class="table table-bordered table-sm mb-0">
+				<table id="lease" class="table table-bordered table-sm mb-0">
 					<thead>
 						<tr>
 							<th><?php echo $propertyHead; ?></th>
@@ -225,6 +232,29 @@
 			</div>
 		<?php } ?>
 
+		<h3>Outstanding Invoices</h3>
+
+			<table id="invoices" class="display" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Date Raised</th>
+						<th>Description</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					while ($row = mysqli_fetch_assoc($invoiceres)) {
+						 ?><tr>
+							 <td><?php echo $row["dateRaised"]; ?></td>
+							 <td><?php echo $row["description"]; ?></td>
+							 <td><?php echo formatCurrency($row["amount"]); ?></td>
+						 </tr>
+
+					 <?php } ?>
+				</tbody>
+		</table>
+
 		<?php
 			if ($set['enablePayments'] == '1') {
 				if ($hasLease == 'true') {
@@ -233,7 +263,7 @@
 					<hr />
 					<h3><?php echo $mostRecentPymntsText; ?></h3>
 					<div class="table-responsive">
-						<table class="table table-bordered table-sm">
+						<table id="payments" class="table table-bordered table-sm">
 							<thead>
 								<tr>
 									<th><?php echo $paymentForHead; ?></th>

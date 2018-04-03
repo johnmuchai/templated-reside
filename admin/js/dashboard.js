@@ -8,17 +8,23 @@ $(document).ready(function () {
 		"searching": false,		// Disable Search
 		"bInfo": false			// Disable "Showing x to x of x entries"
 	});
-	
+
+	$('#overdueRent').dataTable({
+		"paging": false,		// Disable Pagination
+		"searching": false,		// Disable Search
+		"bInfo": false			// Disable "Showing x to x of x entries"
+	});
+
 	$('#lateRent_wrapper').addClass('pt-0 pb-20');
-	
+
 	$('#availProp').dataTable({
 		"paging": false,		// Disable Pagination
 		"searching": false,		// Disable Search
 		"bInfo": false			// Disable "Showing x to x of x entries"
 	});
-	
+
 	$('#availProp_wrapper').addClass('pt-0 pb-20');
-	
+
 	$('#rentReceived').dataTable({
 		"columnDefs": [{
 			"orderable": false, "targets": 7
@@ -27,7 +33,7 @@ $(document).ready(function () {
 		"searching": false,		// Disable Search
 		"bInfo": false			// Disable "Showing x to x of x entries"
 	});
-	
+
 	$('#rentReceived_wrapper').addClass('pt-0 pb-20');
 
 });

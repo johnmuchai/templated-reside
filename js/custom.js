@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 	* Activate Popovers
 	****************************** **/
 	$("[data-toggle='popover']").popover();
-	
+
 	/** ******************************
 	* Alert Message Boxes
 	****************************** **/
@@ -41,6 +41,7 @@ jQuery(document).ready(function($) {
 			$(this).addClass('hidden');
 		});
 	});
+
 	
 	/** ******************************
 	* Form Placeholders
@@ -68,7 +69,7 @@ jQuery(document).ready(function($) {
 		}
 	}
 	placehold.init();
-	
+
 	// Show Error State on empty Required Fields
 	$("form :input[required='required']").blur(function() {
 		if (!$(this).val()) {

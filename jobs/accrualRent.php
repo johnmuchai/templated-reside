@@ -29,7 +29,7 @@ while($row=mysqli_fetch_assoc($sqlres)){
 
   if(!isset($rowinv)){
     //insert into invoices
-    $description = "Rent for current month";
+    $description = "Rent for ".$currentMonth." ".$currentYear;
     $dateDue =  date('Y-m-5',strtotime('today'));
     $status = "1";
     $stmt = $mysqli->prepare("

@@ -24,16 +24,16 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 		$propertyType = htmlspecialchars($_POST['propertyType']);
 		$propertyStyle = htmlspecialchars($_POST['propertyStyle']);
 		$petsAllowed = htmlspecialchars($_POST['petsAllowed']);
-		$yearBuilt = htmlspecialchars($_POST['yearBuilt']);
-		$propertySize = htmlspecialchars($_POST['propertySize']);
+		$yearBuilt = "";//htmlspecialchars($_POST['yearBuilt']);
+		$propertySize = "";//htmlspecialchars($_POST['propertySize']);
 		$bedrooms = htmlspecialchars($_POST['bedrooms']);
 		$bathrooms = htmlspecialchars($_POST['bathrooms']);
 		$parking = htmlspecialchars($_POST['parking']);
-		$heating = htmlspecialchars($_POST['heating']);
+		$heating = "";//htmlspecialchars($_POST['heating']);
 		$googleMap = htmlspecialchars($_POST['googleMap']);
 		$propManager = htmlspecialchars($_POST['propManager']);
 		$unitName = htmlspecialchars($_POST['unitName']);
-		$courtName = htmlspecialchars($_POST['courtName']);
+		$courtName = "";//htmlspecialchars($_POST['courtName']);
 
 		if(isset($_POST['noofunits'])){
 			$noofunits = htmlspecialchars($_POST['noofunits']);
@@ -324,10 +324,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="courtName"><?php echo $propCourtNameField; ?></label>
 							<input type="text" class="form-control" name="courtName" id="courtName" required="required" value="<?php echo isset($_POST['courtName']) ? $_POST['paymentDate'] : ''; ?>" />
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -429,7 +429,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 					</div>
 				</div>-->
 				<div class="row">
-					<div class="col-md-3">
+					<!-- <div class="col-md-3">
 						<div class="form-group">
 							<label for="yearBuilt"><?php echo $yearBuiltText; ?></label>
 							<input type="text" class="form-control" name="yearBuilt" id="yearBuilt" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
@@ -440,14 +440,14 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 							<label for="propertySize"><?php echo $propSizeField; ?></label>
 							<input type="text" class="form-control" name="propertySize" id="propertySize" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
 						</div>
-					</div>
-					<div class="col-md-3">
+					</div> -->
+					<div class="col-md-6">
 						<div class="form-group">
 							<label for="bedrooms"><?php echo $propBedsField; ?></label>
 							<input type="text" class="form-control" name="bedrooms" id="bedrooms" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label for="bathrooms"><?php echo $propBathsField; ?></label>
 							<input type="text" class="form-control" name="bathrooms" id="bathrooms" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
@@ -463,10 +463,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="heating"><?php echo $propHeatingField; ?></label>
 							<input type="text" class="form-control" name="heating" id="heating" value="<?php echo isset($_POST['paymentDate']) ? $_POST['paymentDate'] : ''; ?>" />
-						</div>
+						</div> -->
 					</div>
 				</div>
 

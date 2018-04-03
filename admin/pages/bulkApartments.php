@@ -199,22 +199,21 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addUnits') {
 
         </div>
         <div class="row">
-
-
-          </div>
+          <button type="input" name="submit" value="addUnits" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Create</button>
         </div>
-
-        <button type="input" name="submit" value="addUnits" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Create</button>
-      </form>
-
-    <?php } else { ?>
-      <hr class="mt-0 mb-0" />
-      <h3><?php echo $accessErrorHeader; ?></h3>
-      <div class="alertMsg warning mb-20">
-        <div class="msgIcon pull-left">
-          <i class="fa fa-warning"></i>
-        </div>
-        <?php echo $permissionDenied; ?>
       </div>
-    <?php } ?>
-  </div>
+
+
+    </form>
+
+  <?php } else { ?>
+    <hr class="mt-0 mb-0" />
+    <h3><?php echo $accessErrorHeader; ?></h3>
+    <div class="alertMsg warning mb-20">
+      <div class="msgIcon pull-left">
+        <i class="fa fa-warning"></i>
+      </div>
+      <?php echo $permissionDenied; ?>
+    </div>
+  <?php } ?>
+</div>

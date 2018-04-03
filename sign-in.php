@@ -683,7 +683,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'userSignUp') {
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<div class="signin-logo">
-						<a href="index.php"><img alt="<?php echo $set['siteName']; ?>" src="images/signin_logo.png" /></a>
+						<a href="index.php"><img alt="<?php echo $set['siteName']; ?>" src="images/newlogo.png" /></a>
 					</div>
 
 					<div class="signin">

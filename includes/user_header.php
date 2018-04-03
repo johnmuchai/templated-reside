@@ -7,14 +7,14 @@
 	//	header("Location: $url");
 	//	exit;
 	//}
-	
+
 	// Set the Active State on the Navigation
 	$dashNav = $propNav = $servNav = $userNav = '';
 	if (isset($dashPage)) { $dashNav = 'active'; } else { $dashNav = ''; }
 	if (isset($propPage)) { $propNav = 'active'; } else { $propNav = ''; }
 	if (isset($servPage)) { $servNav = 'active'; } else { $servNav = ''; }
 	if (isset($userPage)) { $userNav = 'active'; } else { $userNav = ''; }
-	
+
 	// Get Social Network Icons & Links
 	if (!empty($set['facebook'])) {
 		$facebook = '<a href="'.clean($set['facebook']).'" class="facebook" data-toggle="tooltip" data-placement="bottom" title="'.$facebookText.'"><i class="fa fa-facebook"></i></a>';
@@ -33,7 +33,7 @@
 	} else { $twitter = ''; }
 	if (!empty($set['youtube'])) {
 		$youtube = '<a href="'.clean($set['youtube']).'" class="youtube" data-toggle="tooltip" data-placement="bottom" title="'.$youtubeText.'"><i class="fa fa-youtube"></i></a>';
-	} else { $youtube = ''; }	
+	} else { $youtube = ''; }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +92,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.php"><img src="images/logo.png" /></a>
+						<a class="navbar-brand" href="index.php" style="height:80px;"><img src="images/newlogo.png" /></a>
 					</div>
 
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -121,7 +121,7 @@
 			</nav>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="signOutLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

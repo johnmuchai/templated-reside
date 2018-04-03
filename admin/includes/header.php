@@ -76,7 +76,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.php" style="height:169px;"><img src="../images/newlogo.png" /></a>
+						<a class="navbar-brand" href="index.php" style="height:80px;"><img src="../images/newlogo.png" /></a>
 					</div>
 
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
