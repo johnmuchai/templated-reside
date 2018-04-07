@@ -80,7 +80,7 @@
 				</form>
 			</div>
 		</div>
-		
+
 		<div class="copyright clearfix">
 			<div class="pull-left">
 				<span><i class="fa fa-copyright"></i> <?php echo $copyrightText; ?> <?php echo date("Y"); ?></span> <?php echo $copyrightLink; ?>
@@ -102,7 +102,7 @@
 							<li><a href="sign-in.php"><?php echo $signInNavLink; ?></a></li>
 					<?php
 							}
-						}	
+						}
 					?>
 				</ul>
 			</div>
@@ -112,8 +112,12 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/custom.js"></script>
+	<script src="js/dataTables.js"></script>
+	<script src="js/dataTables.tableTools.js"></script>
 	<?php if (isset($flixSlider)) { echo '<script type="text/javascript" src="js/jquery.flexslider.js"></script>'; } ?>
 	<?php if (isset($jsFile)) { echo '<script type="text/javascript" src="js/includes/'.$jsFile.'.js"></script>'; } ?>
+
+
 	<?php if ($set['analyticsCode'] != '') { ?>
 		<script type="text/javascript"><?php echo htmlspecialchars_decode($set['analyticsCode']); ?></script>
 	<?php } ?>
