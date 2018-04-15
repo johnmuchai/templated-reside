@@ -60,52 +60,64 @@ echo $prodid;
      $leaseid =$ls['leaseId'];
      echo $leaseid;
 
+  $UserLeaseQuery ="SELECT *  FROM users  where propertyId ='".$prodid."' and leaseId='".$leaseid."'";
+
+  $user_date = mysqli_query($mysqli, $UserLeaseQuery) or die('-1'.mysqli_error());
+
+  while ($lusers= mysqli_fetch_assoc($user_date)) {
+
+     $userid =$lusers['userId'];
+     echo $userid;
 
 
-$stmt2 = "INSERT INTO
-            payments(
-              leaseId,
-              propertyId,
-              adminId,
-              userId,
-              hasRefund,
-              paymentDate,
-              amountPaid,
-              paymentFor,
-              paymentType,
-              isRent,
-          
-              notes,
-              lastUpdated
-            ) VALUES (
-              '".$leaseid."',
-              '".$prodid."',
-              '1',
-              '1',
-              '0',
-              NOW(),
-              '".  $paymentAmount."',
-              'rent',
-              '$payment_source',
-              '1',
 
-                  '".$paidInByName."',
-              NOW()
+     $stmt2 = "INSERT INTO
+                 payments(
+                   leaseId,
+                   propertyId,
+                   adminId,
+                   userId,
+                   hasRefund,
+                   paymentDate,
+                   amountPaid,
+                   paymentFor,
+                   paymentType,
+                   isRent,
 
-            )";
+                   notes,
+                   lastUpdated
+                 ) VALUES (
+                   '".$leaseid."',
+                   '".$prodid."',
+                   '1',
+                   '".$userid."',
+                   '0',
+                   NOW(),
+                   '".  $paymentAmount."',
+                   'rent',
+                   '$payment_source',
+                   '1',
 
-            echo $stmt2;
+                       '".$paidInByName."',
+                   NOW()
 
-mysqli_query($con, $stmt2);
+                 )";
 
-mysqli_close($con);
+                 echo $stmt2;
 
-$jsonData = array(
-    'responsecode' => 'OK',
-    'response_message' => 'Succesful'
-);
+     mysqli_query($con, $stmt2);
 
-echo json_encode($jsonData);
+     mysqli_close($con);
+
+     $jsonData = array(
+         'responsecode' => 'OK',
+         'response_message' => 'Succesful'
+     );
+
+     echo json_encode($jsonData);
+
+   }
+
 
   }
 
