@@ -21,7 +21,7 @@ while($row=mysqli_fetch_assoc($sqlres)){
 
 
 
-  $sqlinv = "SELECT * from invoices where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"]." and month(dateRaised)='".$currentMonth."'";
+  $sqlinv = "SELECT * from invoices where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"]." and invoiceType='Rent' and month(dateRaised)='".$currentMonth."'";
   //echo $sqlinv;
   $resinv = mysqli_query($mysqli, $sqlinv) or die('-6' . mysqli_error($mysqli));
 
@@ -34,15 +34,14 @@ while($row=mysqli_fetch_assoc($sqlres)){
     $dateDue =  date('Y-m-5',strtotime('today'));
     $status = "1";
     $stmt = $mysqli->prepare("
-    INSERT INTO invoices (tenantId,leaseId,amount,dateRaised,dateDue,description,status,invoiceType) VALUES (?,?,?,NOW(),?,?,?,?)");
+    INSERT INTO invoices (tenantId,leaseId,amount,dateRaised,dateDue,description,status,invoiceType) VALUES (?,?,?,NOW(),?,?,?,'Rent')");
     $stmt->bind_param('sssssss',
     $row["userId"],
     $row["leaseId"],
     $row["propertyRate"],
     $dateDue,
     $description,
-    $status,
-    $invoiceType
+    $status
   );
   $stmt->execute();
 
@@ -101,15 +100,14 @@ $stmt->close();
     $dateDue =  date('Y-m-5',strtotime('today'));
     $status = "1";
     $stmt = $mysqli->prepare("
-    INSERT INTO invoices (tenantId,leaseId,amount,dateRaised,dateDue,description,status,invoiceType) VALUES (?,?,?,NOW(),?,?,?,?)");
+    INSERT INTO invoices (tenantId,leaseId,amount,dateRaised,dateDue,description,status,invoiceType) VALUES (?,?,?,NOW(),?,?,?,'Penalty')");
     $stmt->bind_param('sssssss',
     $row["userId"],
     $row["leaseId"],
     $row["latePenalty"],
     $dateDue,
     $description,
-    $status,
-    $invoiceType
+    $status
   );
   $stmt->execute();
 
