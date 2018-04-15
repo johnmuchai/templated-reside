@@ -35,7 +35,7 @@ while($row=mysqli_fetch_assoc($sqlres)){
     $status = "1";
     $stmt = $mysqli->prepare("
     INSERT INTO invoices (tenantId,leaseId,amount,dateRaised,dateDue,description,status,invoiceType) VALUES (?,?,?,NOW(),?,?,?,'Rent')");
-    $stmt->bind_param('sssssss',
+    $stmt->bind_param('ssssss',
     $row["userId"],
     $row["leaseId"],
     $row["propertyRate"],
@@ -101,7 +101,7 @@ $stmt->close();
     $status = "1";
     $stmt = $mysqli->prepare("
     INSERT INTO invoices (tenantId,leaseId,amount,dateRaised,dateDue,description,status,invoiceType) VALUES (?,?,?,NOW(),?,?,?,'Penalty')");
-    $stmt->bind_param('sssssss',
+    $stmt->bind_param('ssssss',
     $row["userId"],
     $row["leaseId"],
     $row["latePenalty"],
