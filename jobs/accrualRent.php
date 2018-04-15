@@ -116,7 +116,7 @@ $stmt->close();
   echo $stmt->error;
   $stmt->close();
 
-  sqll = "select * from accounts where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"]." FOR UPDATE";
+  $sqll = "select * from accounts where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"]." FOR UPDATE";
   $resl= mysqli_query($mysqli, $sqll) or die('-6' . mysqli_error($mysqli));
   $rowl = mysqli_fetch_assoc($resl);
 
