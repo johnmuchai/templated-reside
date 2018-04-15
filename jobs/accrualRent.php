@@ -14,7 +14,7 @@ $todayDate = date("Y-m-d");
 $currentYear = date('Y');
 $currentMonth = date('n');
 
-$sqlstmt = "SELECT leases.*,properties.propertyRate FROM leases inner join properties on leases.propertyId=properties.propertyId WHERE leases.closed=0";
+$sqlstmt = "SELECT leases.*,properties.propertyRate,properties.latePenalty FROM leases inner join properties on leases.propertyId=properties.propertyId WHERE leases.closed=0";
 $sqlres = mysqli_query($mysqli, $sqlstmt) or die('-6' . mysqli_error($mysqli));
 
 while($row=mysqli_fetch_assoc($sqlres)){
@@ -92,8 +92,16 @@ $stmt->close();
 
 }else{
 
+//penalty done?
+
+$sqlinvP = "SELECT * from invoices where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"]." and invoiceType='Penalty' and month(dateRaised)='".$currentMonth."'";
+//echo $sqlinv;
+$resinvP = mysqli_query($mysqli, $sqlinvP) or die('-6' . mysqli_error($mysqli));
+
+$rowinvP = mysqli_num_rows($resinv);
+
   //is the invoice already paid?
-  if($rowinv["status"]=="1" && $rowinv["dateDue"]<''){  //if not paid for, is it overdue?
+  if($rowinv["status"]=="1" && $rowinv["dateDue"]<'' && $rowinvP==0){  //if not paid for, is it overdue?
     //if overdue and not penalized already, please charge penaltyFee
     $invoiceType="Penalty";
     $description = "Penalty ".$currentMonth."/".$currentYear;
