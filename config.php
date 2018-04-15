@@ -6,9 +6,9 @@ date_default_timezone_set('America/New_York');
 
 $dbhost = 'localhost';
 $dbuser = 'root';
-//$dbpass = 'notrust2015';
-$dbpass = 'sajoda12';
-$dbname = 'reside';
+$dbpass = 'notrust2015';
+//$dbpass = 'sajoda12';
+$dbname = 'reside_prod';
 
 //Connect
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
