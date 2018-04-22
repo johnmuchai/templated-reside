@@ -107,6 +107,27 @@ echo $prodid;
 
      mysqli_query($con, $stmt2);
 
+
+          //update accruals
+
+
+            $accrual ="SELECT *  FROM accounts  where tenantId ='".$userid."' AND leaseId ='".$leaseid."'";
+
+            $accrualrs = mysqli_query($mysqli, $accrual) or die('-1'.mysqli_error());
+
+            while ($ls= mysqli_fetch_assoc($accrualrs)) {
+
+               $balance =$ls['balance'];
+
+             $newbalance = intval($paymentAmount)+intval($balance);
+
+             $updateQuery="UPDATE accounts SET  balance='".$newbalance."' where tenantId ='".$userid."' AND leaseId ='".$leaseid."' ";
+
+             mysqli_query($con, $updateQuery);
+     
+             }
+
+
      mysqli_close($con);
 
      $jsonData = array(
