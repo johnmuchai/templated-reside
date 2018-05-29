@@ -92,13 +92,13 @@ $stmt->close();
 
 }else{
 
-//penalty done?
+  //penalty done?
 
-$sqlinvP = "SELECT * from invoices where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"]." and invoiceType='Penalty' and month(dateRaised)='".$currentMonth."'";
-//echo $sqlinv;
-$resinvP = mysqli_query($mysqli, $sqlinvP) or die('-6' . mysqli_error($mysqli));
+  $sqlinvP = "SELECT * from invoices where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"]." and invoiceType='Penalty' and month(dateRaised)='".$currentMonth."'";
+  //echo $sqlinv;
+  $resinvP = mysqli_query($mysqli, $sqlinvP) or die('-6' . mysqli_error($mysqli));
 
-$rowinvP = mysqli_num_rows($resinv);
+  $rowinvP = mysqli_num_rows($resinv);
 
   //is the invoice already paid?
   if($rowinv["status"]=="1" && $rowinv["dateDue"]<'' && $rowinvP==0){  //if not paid for, is it overdue?
