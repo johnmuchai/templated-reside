@@ -74,7 +74,7 @@
 				properties
 			WHERE
 				properties.isLeased = 0 AND
-				properties.active = 1";
+				properties.active = 1 AND properties.landlordId=".$rs_managerId;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
 
 	$propPage = 'true';
