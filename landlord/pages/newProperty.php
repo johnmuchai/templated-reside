@@ -201,7 +201,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 					?
 					)");
 					$stmt->bind_param('ssssssssssssssssssss',
-					$rs_adminId,
+					$rs_managerId,
 					$propertyName,
 					$propertyDesc,
 					$propertyAddress,
@@ -220,7 +220,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 					$googleMap,
 					$unitName,
 					$courtName,
-					$propManager
+					$rs_managerId
 				);
 				$stmt->execute();
 
@@ -230,8 +230,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 				// Add Recent Activity
 				$activityType = '2';
 				$rs_uid = '0';
-				$activityTitle = $rs_adminName.' '.$newPropAct.' "'.$propertyName.'"';
-				updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
+				$activityTitle = $rs_managerId.' '.$newPropAct.' "'.$propertyName.'"';
+				updateActivity($rs_managerId,$rs_uid,$activityType,$activityTitle);
 
 				// Clear the form of Values
 				$_POST['userFirstName'] = $_POST['userLastName'] = $_POST['userEmail'] = $_POST['userEmail_r'] = $_POST['primaryPhone'] = $_POST['altPhone'] = '';
@@ -299,20 +299,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="propManager"><?php echo $propManagerHead; ?></label>
-						<select class="form-control chosen-select" name="propManager" id="propManager">
-							<?php
 
-							$sql = "SELECT * FROM managers order by name asc";
-							$res = mysqli_query($mysqli, $sql) or die('-1' . mysqli_error($mysqli));
-							//$rows = mysqli_fetch_assoc($res);
-
-							while ($row = mysqli_fetch_assoc($res)) { ?>
-								<option value="<?php echo $row["id"];?>"><?php echo $row["name"]; ?></option>
-								<?php
-							}
-							?>
-						</select>
 					</div>
 				</div>
 
