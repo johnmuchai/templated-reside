@@ -2,6 +2,7 @@
 	// Get Leased Tenant Data
 	if ($rs_isAdmin == '') {
 		// View Assigned
+//admins.adminId = ".$rs_adminId." AND
 		$qry = "SELECT
 					users.*,
 					properties.propertyName,
@@ -14,7 +15,7 @@
 					LEFT JOIN assigned ON users.propertyId = assigned.propertyId
 					LEFT JOIN admins ON assigned.adminId = admins.adminId
 				WHERE
-					admins.adminId = ".$rs_adminId." AND
+
 					users.isActive = 1 AND
 					users.leaseId != 0";
 		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
