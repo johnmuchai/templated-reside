@@ -59,6 +59,7 @@ if(is_dir('install')) {
 	} else if (isset($_GET['action']) && $_GET['action'] == 'properties') {	$page = 'properties';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'tenants') {	$page = 'tenants';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'viewProperty') {			$page = 'viewProperty';
+} else if (isset($_GET['action']) && $_GET['action'] == 'viewTenant') {			$page = 'viewTenant';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'leaseProperty') {			$page = 'leaseProperty';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'leasedProperties') {			$page = 'leasedProperties';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'leasedTenants') {			$page = 'leasedTenants';

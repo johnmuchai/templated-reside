@@ -1,6 +1,6 @@
 <?php
 	// Get Data
-	if ($rs_isAdmin == '') {
+	if ($rs_isAdmin != '') {
 		$qry = "SELECT
 					properties.*,
 					leases.*,
@@ -36,6 +36,7 @@
 				WHERE
 					properties.isLeased = 1 AND
 					properties.active = 1 AND
+					properties.landlordId= $rs_managerId AND
 					leases.closed = 0 AND
 					users.isResident = 0";
 		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
