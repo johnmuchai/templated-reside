@@ -22,7 +22,7 @@ if(is_dir('install')) {
 		header('Location: index.php');
 	} else if ((isset($_SESSION['rs']['userId'])) && ($_SESSION['rs']['userId'] != '')) {
 		header('Location: index.php');
-	}else if(($_SESSION['rs']['isManager'])) && ($_SESSION['rs']['isManager'] != '')){
+	}else if((isset($_SESSION['rs']['isManager'])) && ($_SESSION['rs']['isManager'] != '')){
 		header('Location: landlord/index.php');
 	}else{
 		unset($_SESSION);
