@@ -273,7 +273,7 @@
 
 		<?php
 			if ($set['enablePayments'] == '1') {
-				if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') {
+			if($rs_managerId!=""){ //	if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') {
 				if ($msgBox) { echo $msgBox; }
 		?>
 				<input type="hidden" id="weekStart" value="<?php echo $set['weekStart']; ?>" />

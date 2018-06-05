@@ -25,7 +25,7 @@ if(is_dir('install')) {
 	}else if((isset($_SESSION['rs']['isManager'])) && ($_SESSION['rs']['isManager'] != '')){
 		header('Location: landlord/index.php');
 	}else{
-		//unset($_SESSION);
+		unset($_SESSION);
 	}
 
 	$msgDiv = '';

@@ -974,9 +974,9 @@
 		<hr class="mt-0 mb-0" />
 
 		<?php
-			//if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') {
+			if($rs_managerId!=""){ //if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') {
 				// If the Property is assigned, is it assigned to the logged in manager?
-				//if ($assignCheck == '' || $assignCheck == $rs_userId) {
+				if ($assignCheck == '' || $assignCheck == $rs_userId) {
 					if ($msgBox) { echo $msgBox; }
 		?>
 				<h3><?php echo clean($row['propertyName']); ?> - <?php echo clean($row["unitName"]); ?></h3>
@@ -1909,5 +1909,5 @@
 					</div>
 				</div>
 
-		
+
 	</div>

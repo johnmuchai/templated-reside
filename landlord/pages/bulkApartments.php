@@ -162,7 +162,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addUnits') {
     <hr class="mt-0 mb-0" />
 
     <?php
-    if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') {
+    if($rs_managerId!=""){ //((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') {
       if ($msgBox) { echo $msgBox; }
       ?>
       <h3><?php echo $pageTitle; ?></h3>

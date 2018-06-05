@@ -5,7 +5,7 @@
 	switch ($_POST['rptType']) {
 		case "tenantRpt1":
 			$accType1 = $mysqli->real_escape_string($_POST['accType1']);
-			
+
 			if ($accType1 == 'all') {
 				$where[] = 'isActive IN ("1","0")';
 				$reportType = $tenantRptType1;
@@ -22,7 +22,7 @@
 		break;
 		case "tenantRpt2":
 			$accType2 = $mysqli->real_escape_string($_POST['accType2']);
-			
+
 			if ($accType2 == 'all') {
 				$where[] = '(isArchived IN ("1") OR isDisabled IN ("1") AND isActive IN ("0"))';
 				$reportType = $tenantRptType4;
@@ -42,7 +42,7 @@
 			$reportType = $reportErrorH3;
 		break;
 	}
-	
+
 	if ($rptError == '') {
 		if (!empty($where)) {
 			$whereSql = "WHERE\n" . implode("\nOR ",$where);
@@ -51,13 +51,13 @@
 		// Get Tenant/Resident Data
 		$qry = 'SELECT * FROM users '.$whereSql;
 		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
-		
+
 		// Add Recent Activity
 		$activityType = '23';
 		$rs_uid = '0';
 		$activityTitle = $rs_adminName.' '.$adminRptAct1.' '.$reportType.' '.$adminRptAct2;
 		updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
-		
+
 	} else {
 		// Add Recent Activity
 		$activityType = '23';
@@ -79,7 +79,7 @@
 
 		<?php
 			if ($rptError == '') {
-				if ((checkArray('TENRPT', $auths)) || $rs_isAdmin != '') {
+				if($rs_managerId!=""){ //if ((checkArray('TENRPT', $auths)) || $rs_isAdmin != '') {
 					if ($msgBox) { echo $msgBox; }
 		?>
 				<h3><?php echo $pageTitle; ?></h3>
@@ -114,7 +114,7 @@
 									if ($row['isResident'] == '1') { $accType = $residentText; } else { $accType = $priTenantopt; }
 									// Decrypt data for display
 									if ($row['primaryPhone'] != '') { $tenantPhone = decryptIt($row['primaryPhone']); } else { $tenantPhone = ''; }
-									
+
 									// Get Property Name
 									$sql = 'SELECT
 												leases.leaseEnd,
@@ -128,7 +128,7 @@
 												leases.closed = 0';
 									$result = mysqli_query($mysqli, $sql) or die('-2' . mysqli_error());
 									$rows = mysqli_fetch_assoc($result);
-									
+
 									if (!is_null($rows['leaseEnd'])) { $leaseEnd = dateFormat($rows['leaseEnd']); } else { $leaseEnd = ''; }
 							?>
 									<tr>
@@ -144,7 +144,7 @@
 						</tbody>
 					</table>
 				<?php } ?>
-		
+
 		<?php } else { ?>
 				<hr class="mt-0 mb-0" />
 				<h3><?php echo $accessErrorHeader; ?></h3>

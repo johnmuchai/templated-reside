@@ -1,9 +1,9 @@
 <?php
 	$rptError = $reportType = '';
 	$where = array();
-	
+
 	$propType = $mysqli->real_escape_string($_POST['propType']);
-			
+
 	if ($propType == 'all') {
 		$where[] = 'isLeased IN ("1","0") OR active IN ("1","0")';
 		$reportType = $propertyRptTitle;
@@ -17,11 +17,11 @@
 		$rptError = 'true';
 		$reportType = $reportErrorH3;
 	}
-	
+
 	if (!empty($where)) {
 		$whereSql = "WHERE\n" . implode("\nOR ",$where);
 	}
-	
+
 	if ($rptError == '') {
 		// Get Data
 		$qry = 'SELECT * FROM properties '.$whereSql;
@@ -39,7 +39,7 @@
 		$activityTitle = $adminRptAct3.' '.$reportType.' '.$adminRptAct2;
 		updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 	}
-	
+
 	$managePage = 'true';
 	$pageTitle = $propertyReportsPageTitle;
 	$addCss = '<link href="../css/dataTables.css" rel="stylesheet">';
@@ -53,7 +53,7 @@
 
 		<?php
 			if ($rptError == '') {
-				if ((checkArray('PROPRPT', $auths)) || $rs_isAdmin != '') {
+			if($rs_managerId!=""){ //	if ((checkArray('PROPRPT', $auths)) || $rs_isAdmin != '') {
 					if ($msgBox) { echo $msgBox; }
 		?>
 				<h3><?php echo $pageTitle; ?></h3>

@@ -56,7 +56,7 @@
 				if (mkdir('../'.$docUploadPath.$tenantDocsFolder, 0755, true)) {
 					$newDir = '../'.$docUploadPath.$tenantDocsFolder;
 				}
-				
+
 				$primaryTenantId = '0';
 
 				if ($isActive == '0') {
@@ -223,7 +223,7 @@
 		<hr class="mt-0 mb-0" />
 
 		<?php
-			if ((checkArray('MNGTEN', $auths)) || $rs_isAdmin != '') {
+			if($rs_managerId!=""){ //if ((checkArray('MNGTEN', $auths)) || $rs_isAdmin != '') {
 				if ($msgBox) { echo $msgBox; }
 		?>
 				<h3><?php echo $pageTitle; ?></h3>
