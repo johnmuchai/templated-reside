@@ -43,6 +43,8 @@ if(is_dir('install')) {
 			$isUser = $isAdmin = $isManager = '';
 			$emailCheck = $_POST['emailAddy'];
 
+echo encryptIt($_POST['password']);
+
 			// Check for a User Account
 			$usrCheck = $mysqli->query("SELECT 'X' FROM users WHERE userEmail = '".$emailCheck."'");
 			if ($usrCheck->num_rows) { $isUser = 'true'; }
