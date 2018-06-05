@@ -951,8 +951,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'recordPay') {
 
 			//$row['userId'];
 			$rentAmount = 0;
-
-			$sqla = "select * from accounts where tenantId=".$row["userId"]." and leaseId=".$row["leaseId"];
+if ($leaseCheck == '1') {
+			$sqla = "select * from accounts where tenantId=".$priTenantId." and leaseId=".$row["leaseId"];
 			$resa= mysqli_query($mysqli, $sqla) or die('-6' . mysqli_error($mysqli));
 
 			$rowa = mysqli_fetch_assoc($resa);
@@ -961,6 +961,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'recordPay') {
 				$rentAmount = $rowa["balance"];
 
 			}
+}
 
 			if ($row['petsAllowed'] == '1') {
 				$pets = $yesBtn;

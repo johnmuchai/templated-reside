@@ -9,7 +9,7 @@
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
 
 	$propPage = 'true';
-	$pageTitle = $unlPropPageTitle;
+	$pageTitle = "All properties"; //$unlPropPageTitle;
 	$addCss = '<link href="../css/dataTables.css" rel="stylesheet">';
 	$dataTables = 'true';
 	$jsFile = 'unleasedProperties';
