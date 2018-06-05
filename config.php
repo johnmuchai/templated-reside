@@ -8,7 +8,7 @@ $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = 'notrust2015';
 //$dbpass = 'sajoda12';
-$dbname = 'reside';
+$dbname = 'reside_prod';
 
 //Connect
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);

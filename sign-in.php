@@ -25,7 +25,7 @@ if(is_dir('install')) {
 	}else if((isset($_SESSION['rs']['isManager'])) && ($_SESSION['rs']['isManager'] != '')){
 		header('Location: landlord/index.php');
 	}else{
-		unset($_SESSION);
+		//unset($_SESSION);
 	}
 
 	$msgDiv = '';
@@ -43,7 +43,7 @@ if(is_dir('install')) {
 			$isUser = $isAdmin = $isManager = '';
 			$emailCheck = $_POST['emailAddy'];
 
-echo encryptIt($_POST['password']);
+//echo encryptIt($_POST['password']);
 
 			// Check for a User Account
 			$usrCheck = $mysqli->query("SELECT 'X' FROM users WHERE userEmail = '".$emailCheck."'");
@@ -60,6 +60,7 @@ echo encryptIt($_POST['password']);
 
 
 			if ($isUser == 'true') {
+
 				$check1 = $mysqli->query("SELECT isActive, isDisabled, isArchived FROM users WHERE userEmail = '".$emailCheck."'");
 				$trow = mysqli_fetch_assoc($check1);
 
