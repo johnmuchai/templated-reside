@@ -388,23 +388,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
     <div class="row">
       <div class="col-md-6">
         <form action="" method="post" enctype="multipart/form-data">
-          <h3>Select Property Manager</h3>
-          <div class="form-group">
-            <label for="manager">Manager</label>
-            <select class="form-control chosen-select" name="manager" id="manager">
-              <?php
 
-              $sql = "SELECT * FROM managers order by name asc";
-              $res = mysqli_query($mysqli, $sql) or die('-1' . mysqli_error($mysqli));
-              //$rows = mysqli_fetch_assoc($res);
 
-              while ($row = mysqli_fetch_assoc($res)) { ?>
-                <option value="<?php echo $row["id"];?>"><?php echo $row["name"]; ?></option>
-                <?php
-              }
-              ?>
-            </select>
-          </div>
+  <input type="hidden" name="manager" value="<?php echo $rs_managerId;?>" />
+
           <h3>Import Properties</h3>
 
           <div class="form-group">
