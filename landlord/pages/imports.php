@@ -371,7 +371,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
       <hr class="mt-0 mb-0" />
 
       <?php
-      if ((checkArray('SITESET', $auths)) || $rs_isAdmin != '') {
+      if ($rs_managerId!=''){ //(checkArray('SITESET', $auths)) || $rs_isAdmin != '') {
         if ($msgBox) { echo $msgBox; }
         ?>
 

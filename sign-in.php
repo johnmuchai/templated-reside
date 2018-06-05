@@ -22,6 +22,10 @@ if(is_dir('install')) {
 		header('Location: index.php');
 	} else if ((isset($_SESSION['rs']['userId'])) && ($_SESSION['rs']['userId'] != '')) {
 		header('Location: index.php');
+	}else if($_SESSION['rs']['isManager'])) && ($_SESSION['rs']['isManager'] != ''){
+		header('Location: landlord/index.php');
+	}else{
+		unset($_SESSION);
 	}
 
 	$msgDiv = '';
@@ -695,7 +699,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'userSignUp') {
 						</p>
 
 						<div class="signin-form">
-							<?php if ($msgDiv) { echo "Error".$msgDiv; } ?>
+							<?php if ($msgDiv) {echo $msgDiv; } ?>
 
 							<form action="sign-in.php" method="post" class="mt-20">
 								<div class="form-group">
