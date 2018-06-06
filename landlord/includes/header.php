@@ -192,15 +192,15 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 								<li class="<?php echo $userNav; ?> dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $myAccNavLink; ?> <i class="fa fa-angle-down"></i></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="page.php"><?php echo $dashboardNavLink; ?></a></li>
-										<li><a href="page.php?page=myProfile"><?php echo $myProfileNavLink; ?></a></li>
+										<li><a href="index.php"><?php echo $dashboardNavLink; ?></a></li>
+										<li><a href="index.php?action=myProfile"><?php echo $myProfileNavLink; ?></a></li>
 									</ul>
 								</li>
 							<?php } ?>
 							<li class="<?php echo $aboutNav; ?>"><a href="../about-us.php"><?php echo $aboutUsNavLink; ?></a></li>
 							<li class="<?php echo $contactNav; ?>"><a href="../contact-us.php"><?php echo $contactUsNavLink; ?></a></li>
 							<?php if ($rs_adminId != '') { ?>
-								<li class="<?php echo $manageNav; ?>"><a href="admin/index.php?action=dashboard"><?php echo $manageNavLink; ?></a></li>
+								<li class="<?php echo $manageNav; ?>"><a href="index.php?action=dashboard"><?php echo $manageNavLink; ?></a></li>
 							<?php } ?>
 							<?php if (($rs_adminId != '') || ($rs_userId != '')) { ?>
 								<li><a data-toggle="modal" href="#signOut"><?php echo $signOutNavLink; ?></a></li>
@@ -234,7 +234,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 						<?php } ?>
 					</div>
 					<div class="modal-footer">
-						<a href="index.php?action=logout" class="btn btn-success btn-icon-alt"><?php echo $signOutNavLink; ?> <i class="fa fa-sign-out"></i></a>
+						<a href="../index.php?action=logout" class="btn btn-success btn-icon-alt"><?php echo $signOutNavLink; ?> <i class="fa fa-sign-out"></i></a>
 						<button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle"></i> <?php echo $cancelBtn; ?></button>
 					</div>
 				</div>

@@ -408,7 +408,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
       <div class="row">
         <div class="col-md-6">
           <form action="" method="post" enctype="multipart/form-data">
-<input type="hidden" name="manager" value="<?php echo $rs_managerId;?>" />
+<input type="hidden" name="manager" value="<?php echo $rs_managerId; ?>" />
             <!-- <h3>Select Property Manager</h3>
             <div class="form-group">
               <label for="manager">Manager</label>
