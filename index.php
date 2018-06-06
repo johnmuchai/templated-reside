@@ -58,6 +58,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="css/style.css">
 
+		<link rel="stylesheet" href="css/dataTables.css">
+
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
 		<script src="js/ie-support/respond.js"></script>
@@ -260,6 +262,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/plugins.js"></script>
+		<script src="js/dataTables.js"></script>
+		<script src="js/dataTables.tableTools.js"></script>
 		<script src="js/app.js"></script>
 
 	</body>
