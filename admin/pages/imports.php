@@ -160,7 +160,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
 
   if (isset($_POST['submit']) && $_POST['submit'] == 'importT') {
 
-    if($_POST['file'] == '') {
+    if(false) {
       $msgBox = alertBox("Please select file ", "<i class='fa fa-times-circle'></i>", "danger");
     }else{
 
