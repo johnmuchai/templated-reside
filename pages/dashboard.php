@@ -187,7 +187,7 @@
 		<h3><?php echo $dashCurrentLeaseText; ?></h3>
 		<?php if ($hasLease == 'true') { ?>
 			<div class="table-responsive">
-				<table id="lease" class="table table-bordered table-sm mb-0">
+				<table id="lease">
 					<thead>
 						<tr>
 							<th><?php echo $propertyHead; ?></th>
@@ -261,9 +261,9 @@
 					if(mysqli_num_rows($paymentres) > 0) {
 		?>
 					<hr />
-					<h3><?php echo $mostRecentPymntsText; ?></h3>
+					<h3><?php echo $mostRecentPymntsText; //class="table table-bordered table-sm"?></h3>
 					<div class="table-responsive">
-						<table id="payments" class="table table-bordered table-sm">
+						<table id="payments" >
 							<thead>
 								<tr>
 									<th><?php echo $paymentForHead; ?></th>
@@ -317,7 +317,7 @@
 											<td class="text-center"><?php echo clean($pay['paymentType']); ?></td>
 											<td class="text-center"><?php echo $paymentAmount; ?></td>
 											<td class="text-center"><?php echo $penaltyFee; ?></td>
-											<td class="text-center"><?php echo dateFormat($pay['paymentDate']); ?></td>
+											<td class="text-center"><?php echo $pay['paymentDate']; ?></td>
 											<td class="text-center"><?php echo $rentMonth; ?></td>
 											<td class="text-center"><?php echo $totPaid; ?></td>
 											<?php if ($rs_isResident != '1') { ?>

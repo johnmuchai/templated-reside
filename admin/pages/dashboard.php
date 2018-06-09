@@ -289,7 +289,7 @@ if ($set['enablePayments'] == '1') {
 		<div class="container page_block mt-20">
 			<h3><?php echo 'Overdue rent as at '.$currentMonth; ?></h3>
 			<?php if(mysqli_num_rows($latepayres) > 0) { ?>
-				<table id="overdueRent" class="display" cellspacing="0">
+				<table id="overdueRent">
 					<thead>
 						<tr>
 							<th><?php echo $propertyMother; ?></th>
@@ -331,7 +331,7 @@ if ($set['enablePayments'] == '1') {
 		<div class="container page_block mt-20">
 			<h3><?php echo $lateRentH3.' '.$currentMonth; ?></h3>
 			<?php if(mysqli_num_rows($latepayres) > 0) { ?>
-				<table id="lateRent" class="display" cellspacing="0">
+				<table id="lateRent">
 					<thead>
 						<tr>
 							<th><?php echo $unitHead; ?></th>
@@ -401,7 +401,7 @@ if ($set['enablePayments'] == '1') {
 			<?php
 			if(mysqli_num_rows($paymentres) > 0) {
 				?>
-				<table id="rentReceived" class="display" cellspacing="0">
+				<table id="rentReceived">
 					<thead>
 						<tr>
 							<th><?php echo $unitHead; ?></th>
@@ -444,7 +444,7 @@ if ($set['enablePayments'] == '1') {
 										<?php echo clean($pay['userFirstName']).' '.clean($pay['userLastName']); ?>
 									</a>
 								</td>
-								<td class="text-center"><?php echo dateFormat($pay['paymentDate']); ?></td>
+								<td class="text-center"><?php echo $pay['paymentDate']; ?></td>
 								<td class="text-center"><?php echo $pay['rentMonth']; ?></td>
 								<td class="text-center"><?php echo $paymentAmount.' '.$hasRefund; ?></td>
 								<td class="text-center"><?php echo $penaltyFee; ?></td>
@@ -481,7 +481,7 @@ if ($set['enablePayments'] == '1') {
 <div class="container page_block mt-20">
 	<h3><?php echo $availPropH3; ?></h3>
 	<?php if(mysqli_num_rows($availres) > 0) { ?>
-		<table id="availProp" class="display" cellspacing="0">
+		<table id="availProp">
 			<thead>
 				<tr>
 					<th><?php echo $unitHead; ?></th>
