@@ -37,11 +37,13 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
     $msgBox = alertBox("Please select Properties Manager", "<i class='fa fa-times-circle'></i>", "danger");
   }else{
 
-    $propManager=htmlspecialchars($_POST['manager']);
+    $propManager= $rs_managerId;//htmlspecialchars($_POST['manager']);
     $fname = $_FILES['importfile']['name'];
     $filename = $_FILES['importfile']['tmp_name'];
     $handle = fopen($filename, "r");
     $chk_ext = explode(".",$fname);
+
+$rs_adminId = "1";
 
     $no = "0";
     $yes = "1";
@@ -160,11 +162,12 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
 
   if (isset($_POST['submit']) && $_POST['submit'] == 'importT') {
 
-    if($_POST['manager'] == '') {
+    if(false) {
       $msgBox = alertBox("Please select Properties Manager", "<i class='fa fa-times-circle'></i>", "danger");
     }else{
 
-      $propManager=htmlspecialchars($_POST['manager']);
+$rs_adminId = "1";
+      $propManager= $rs_managerId;//htmlspecialchars($_POST['manager']);
       $fname = $_FILES['importfile']['name'];
       $filename = $_FILES['importfile']['tmp_name'];
       $handle = fopen($filename, "r");

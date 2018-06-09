@@ -160,8 +160,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
 
   if (isset($_POST['submit']) && $_POST['submit'] == 'importT') {
 
-    if($_POST['manager'] == '') {
-      $msgBox = alertBox("Please select Properties Manager", "<i class='fa fa-times-circle'></i>", "danger");
+    if($_POST['file'] == '') {
+      $msgBox = alertBox("Please select file ", "<i class='fa fa-times-circle'></i>", "danger");
     }else{
 
       $propManager=htmlspecialchars($_POST['manager']);
