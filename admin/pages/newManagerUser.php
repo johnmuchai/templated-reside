@@ -58,7 +58,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'newManagerUser') {
 			if ($isActive == '0') {
 				// Create the new account & send Activation Email
 				$hash = md5(rand(0,1000));
-				$password = encryptIt("default123");
+				$newPass = "default123";
+				$password = encryptIt($newPass);
+
+
 
 				$stmt = $mysqli->prepare("
 				INSERT INTO
@@ -115,7 +118,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'newManagerUser') {
 
 					$message = '<html><body>';
 					$message .= '<h3>'.$subject.'</h3>';
-					$message .= '<p>'.$newTntEmail.'</p>';
+					$message .= '<p>New manager user</p>';
 					$message .= '<hr>';
 					$message .= '<p>'.$newTntEmail1.' '.$newPass.'</p>';
 					$message .= '<p>'.$newTntEmail2.'<br> '.$installUrl.'activate.php?userEmail='.$userEmail.'&hash='.$hash.'</p>';
@@ -146,7 +149,9 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'newManagerUser') {
 				} else {
 					// Create the new account and set it to Active
 					$hash = md5(rand(0,1000));
-					$password = encryptIt("default123");
+
+					$newPass = "default123";
+					$password = encryptIt($newPass);
 
 					$stmt = $mysqli->prepare("
 					INSERT INTO
@@ -193,6 +198,38 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'newManagerUser') {
 						$stmt->execute();
 						$stmt->close();
 
+						// Send out the email in HTML
+						$installUrl = $set['installUrl'];
+						$siteName = $set['siteName'];
+						$siteEmail = $set['siteEmail'];
+
+
+						//$newPass = $_POST['password1'];
+
+						$subject = 'New manager user '.$siteName.' '.$newTntEmailSubject1;
+
+						$message = '<html><body>';
+						$message .= '<h3>'.$subject.'</h3>';
+						$message .= '<p>New manager user</p>';
+						$message .= '<hr>';
+						$message .= '<p>'.$newTntEmail1.' '.$newPass.'</p>';
+						//$message .= '<p>'.$newTntEmail2.'<br> '.$installUrl.'activate.php?userEmail='.$userEmail.'&hash='.$hash.'</p>';
+						$message .= '<hr>';
+						//$message .= '<p>'.$newTntEmail3.'</p>';
+						$message .= '<p>'.$emailThankYou.'</p>';
+						$message .= '</body></html>';
+
+						$headers = "From: ".$siteName." <".$siteEmail.">\r\n";
+						$headers .= "Reply-To: ".$siteEmail."\r\n";
+						$headers .= "MIME-Version: 1.0\r\n";
+						$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+						if (mail($userEmail, $subject, $message, $headers)) {
+							$msgBox = alertBox($newTntCreatedMsg1, "<i class='fa fa-check-square'></i>", "success");
+						} else {
+							$msgBox = alertBox($emailErrorMsg, "<i class='fa fa-times-circle'></i>", "danger");
+						}
+
 						// Clear the form of Values
 						$_POST['userFirstName'] = $_POST['userLastName'] = $_POST['userEmail'] = $_POST['userEmail_r'] = $_POST['primaryPhone'] = $_POST['altPhone'] = '';
 
@@ -202,7 +239,9 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'newManagerUser') {
 						$activityTitle = $rs_adminName.' '.$newTntCreatedAct1.' "'.$userFirstName.' '.$userLastName.'"';
 						updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 
-						$msgBox = alertBox($newTntCreatedMsg1, "<i class='fa fa-check-square'></i>", "success");
+
+
+						//$msgBox = alertBox($newTntCreatedMsg1, "<i class='fa fa-check-square'></i>", "success");
 					}
 				}
 			}
