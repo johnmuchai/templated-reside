@@ -129,6 +129,7 @@ if ($set['enablePayments'] == '1') {
 		properties.propertyAddress,
 		properties.propertyRate,
 		properties.latePenalty,
+		properties.unitName,
 		leases.leaseStart,
 		users.userId,
 		users.userFirstName,
@@ -352,7 +353,7 @@ if ($set['enablePayments'] == '1') {
 							<tr>
 								<td>
 									<a href="index.php?action=viewProperty&propertyId=<?php echo $late['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-										<?php echo clean($late['propertyName']); ?> - <?php echo clean($late['unitName']); ?>
+										<?php echo clean($late['unitName']); ?>
 									</a>
 								</td>
 								<td>

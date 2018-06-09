@@ -290,7 +290,7 @@ if ($set['enablePayments'] == '1') {
 					<table id="lateRent" class="display" cellspacing="0">
 						<thead>
 							<tr>
-								<th><?php echo $propertyHead; ?></th>
+								<th><?php echo $unitHead; ?></th>
 								<th><?php echo $propertyMother; ?></th>
 								<th><?php echo $addressHead; ?></th>
 								<th><?php echo $tenantHead; ?></th>
@@ -309,7 +309,7 @@ if ($set['enablePayments'] == '1') {
 								<tr>
 									<td>
 										<a href="index.php?action=viewProperty&propertyId=<?php echo $late['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-											<?php echo clean($late['propertyName']); ?> - <?php echo clean($late['unitName']); ?>
+											 <?php echo clean($late['unitName']); ?>
 										</a>
 									</td>
 									<td>
@@ -360,7 +360,7 @@ if ($set['enablePayments'] == '1') {
 					<table id="rentReceived" class="display" cellspacing="0">
 						<thead>
 							<tr>
-								<th><?php echo $propertyHead; ?></th>
+								<th><?php echo $unitHead; ?></th>
 								<th><?php echo $propertyMother; ?></th>
 								<th><?php echo $tenantHead; ?></th>
 								<th class="text-center"><?php echo $paymentDateHead; ?></th>
@@ -387,7 +387,7 @@ if ($set['enablePayments'] == '1') {
 								<tr>
 									<td>
 										<a href="index.php?action=viewProperty&propertyId=<?php echo $pay['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-											<?php echo clean($pay['propertyName']); ?> - <?php echo clean($pay['unitName']); ?>
+											 <?php echo clean($pay['unitName']); ?>
 										</a>
 									</td>
 									<td>
@@ -440,7 +440,7 @@ if ($set['enablePayments'] == '1') {
 			<table id="availProp" class="display" cellspacing="0">
 				<thead>
 					<tr>
-						<th><?php echo $propertyHead; ?></th>
+						<th><?php echo $unitHead; ?></th>
 						<th><?php echo $propertyMother; ?></th>
 						<th><?php echo $addressHead; ?></th>
 						<th class="text-center"><?php echo $rateText; ?></th>
@@ -460,7 +460,7 @@ if ($set['enablePayments'] == '1') {
 						<tr>
 							<td>
 								<a href="index.php?action=viewProperty&propertyId=<?php echo $ap['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-									<?php echo clean($ap['propertyName']); ?> - <?php echo clean($ap['unitName']); ?>
+									<?php echo clean($ap['unitName']); ?>
 								</a>
 							</td>
 							<td>

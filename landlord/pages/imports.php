@@ -299,7 +299,7 @@ $rs_adminId = "1";
                     ?,
                     ?
                     )");
-                    echo "here 2";
+                    //echo "here 2";
                     $stmt->bind_param('ssssssssss',
                     $nextLeaseId,
                     $data[6],

@@ -59,15 +59,16 @@ if(is_dir('install')) {
 	} else if (isset($_GET['action']) && $_GET['action'] == 'properties') {	$page = 'properties';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'tenants') {	$page = 'tenants';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'viewProperty') {			$page = 'viewProperty';
-} else if (isset($_GET['action']) && $_GET['action'] == 'viewTenant') {			$page = 'viewTenant';
+	} else if (isset($_GET['action']) && $_GET['action'] == 'viewTenant') {			$page = 'viewTenant';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'leaseProperty') {			$page = 'leaseProperty';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'leasedProperties') {			$page = 'leasedProperties';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'leasedTenants') {			$page = 'leasedTenants';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'imports') {			$page = 'imports';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'newProperty') {			$page = 'newProperty';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'newTenant') {			$page = 'newTenant';
-} else if (isset($_GET['action']) && $_GET['action'] == 'bulkApartments') {			$page = 'bulkApartments';
+	} else if (isset($_GET['action']) && $_GET['action'] == 'bulkApartments') {			$page = 'bulkApartments';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'unit') {			$page = 'unit';
+	} else if (isset($_GET['action']) && $_GET['action'] == 'unleasedTenants') {			$page = 'unleasedTenants';
 
 	} else {$page = 'dashboard';}
 
