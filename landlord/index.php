@@ -69,7 +69,9 @@ if(is_dir('install')) {
 	} else if (isset($_GET['action']) && $_GET['action'] == 'bulkApartments') {			$page = 'bulkApartments';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'unit') {			$page = 'unit';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'unleasedTenants') {			$page = 'unleasedTenants';
-
+	} else if (isset($_GET['action']) && $_GET['action'] == 'propertyLeases') {			$page = 'propertyLeases';
+	} else if (isset($_GET['action']) && $_GET['action'] == 'unleasedProperties') {			$page = 'unleasedProperties';
+} else if (isset($_GET['action']) && $_GET['action'] == 'newManagerUser') {			$page = 'newManagerUser';
 	} else {$page = 'dashboard';}
 
 	if (file_exists('pages/'.$page.'.php')) {

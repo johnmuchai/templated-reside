@@ -8,6 +8,7 @@ if ($rs_isAdmin == '') {
 	leases.*,
 	properties.propertyName,
 	properties.propertyRate,
+properties.unitName,
 	CONCAT(users.userFirstName,' ',users.userLastName) AS user,
 	admins.adminName
 	FROM
@@ -26,6 +27,7 @@ if ($rs_isAdmin == '') {
 	leases.*,
 	properties.propertyName,
 	properties.propertyRate,
+properties.unitName,
 	CONCAT(users.userFirstName,' ',users.userLastName) AS user,
 	admins.adminName
 	FROM
@@ -45,6 +47,7 @@ $sql = "SELECT
 leases.*,
 properties.propertyName,
 properties.propertyRate,
+properties.unitName,
 CONCAT(users.userFirstName,' ',users.userLastName) AS user
 FROM
 leases
