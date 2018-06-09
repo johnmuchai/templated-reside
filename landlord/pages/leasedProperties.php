@@ -92,7 +92,7 @@
 							<tr>
 								<td>
 									<a href="index.php?action=viewProperty&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-										<?php echo clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+										 <?php echo clean($row['unitName']); ?>
 									</a>
 								</td>
 								<td>

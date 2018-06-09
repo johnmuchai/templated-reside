@@ -261,7 +261,7 @@ if ($set['enablePayments'] == '1') {
 						<span><?php echo $apcount; ?></span>
 					</div>
 					<?php if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') { ?>
-						<div class="dashblocksFooter"><a href="index.php?action=leasedProperties"><?php echo $apcountText; ?></a></div>
+						<div class="dashblocksFooter"><a href="index.php?action=unleasedProperties"><?php echo $apcountText; ?></a></div>
 					<?php } else { ?>
 						<div class="dashblocksFooter"><a href=""><?php echo $apcountText; ?></a></div>
 					<?php } ?>

@@ -100,7 +100,7 @@ include 'includes/header.php';
 							<td class="text-center"><?php echo $accType; ?></td>
 							<td class="text-center">
 								<a href="index.php?action=viewProperty&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-									<?php echo clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+								 <?php echo clean($row['unitName']); ?>
 								</a>
 							</td>
 							<td>

@@ -177,13 +177,28 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 							<li class="<?php echo $propNav; ?> dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My <?php echo $propNavLink; ?> <i class="fa fa-angle-down"></i></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?action=properties"><?php echo $availPropNavLink; ?></a></li>
+									<li><a href="index.php?action=unleasedProperties"><?php echo $availPropNavLink; ?></a></li>
 									<li><a href="index.php?action=leasedProperties"><?php echo "Leased Properties"; ?></a></li>
 									<li><a href="index.php?action=leasedTenants"><?php echo "Leased Tenants"; ?></a></li>
 									<li><a href="index.php?action=imports"><?php echo "Import Properties"; ?></a></li>
 									<li><a href="index.php?action=bulkApartments"><?php echo "Bulk Properties"; ?></a></li>
 									<li><a href="index.php?action=newProperty"><?php echo "New Property"; ?></a></li>
-									<li><a href="index.php?action=newTenant"><?php echo "New Tenant"; ?></a></li>
+
+								</ul>
+							</li>
+							<li class="dropdown <?php echo $tenNav; ?>">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $tenantsNavLink; ?> <i class="fa fa-angle-down"></i></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="index.php?action=leasedTenants"><?php echo $leasedTenNavLink; ?></a></li>
+									<li><a href="index.php?action=unleasedTenants"><?php echo $unleasedTenNavLink; ?></a></li>
+									<li><a href="index.php?action=archivedTenants"><?php echo $archivedTenNavLink; ?></a></li>
+									<li><a href="index.php?action=newTenant"><?php echo $newTenNavLink; ?></a></li>
+								</ul>
+							</li>
+							<li class="dropdown <?php echo $adminNav; ?>">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $adminsNavLink; ?> <i class="fa fa-angle-down"></i></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="index.php?action=newManagerUser">Create <?php echo $propManagerHead; ?> User</a></li>
 								</ul>
 							</li>
 
