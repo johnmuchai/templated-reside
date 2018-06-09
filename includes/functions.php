@@ -555,13 +555,16 @@ function updateActivity($aid,$uid,$type,$title) {
 	}
 
 	function sendSMS($phoneNumber,$message){
-		$username   = "MyAppUsername";
-		$apikey     = "MyAppAPIKey";
+
+		require_once('AfricasTalkingGateway.php');
+
+		$username   = "mjohnmwangi";
+		$apikey     = "ffca643287af5dd9e12436807b6a78fd9d4f58572c08120e9589c3bbfafde9c8";
 		// Specify the numbers that you want to send to in a comma-separated list
 		// Please ensure you include the country code (+254 for Kenya in this case)
-		$recipients = "+254711XXXYYY,+254733YYYZZZ";
+		$recipients = $phoneNumber;
 		// And of course we want our recipients to know what we really do
-		$message    = "I'm a lumberjack and its ok, I sleep all night and I work all day";
+
 		// Create a new instance of our awesome gateway class
 		$gateway    = new AfricasTalkingGateway($username, $apikey);
 		/*************************************************************************************
@@ -595,7 +598,7 @@ function updateActivity($aid,$uid,$type,$title) {
 
 	}
 
-	/*function mail($to, $subject, $message, $headers){
+	function mailer($to, $subject, $message, $headers){
 
 		$data = array(
 			"from"=>"info@ops.m-reside.com",
@@ -619,4 +622,4 @@ function updateActivity($aid,$uid,$type,$title) {
 
 		//close connection
 		curl_close($ch);
-	}*/
+	}
