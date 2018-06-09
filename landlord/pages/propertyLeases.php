@@ -18,10 +18,10 @@ properties.unitName,
 					LEFT JOIN assigned ON properties.propertyId = assigned.propertyId
 					LEFT JOIN admins ON assigned.adminId = admins.adminId
 				WHERE
-					assigned.adminId = ".$rs_adminId." AND
+
 					leases.closed = 0 AND
 					users.isResident = 0";
-		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
+		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error($mysqli));
 	} else {
 		$qry = "SELECT
 					leases.*,
