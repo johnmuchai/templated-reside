@@ -72,6 +72,8 @@ $propertyId = htmlspecialchars($_GET['propertyId']);
 
 $qryP = "SELECT * from properties where propertyId=".$propertyId;
 
+$propName = $mysqli->real_escape_string($rowP["propertyName"]);
+
 $resP = mysqli_query($mysqli, $qryP) or die('-1' . mysqli_error($mysqli));
 $rowP = mysqli_fetch_assoc($resP);
 	$qry = "SELECT
@@ -79,7 +81,7 @@ $rowP = mysqli_fetch_assoc($resP);
 			FROM
 				properties
 			WHERE
-				 propertyName='".$rowP["propertyName"]."'";
+				 propertyName='".$propName."'";
          //echo $qry;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error($mysqli));
 
