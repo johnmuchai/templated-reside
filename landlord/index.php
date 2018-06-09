@@ -72,6 +72,7 @@ if(is_dir('install')) {
 	} else if (isset($_GET['action']) && $_GET['action'] == 'propertyLeases') {			$page = 'propertyLeases';
 	} else if (isset($_GET['action']) && $_GET['action'] == 'unleasedProperties') {			$page = 'unleasedProperties';
 } else if (isset($_GET['action']) && $_GET['action'] == 'newManagerUser') {			$page = 'newManagerUser';
+} else if (isset($_GET['action']) && $_GET['action'] == 'viewLease') {			$page = 'viewLease';
 	} else {$page = 'dashboard';}
 
 	if (file_exists('pages/'.$page.'.php')) {
