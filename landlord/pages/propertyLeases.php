@@ -88,7 +88,7 @@
 									<table id="actLeases" class="display" cellspacing="0">
 										<thead>
 											<tr>
-												<th><?php echo $propertyHead; ?></th>
+												<th><?php echo $unitHead; ?></th>
 												<th><?php echo $tenantHead; ?></th>
 												<th><?php echo $assignedToHead; ?></th>
 												<th class="text-center"><?php echo $rentAmtHead; ?></th>
@@ -107,7 +107,12 @@
 													<tr>
 														<td>
 															<a href="index.php?action=viewProperty&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-																<?php echo clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+																 <?php echo clean($row['unitName']); ?>
+															</a>
+														</td>
+														<td>
+															<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+																<?php echo clean($row['propertyName']); ?>
 															</a>
 														</td>
 														<td>
@@ -146,7 +151,8 @@
 									<table id="inactLeases" class="display" cellspacing="0">
 										<thead>
 											<tr>
-												<th><?php echo $propertyHead; ?></th>
+												<th><?php echo $unitHead; ?></th>
+												<th><?php echo $propertyMother; ?></th>
 												<th><?php echo $tenantHead; ?></th>
 												<th class="text-center"><?php echo $rentAmtHead; ?></th>
 												<th class="text-center"><?php echo $leaseTermHead; ?></th>
@@ -161,7 +167,12 @@
 												<tr>
 													<td>
 														<a href="index.php?action=viewProperty&propertyId=<?php echo $rows['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-															<?php echo clean($rows['propertyName']); ?>
+															<?php echo clean($rows['unitName']); ?>
+														</a>
+													</td>
+													<td>
+														<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+															<?php echo clean($row['propertyName']); ?>
 														</a>
 													</td>
 													<td>
