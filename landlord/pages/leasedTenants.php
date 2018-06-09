@@ -14,7 +14,7 @@
 					LEFT JOIN assigned ON users.propertyId = assigned.propertyId
 					LEFT JOIN admins ON assigned.adminId = admins.adminId
 				WHERE
-					properties.landlordId=".$rs_managerId." AND 
+					properties.landlordId=".$rs_managerId." AND
 					users.isActive = 1 AND
 					users.leaseId != 0";
 		$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error($mysqli));
@@ -70,7 +70,8 @@
 							<tr>
 								<th><?php echo $tenantHead; ?></th>
 								<th class="text-center"><?php echo $typeHead; ?></th>
-								<th class="text-center"><?php echo $propertyHead; ?></th>
+								<th class="text-center"><?php echo $unitHead; ?></th>
+<th class="text-center"><?php echo $propertyMother; ?></th>
 								<th class="text-center"><?php echo $emailAddyText; ?></th>
 								<th class="text-center"><?php echo $contUsFormPhone; ?></th>
 								<th class="text-center"><?php echo $leaseEndHead; ?></th>
@@ -95,10 +96,16 @@
 												<?php echo clean($row['userFirstName']).' '.clean($row['userLastName']); ?>
 											</a>
 										</td>
+
 										<td class="text-center"><?php echo $accType; ?></td>
 										<td class="text-center">
 											<a href="index.php?action=viewProperty&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
 												<?php echo clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+											</a>
+										</td>
+										<td>
+											<a href="index.php?action=viewParent&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+												<?php echo clean($row['propertyName']); ?>
 											</a>
 										</td>
 										<td class="text-center"><?php echo clean($row['userEmail']); ?></td>

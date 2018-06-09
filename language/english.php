@@ -10,7 +10,7 @@
  *  admin/includes/receipt_tmpl.php (see instructions at the top of the file)
  *  admin/js/adminAuths.js (see instructions at the top of the file)
  *
- * If you have any questions at all about this file, please contact me through my Support Center:
+ * If you have any questions at all about this file, pleaspe contact me through my Support Center:
  * http://jennperrin.com/support/
  */
 
@@ -335,7 +335,8 @@ $dashRentLateText			= "This month's rent is Past Due. Total Due:";
 $dashRentLateText1			= "(Rental Rate + Late Fee).";
 $dashCurrentLeaseText		= "Your Current Lease";
 $propertyHead				= "Property";
-$propertyMother     ="Parent Property";
+$unitHead				= "Unit";
+$propertyMother     ="Property";
 $monthlyRentHead			= "Monthly Rent";
 $feeLateHead				= "Fee if Late";
 $petsAllowedHead			= "Pets Allowed";

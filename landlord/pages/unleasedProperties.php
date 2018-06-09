@@ -105,7 +105,7 @@
 			<table id="unleasedProperties" class="display" cellspacing="0">
 				<thead>
 					<tr>
-						<th><?php echo $propertyHead; ?></th>
+						<th><?php echo $unitHead; ?></th>
 						<th><?php echo $propertyMother; ?></th>
 						<th><?php echo $addressHead; ?></th>
 						<th class="text-center"><?php echo $rateText; ?></th>

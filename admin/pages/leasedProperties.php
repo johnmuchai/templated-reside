@@ -69,7 +69,7 @@
 			<table id="leasedProperties" class="display" cellspacing="0">
 				<thead>
 					<tr>
-						<th><?php echo $propertyHead; ?></th>
+						<th><?php echo $unitHead; ?></th>
 						<th><?php echo $propertyMother; ?></th>
 						<th><?php echo $tenantHead; ?></th>
 						<th><?php echo $assignedToHead; ?></th>

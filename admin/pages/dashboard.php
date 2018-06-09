@@ -291,7 +291,7 @@ if ($set['enablePayments'] == '1') {
 				<table id="overdueRent" class="display" cellspacing="0">
 					<thead>
 						<tr>
-							<th><?php echo $propertyHead; ?></th>
+							<th><?php echo $unitHead; ?></th>
 							<th>Unit</th>
 							<th><?php echo $tenantHead; ?></th>
 							<th class="text-center"><?php echo $totalDueHead; ?></th>
@@ -333,7 +333,7 @@ if ($set['enablePayments'] == '1') {
 				<table id="lateRent" class="display" cellspacing="0">
 					<thead>
 						<tr>
-							<th><?php echo $propertyHead; ?></th>
+							<th><?php echo $unitHead; ?></th>
 							<th><?php echo $propertyMother; ?></th>
 							<th><?php echo $addressHead; ?></th>
 							<th><?php echo $tenantHead; ?></th>
@@ -403,7 +403,7 @@ if ($set['enablePayments'] == '1') {
 				<table id="rentReceived" class="display" cellspacing="0">
 					<thead>
 						<tr>
-							<th><?php echo $propertyHead; ?></th>
+							<th><?php echo $unitHead; ?></th>
 							<th><?php echo $propertyMother; ?></th>
 							<th><?php echo $tenantHead; ?></th>
 							<th class="text-center"><?php echo $paymentDateHead; ?></th>
@@ -483,7 +483,7 @@ if ($set['enablePayments'] == '1') {
 		<table id="availProp" class="display" cellspacing="0">
 			<thead>
 				<tr>
-					<th><?php echo $propertyHead; ?></th>
+					<th><?php echo $unitHead; ?></th>
 					<th><?php echo $propertyMother; ?></th>
 					<th><?php echo $addressHead; ?></th>
 					<th class="text-center"><?php echo $rateText; ?></th>
