@@ -43,6 +43,8 @@
 				</div>
 			<?php } ?>
 		</div>
+
+		
 <?php
 		include('includes/footer.php');
 	}
