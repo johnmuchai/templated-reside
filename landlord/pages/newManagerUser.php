@@ -259,7 +259,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'newManagerUser') {
 			<hr class="mt-0 mb-0" />
 
 			<?php
-			if ((checkArray('MNGTEN', $auths)) || $rs_isAdmin != '') {
+			if($rs_managerId!=""){ //	if ((checkArray('MNGTEN', $auths)) || $rs_isAdmin != '') {
 				if ($msgBox) { echo $msgBox; }
 				?>
 				<h3><?php echo $pageTitle; ?></h3>

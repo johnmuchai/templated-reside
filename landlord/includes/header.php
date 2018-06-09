@@ -183,6 +183,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 									<li><a href="index.php?action=imports"><?php echo "Import Properties"; ?></a></li>
 									<li><a href="index.php?action=bulkApartments"><?php echo "Bulk Properties"; ?></a></li>
 									<li><a href="index.php?action=newProperty"><?php echo "New Property"; ?></a></li>
+									<li><a href="index.php?action=propertyLeases"><?php echo "Property Leases"; ?></a></li>
 
 								</ul>
 							</li>
