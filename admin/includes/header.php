@@ -130,8 +130,8 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="index.php?action=adminAccounts"><?php echo $adminAccNavLink; ?></a></li>
 									<li><a href="index.php?action=newAdmin"><?php echo $newAdminNavLink; ?></a></li>
-									<li><a href="index.php?action=newManager">Create Property Manager</a></li>
-									<li><a href="index.php?action=newManagerUser">Create Manager User</a></li>
+									<li><a href="index.php?action=newManager">Create <?php echo $propManagerHead; ?></a></li>
+									<li><a href="index.php?action=newManagerUser">Create <?php echo $propManagerHead; ?> User</a></li>
 									<?php if ((checkArray('APPAUTH', $auths)) || $rs_isAdmin != '') { ?>
 										<li><a href="index.php?action=adminAuths"><?php echo $adminAuthNavLink; ?></a></li>
 									<?php } ?>

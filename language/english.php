@@ -1006,7 +1006,7 @@ $newAdmAccMsg				= "The new Administrator account has been created.";
 // --------------------------------------------------------------------------------------------------
 $newPropertyPageTitle		= "Add a New Property";
 $propNameField				= "Property Name";
-$propManagerHead      ="Property Manager";
+$propManagerHead      ="Property Management Company";
 $propUnitNameField    = "Unit Name";
 $propCourtNameField   = "Court Name";
 $propAddressField			= "Property Address";
