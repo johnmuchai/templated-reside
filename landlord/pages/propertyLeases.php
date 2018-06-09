@@ -94,6 +94,7 @@ include 'includes/header.php';
 								<thead>
 									<tr>
 										<th><?php echo $unitHead; ?></th>
+										<th><?php echo $propertyMother; ?></th>
 										<th><?php echo $tenantHead; ?></th>
 										<th><?php echo $assignedToHead; ?></th>
 										<th class="text-center"><?php echo $rentAmtHead; ?></th>
