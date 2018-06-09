@@ -553,3 +553,69 @@ function updateActivity($aid,$uid,$type,$title) {
 
 		return $allTenants;
 	}
+
+	function sendSMS($phoneNumber,$message){
+
+		/*QuickSMS qsms  = new QuickSMS();
+		qsms.setMerchantCode("1001001");
+		qsms.setMessage(sms);
+		qsms.setSenderId("SWIFTHUB");
+		qsms.setSourceSystem("alinedonboarding");
+		qsms.setSendTo(r.getPhoneNumber());
+		*/
+
+		$data = array(
+			"merchantCode"=>"1001001",
+			"message"=>$message,
+			"senderId"=>"SWIFTHUB",
+			"sourceSystem"=>"alinedonboarding",
+			"sendTo"=>$phoneNumber
+		);
+
+
+		$ch = curl_init();
+
+		//set the url, number of POST vars, POST data
+		curl_setopt($ch,CURLOPT_URL, "http://localhost:8088/ems/sms/v1/send");
+		curl_setopt($ch,CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+
+		//execute post
+		$result = curl_exec($ch);
+
+		//close connection
+		curl_close($ch);
+	}
+
+	function mail($to, $subject, $message, $headers){
+		/*curl -s --user 'api:key-3ebb5130bc056b012f6568bf1189f7fe' \
+		https://api.mailgun.net/v3/ops.m-reside.com/messages \
+		-F from='Excited User info@ops.m-reside.com' \
+		-F to=johnsenga@gmail.com \
+		-F subject='Hello' \
+		-F text='Testing some Mailgun awesomeness!'*/
+
+		$data = array(
+			"from"=>"info@ops.m-reside.com",
+			"to"=>$to,
+			"subject"=>$subject,
+			"text"=>$message);
+
+			//open connection
+			$ch = curl_init();
+
+			//set the url, number of POST vars, POST data
+			curl_setopt($ch,CURLOPT_URL, "https://api.mailgun.net/v3/ops.m-reside.com/messages");
+			curl_setopt($ch,CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_USERPWD, "api:key-3ebb5130bc056b012f6568bf1189f7fe");
+			curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+
+			//execute post
+			$result = curl_exec($ch);
+
+			//close connection
+			curl_close($ch);
+		}
