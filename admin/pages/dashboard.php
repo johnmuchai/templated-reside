@@ -291,7 +291,7 @@ if ($set['enablePayments'] == '1') {
 				<table id="overdueRent" class="display" cellspacing="0">
 					<thead>
 						<tr>
-							<th><?php echo $unitHead; ?></th>
+							<th><?php echo $propertyMother; ?></th>
 							<th>Unit</th>
 							<th><?php echo $tenantHead; ?></th>
 							<th class="text-center"><?php echo $totalDueHead; ?></th>
