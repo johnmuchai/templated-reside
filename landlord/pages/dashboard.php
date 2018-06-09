@@ -263,7 +263,7 @@ properties.unitName,
 						<span><?php echo $apcount; ?></span>
 					</div>
 
-					<div class="dashblocksFooter"><a href="index.php?action=leasedProperties"><?php echo $apcountText; ?></a></div>
+					<div class="dashblocksFooter"><a href="index.php?action=unleasedProperties"><?php echo $apcountText; ?></a></div>
 
 				</div>
 			</div>
