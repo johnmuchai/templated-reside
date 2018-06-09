@@ -136,6 +136,7 @@ if ($set['enablePayments'] == '1') {
 		properties.propertyAddress,
 		properties.propertyRate,
 		properties.latePenalty,
+properties.unitName,
 		leases.leaseStart,
 		users.userId,
 		users.userFirstName,
