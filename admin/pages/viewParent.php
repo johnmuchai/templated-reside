@@ -72,7 +72,7 @@ $propertyId = htmlspecialchars($_GET['propertyId']);
 
 $qryP = "SELECT * from properties where propertyId=".$propertyId;
 
-$propName = htmlspecialchars($rowP["propertyName"]);
+$propName = $rowP["propertyName"];
 
 $resP = mysqli_query($mysqli, $qryP) or die('-1' . mysqli_error($mysqli));
 $rowP = mysqli_fetch_assoc($resP);
