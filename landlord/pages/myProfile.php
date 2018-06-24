@@ -108,7 +108,7 @@
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 
 			$msgBox = alertBox($emailAddrUpdatedMsg, "<i class='fa fa-check-square'></i>", "success");
-			
+
 			// Clear the Form of values
 			$_POST['newEmail'] = $_POST['newEmailr'] = '';
 		}
@@ -159,7 +159,7 @@
 			updateActivity($rs_adminId,$rs_uid,$activityType,$activityTitle);
 
 			$msgBox = alertBox($passChangedConf, "<i class='fa fa-check-square'></i>", "success");
-			
+
 			// Clear the Form of values
 			$_POST['currentpass'] = $_POST['password'] = $_POST['password_r'] = '';
 		}
@@ -498,11 +498,11 @@
 	}
 
 	// Get Data
-	$qry = "SELECT * FROM admins WHERE adminId = ".$rs_adminId;
+	$qry = "SELECT * FROM users WHERE userId = ".$rs_userId;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error());
 	$rows = mysqli_fetch_assoc($res);
 
-	$profileurl = preg_replace('/ /', '-', clean($rows['adminName']));
+	$profileurl = preg_replace('/ /', '-', clean($rows['userName']));
 
 	// Decrypt data
 	if ($rows['primaryPhone'] != '') { $primaryPhone = decryptIt($rows['primaryPhone']); } else { $primaryPhone = '';  }
@@ -541,7 +541,7 @@
 				<div class="profileBox mt-20">
 					<div class="cover">
 						<div class="profilePic">
-							<img src="../<?php echo $avatarDir.$rows['adminPhoto']; ?>" class="publicPic" />
+							<img src="../<?php echo $avatarDir.$rows['userPhoto']; ?>" class="publicPic" />
 						</div>
 					</div>
 

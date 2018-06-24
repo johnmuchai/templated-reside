@@ -397,7 +397,7 @@
 			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 			// Send the Receipt
-			mail($tenantsEmail, $subject, $email_tmpl, $headers);
+			mailer($tenantsEmail, $subject, $email_tmpl, $headers);
 
 			// Add Recent Activity
 			$activityType = '2';

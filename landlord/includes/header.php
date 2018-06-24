@@ -100,7 +100,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-			if (mail($siteEmail, $subject, $message, $headers)) {
+			if (mailer($siteEmail, $subject, $message, $headers)) {
 				$msgBox = alertBox($sendMsgEmailSent, "<i class='fa fa-check-square'></i>", "success");
 				$_POST['crFirstName'] = $_POST['crLastName'] = $_POST['crEmail'] = $_POST['crPhone'] = $_POST['crMessage'] = '';
 			}

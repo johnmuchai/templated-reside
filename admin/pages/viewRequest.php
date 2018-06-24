@@ -523,12 +523,12 @@
 			);
 			$stmt->execute();
 			$stmt->close();
-			
+
 			$siteName = $set['siteName'];
 			$siteEmail = $set['siteEmail'];
-			
+
 			$subject = $siteName.' '.$newCommentEmailSubject.' '.$requestTitle;
-						
+
 			$message = '<html><body>';
 			$message .= '<h3>'.$subject.'</h3>';
 			$message .= '<p><strong>'.$newCommentEmail1.'</strong> '.$rs_adminName.'</p>';
@@ -537,13 +537,13 @@
 			$message .= '<hr>';
 			$message .= '<p>'.$emailTankYouTxt.'<br>'.$siteName.'</p>';
 			$message .= '</body></html>';
-			
+
 			$headers = "From: ".$siteName." <".$siteEmail.">\r\n";
 			$headers .= "Reply-To: ".$siteEmail."\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-			
-			mail($userEmail, $subject, $message, $headers);
+
+			mailer($userEmail, $subject, $message, $headers);
 
 			// Add Recent Activity
 			$activityType = '3';

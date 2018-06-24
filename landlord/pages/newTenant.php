@@ -133,7 +133,7 @@
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-					if (mail($userEmail, $subject, $message, $headers)) {
+					if (mailer($userEmail, $subject, $message, $headers)) {
 						$msgBox = alertBox($newTntCreatedMsg, "<i class='fa fa-check-square'></i>", "success");
 					} else {
 						$msgBox = alertBox($emailErrorMsg, "<i class='fa fa-times-circle'></i>", "danger");

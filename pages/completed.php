@@ -65,7 +65,7 @@
 						$headers .= "MIME-Version: 1.0\r\n";
 						$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-						mail($siteEmail, $subject, $pay_rec_tmpl, $headers);
+						mailer($siteEmail, $subject, $pay_rec_tmpl, $headers);
 						break;
 					}
 				break;

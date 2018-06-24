@@ -10,6 +10,8 @@ $set = mysqli_fetch_assoc($setRes);
 // Include Functions
 include('../includes/functions.php');
 
+
+
 $todayDate = date("Y-m-d");
 $currentYear = date('Y');
 $currentMonth = date('n');
@@ -119,6 +121,8 @@ $stmt->close();
   );
   $stmt->execute();
 
+
+
   echo $stmt->error;
   $stmt->close();
 
@@ -138,6 +142,17 @@ $stmt->execute();
 
 echo $stmt->error;
 $stmt->close();
+
+
+//send sms
+
+$sqllt= "select * from users where userID=".$row["userId"];
+$rest= mysqli_query($mysqli, $sqlt) or die('-6' . mysqli_error($mysqli));
+$rowt = mysqli_fetch_assoc($rest);
+
+$phoneNumber = $rowt["primaryPhone"];
+sendSMS($phoneNumber,"Dear tenant. You have accrued penalty fee of KES ".$row["latePenalty"]." Please pay your rent to avoid further charges")
+
 
 }
 

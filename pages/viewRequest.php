@@ -1,7 +1,7 @@
 <?php
 	$requestId = $mysqli->real_escape_string($_GET['requestId']);
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
-	
+
 	// Check if Service Request belongs to logged in user
 	$userCheck = array();
 	$usrCk = "SELECT
@@ -15,11 +15,11 @@
 			WHERE servicerequests.requestId = ".$requestId;
 	$userChk = mysqli_query($mysqli, $usrCk) or die('-1' . mysqli_error());
 	$uchk = mysqli_fetch_assoc($userChk);
-	
+
 	foreach ($uchk as $userIds) {
 		$userCheck[] = $mysqli->real_escape_string($userIds);
 	}
-	
+
 	// Update Service Request
 	if (isset($_POST['submit']) && $_POST['submit'] == 'editRequest') {
 		// Validation
@@ -60,7 +60,7 @@
 			$msgBox = alertBox($servReqUpdatedMsg1." \"".$requestTitle."\" ".$servReqUpdatedMsg2, "<i class='fa fa-check-square'></i>", "success");
 		}
     }
-	
+
 	// Update Discussion Comment
 	if (isset($_POST['submit']) && $_POST['submit'] == 'editComment') {
 		// Validation
@@ -85,7 +85,7 @@
 			);
 			$stmt->execute();
 			$stmt->close();
-			
+
 			// Add Recent Activity
 			$activityType = '3';
 			$rs_aid = '0';
@@ -98,7 +98,7 @@
 			$_POST['noteText'] = '';
 		}
     }
-	
+
 	// Save Comment
 	if (isset($_POST['submit']) && $_POST['submit'] == 'addComment') {
         // User Validations
@@ -143,12 +143,12 @@
 			);
 			$stmt->execute();
 			$stmt->close();
-			
+
 			$siteName = $set['siteName'];
 			$siteEmail = $set['siteEmail'];
-			
+
 			$subject = $siteName.' '.$newDiscCmtEmailSubject.' '.$requestTitle;
-						
+
 			$message = '<html><body>';
 			$message .= '<h3>'.$subject.'</h3>';
 			$message .= '<p><strong>'.$newDiscCmtEmail1.'</strong> '.$rs_userFull.'</p>';
@@ -156,17 +156,17 @@
 			$message .= '<hr>';
 			$message .= '<p>'.$emailTankYouTxt.'<br>'.$siteName.'</p>';
 			$message .= '</body></html>';
-			
+
 			$headers = "From: ".$siteName." <".$siteEmail.">\r\n";
 			$headers .= "Reply-To: ".$siteEmail."\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-			
+
 			// Get the email list
 			$emailTo = serviceManagers($propertyId,$assignedEmail,$siteEmail);
-			
-			mail($emailTo, $subject, $message, $headers);
-			
+
+			mailer($emailTo, $subject, $message, $headers);
+
 			// Add Recent Activity
 			$activityType = '3';
 			$rs_aid = '0';
@@ -179,7 +179,7 @@
 			$msgBox = alertBox($newDiscCmtMsg1." ".$requestTitle." ".$newDiscCmtMsg2, "<i class='fa fa-check-square'></i>", "success");
 		}
 	}
-	
+
 	// Get Data
 	$qry = "SELECT
 				servicerequests.*,
@@ -241,13 +241,13 @@
 ?>
 	<div class="container page_block noTopBorder">
 		<hr class="mt-0 mb-0" />
-		
+
 		<?php
 			if ($rs_leaseId != '0' && in_array($rs_userId, $userCheck)) {
 				if ($msgBox) { echo $msgBox; }
 		?>
 			<h3><?php echo $pageTitle; ?></h3>
-		
+
 			<div class="row mb-10">
 				<div class="col-md-4">
 					<ul class="list-group">
@@ -448,7 +448,7 @@
 				<input type="hidden" name="assignedEmail" value="<?php echo $assignedEmail; ?>" />
 				<button type="input" name="submit" value="addComment" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> <?php echo $saveBtn; ?></button>
 			</form>
-		
+
 		<?php } else { ?>
 			<hr class="mt-0 mb-0" />
 			<h3><?php echo $accessErrorHeader; ?></h3>
