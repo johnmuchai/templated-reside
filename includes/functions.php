@@ -391,7 +391,7 @@ function decryptIt($value) {
 	// iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
 	$iv = substr(hash('sha256', $secret_iv), 0, 16);
 
-	$decoded = openssl_decrypt(base64_decode($value), $encrypt_method, $key, 0, $iv);
+	$decoded = openssl_decrypt($value, $encrypt_method, $key, 0, $iv);
 
 	return($decoded);
 }
