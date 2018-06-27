@@ -1,6 +1,6 @@
 (function ($) {
-    var d = document.documentElement; d.className = d.className.replace(/no\-js/g,'');  
-    
+    var d = document.documentElement; d.className = d.className.replace(/no\-js/g,'');
+
     var ie = document.all && !window.opera;
     $.fn.tabs = function () {
         this.each(function () {
@@ -14,7 +14,7 @@
                 var index = tabsItems.index($(this).parents('li:first'));
                 changeTabs(index);
             });
-            
+
             function changeTabs(index) {
                 tabsItems.removeClass('active').delay(ie ? 1 : 0).eq(index).addClass('active');
             }
@@ -25,11 +25,25 @@
 
 $(document).ready(function() {
     $('div.tabs').tabs();
-	
+
 	/** ******************************
     * Data Tables
     ****************************** **/
-	$('#actLeases').dataTable({
+
+
+$('#actLeases').dataTable({
+  "paging": true,		// Disable Pagination
+  "searching": true,		// Disable Search
+  "bInfo": true			// Disable "Showing x to x of x entries"
+});
+
+$('#inactLeases').dataTable({
+  "paging": true,		// Disable Pagination
+  "searching": true,		// Disable Search
+  "bInfo": true			// Disable "Showing x to x of x entries"
+});
+
+	/*$('#actLeases').dataTable({
 		"sDom": 'T<"clear">lfrtip',
 		"oTableTools": {
 			"sSwfPath": "js/swf/copy_csv_xls_pdf.swf",
@@ -46,10 +60,10 @@ $(document).ready(function() {
 		"order": [ 6, 'asc' ],
 		"pageLength": 10
 	});
-	
+
 	$('#actLeases_wrapper').addClass('pb-20');
 	$('#actLeases').addClass('pb-10');
-	
+
 	$('#inactLeases').dataTable({
 		"sDom": 'T<"clear">lfrtip',
 		"oTableTools": {
@@ -67,7 +81,7 @@ $(document).ready(function() {
 		"order": [ 5, 'asc' ],
 		"pageLength": 25
 	});
-	
+	*/
 	$('#inactLeases_wrapper').addClass('pb-20');
 	$('#inactLeases').addClass('pb-10');
 });

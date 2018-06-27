@@ -443,7 +443,7 @@
 										}
 								?>
 										<tr>
-											<td><?php echo dateFormat($row['paymentDate']); ?></td>
+											<td><?php echo $row['paymentDate']; ?></td>
 											<td class="text-center">
 												<a href="index.php?action=paymentDetail&payId=<?php echo $row['payId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $payDetailsOptText; ?>">
 													<?php echo clean($row['paymentFor']); ?>
@@ -494,7 +494,7 @@
 											$totalPaid = formatCurrency($total,$currCode);
 									?>
 											<tr>
-												<td><?php echo dateFormat($col['refundDate']); ?></td>
+												<td><?php echo $col['refundDate']; ?></td>
 												<td class="text-center"><?php echo clean($col['refundFor']); ?></td>
 												<td class="text-center"><?php echo formatCurrency($col['refundAmount'],$currCode); ?></td>
 												<td class="text-right">

@@ -396,7 +396,7 @@
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-					mail($userEmail, $subject, $message, $headers);
+					mailer($userEmail, $subject, $message, $headers);
 
 					// Add Recent Activity
 					$activityType = '16';
@@ -590,6 +590,94 @@
 					<div class="col-md-8">
 						<div class="tabs mt-0">
 							<ul class="tabsBody">
+								<li  class="<?php echo $leaseTab; ?>">
+									<h4 class="tabHeader" tabindex="0">Lease</h4>
+									<section class="tabContent" id="lease">
+										<?php
+											if ($row['isResident'] == '0') {
+												if ($row['isLeased'] == '1') {
+										?>
+												<ul class="list-group">
+													<li class="list-group-item">
+														<strong><?php echo $leasedPropText; ?>:</strong>
+														<a href="index.php?action=viewProperty&propertyId=<?php echo $rows['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
+															<?php echo clean($rows['propertyName']); ?>
+														</a>
+													</li>
+													<li class="list-group-item">
+														<strong><?php echo $leaseTermText; ?></strong>
+														<?php echo clean($rows['leaseTerm']); ?><br />
+														<small><?php echo dateFormat($rows['leaseStart']).' &mdash; '.dateFormat($rows['leaseEnd']); ?></small>
+													</li>
+													<li class="list-group-item">
+														<strong> Overdue rent amount: </strong>
+														<?php echo formatCurrency($ov['balance']); ?>
+													</li>
+												</ul>
+										<?php } else { ?>
+												<div class="alertMsg default">
+													<div class="msgIcon pull-left">
+														<i class="fa fa-info-circle"></i>
+													</div>
+													<?php echo $noTntActLeaseFoundMsg.' '.$accType; ?>.
+												</div>
+										<?php
+												}
+											}
+
+										?>
+										<h3>Outstanding Invoices</h3>
+
+											<table id="invoices" class="display" cellspacing="0">
+												<thead>
+													<tr>
+														<th>Date Raised</th>
+														<th>Description</th>
+														<th>Amount</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+													while ($row = mysqli_fetch_assoc($invoiceres)) {
+														 ?><tr>
+															 <td><?php echo $row["dateRaised"]; ?></td>
+															 <td><?php echo $row["description"]; ?></td>
+															 <td><?php echo formatCurrency($row["amount"]); ?></td>
+														 </tr>
+
+													 <?php } ?>
+												</tbody>
+										</table>
+
+										<h3>Payments</h3>
+
+											<table id="payments" class="display" cellspacing="0">
+												<thead>
+													<tr>
+														<th>Date Paid</th>
+														<th>Payment Type</th>
+														<th>Payment Reference</th>
+														<th>Narration</th>
+														<th>Amount</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+													while ($row = mysqli_fetch_assoc($pymtsres)) {
+														 ?><tr>
+															 <td><?php echo $row["paymentDate"]; ?></td>
+															 <td><?php echo $row["paymentType"]; ?></td>
+															 <td><?php echo $row["reference"]; ?></td>
+															 <td><?php echo $row["narration"]; ?></td>
+															 <td><?php echo formatCurrency($row["amountPaid"]); ?></td>
+														 </tr>
+
+													 <?php } ?>
+												</tbody>
+										</table>
+
+									</section>
+								</li>
 								<li class="<?php echo $acctTab; ?>">
 									<h4 class="tabHeader" tabindex="0"><?php echo $accountTabTitle; ?></h4>
 									<section class="tabContent" id="account">

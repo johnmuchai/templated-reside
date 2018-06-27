@@ -396,7 +396,7 @@
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-					mail($userEmail, $subject, $message, $headers);
+					mailer($userEmail, $subject, $message, $headers);
 
 					// Add Recent Activity
 					$activityType = '16';

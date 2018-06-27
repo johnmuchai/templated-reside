@@ -129,6 +129,7 @@ if ($set['enablePayments'] == '1') {
 		properties.propertyAddress,
 		properties.propertyRate,
 		properties.latePenalty,
+		properties.unitName,
 		leases.leaseStart,
 		users.userId,
 		users.userFirstName,
@@ -261,7 +262,7 @@ if ($set['enablePayments'] == '1') {
 						<span><?php echo $apcount; ?></span>
 					</div>
 					<?php if ((checkArray('MNGPROP', $auths)) || $rs_isAdmin != '') { ?>
-						<div class="dashblocksFooter"><a href="index.php?action=leasedProperties"><?php echo $apcountText; ?></a></div>
+						<div class="dashblocksFooter"><a href="index.php?action=unleasedProperties"><?php echo $apcountText; ?></a></div>
 					<?php } else { ?>
 						<div class="dashblocksFooter"><a href=""><?php echo $apcountText; ?></a></div>
 					<?php } ?>
@@ -288,10 +289,10 @@ if ($set['enablePayments'] == '1') {
 		<div class="container page_block mt-20">
 			<h3><?php echo 'Overdue rent as at '.$currentMonth; ?></h3>
 			<?php if(mysqli_num_rows($latepayres) > 0) { ?>
-				<table id="overdueRent" class="display" cellspacing="0">
+				<table id="overdueRent">
 					<thead>
 						<tr>
-							<th><?php echo $propertyHead; ?></th>
+							<th><?php echo $propertyMother; ?></th>
 							<th>Unit</th>
 							<th><?php echo $tenantHead; ?></th>
 							<th class="text-center"><?php echo $totalDueHead; ?></th>
@@ -330,10 +331,10 @@ if ($set['enablePayments'] == '1') {
 		<div class="container page_block mt-20">
 			<h3><?php echo $lateRentH3.' '.$currentMonth; ?></h3>
 			<?php if(mysqli_num_rows($latepayres) > 0) { ?>
-				<table id="lateRent" class="display" cellspacing="0">
+				<table id="lateRent">
 					<thead>
 						<tr>
-							<th><?php echo $propertyHead; ?></th>
+							<th><?php echo $unitHead; ?></th>
 							<th><?php echo $propertyMother; ?></th>
 							<th><?php echo $addressHead; ?></th>
 							<th><?php echo $tenantHead; ?></th>
@@ -352,7 +353,7 @@ if ($set['enablePayments'] == '1') {
 							<tr>
 								<td>
 									<a href="index.php?action=viewProperty&propertyId=<?php echo $late['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-										<?php echo clean($late['propertyName']); ?> - <?php echo clean($late['unitName']); ?>
+										<?php echo clean($late['unitName']); ?>
 									</a>
 								</td>
 								<td>
@@ -400,10 +401,10 @@ if ($set['enablePayments'] == '1') {
 			<?php
 			if(mysqli_num_rows($paymentres) > 0) {
 				?>
-				<table id="rentReceived" class="display" cellspacing="0">
+				<table id="rentReceived">
 					<thead>
 						<tr>
-							<th><?php echo $propertyHead; ?></th>
+							<th><?php echo $unitHead; ?></th>
 							<th><?php echo $propertyMother; ?></th>
 							<th><?php echo $tenantHead; ?></th>
 							<th class="text-center"><?php echo $paymentDateHead; ?></th>
@@ -443,7 +444,7 @@ if ($set['enablePayments'] == '1') {
 										<?php echo clean($pay['userFirstName']).' '.clean($pay['userLastName']); ?>
 									</a>
 								</td>
-								<td class="text-center"><?php echo dateFormat($pay['paymentDate']); ?></td>
+								<td class="text-center"><?php echo $pay['paymentDate']; ?></td>
 								<td class="text-center"><?php echo $pay['rentMonth']; ?></td>
 								<td class="text-center"><?php echo $paymentAmount.' '.$hasRefund; ?></td>
 								<td class="text-center"><?php echo $penaltyFee; ?></td>
@@ -480,10 +481,10 @@ if ($set['enablePayments'] == '1') {
 <div class="container page_block mt-20">
 	<h3><?php echo $availPropH3; ?></h3>
 	<?php if(mysqli_num_rows($availres) > 0) { ?>
-		<table id="availProp" class="display" cellspacing="0">
+		<table id="availProp">
 			<thead>
 				<tr>
-					<th><?php echo $propertyHead; ?></th>
+					<th><?php echo $unitHead; ?></th>
 					<th><?php echo $propertyMother; ?></th>
 					<th><?php echo $addressHead; ?></th>
 					<th class="text-center"><?php echo $rateText; ?></th>

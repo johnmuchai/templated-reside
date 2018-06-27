@@ -76,7 +76,7 @@
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-					if (mail($adminsEmail, $subject, $message, $headers)) {
+					if (mailer($adminsEmail, $subject, $message, $headers)) {
 						$msgBox = alertBox($directMsgForm1, "<i class='fa fa-check-square'></i>", "success");
 						$_POST['contactFirst'] = $_POST['contactLast'] = $_POST['contactEmail'] = $_POST['contactPhone'] = $_POST['contactMessage'] = '';
 					}

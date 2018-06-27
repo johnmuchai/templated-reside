@@ -37,11 +37,13 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
     $msgBox = alertBox("Please select Properties Manager", "<i class='fa fa-times-circle'></i>", "danger");
   }else{
 
-    $propManager=htmlspecialchars($_POST['manager']);
+    $propManager= $rs_managerId;//htmlspecialchars($_POST['manager']);
     $fname = $_FILES['importfile']['name'];
     $filename = $_FILES['importfile']['tmp_name'];
     $handle = fopen($filename, "r");
     $chk_ext = explode(".",$fname);
+
+$rs_adminId = "1";
 
     $no = "0";
     $yes = "1";
@@ -128,6 +130,34 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
             $res = $stmt->execute();
             //echo "<br />".$stmt->error;
             if($res ==true){
+
+              $data =
+      				array(
+      					"createdBy" => "swiftcloudace",
+      					"invoiceNumber" => $data[1],
+      					"customerRef" => $data[1],
+      					"name" => $data[0],
+      					"recurring" => "Y",
+      					"remarks" => $data[0]."payments",
+      					"status" => "ACTIVE",
+      					"serviceCode" => "01",
+      					"type" => "1",
+      					"merchantId" => "1002",
+      					"amount" => $data[8]
+      				);
+      				$data_string = json_encode($data);
+
+      				$ch = curl_init('http://localhost:8094/invoice/create/v1');
+      				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+      				curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+      				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      					'Content-Type: application/json',
+      					'Content-Length: ' . strlen($data_string))
+      				);
+
+      				$result = curl_exec($ch);
+
               $resp[$count] = "success";
               $data[16]="success";
               $data[17]=$stmt->insert_id;
@@ -160,11 +190,12 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
 
   if (isset($_POST['submit']) && $_POST['submit'] == 'importT') {
 
-    if($_POST['manager'] == '') {
+    if(false) {
       $msgBox = alertBox("Please select Properties Manager", "<i class='fa fa-times-circle'></i>", "danger");
     }else{
 
-      $propManager=htmlspecialchars($_POST['manager']);
+$rs_adminId = "1";
+      $propManager= $rs_managerId;//htmlspecialchars($_POST['manager']);
       $fname = $_FILES['importfile']['name'];
       $filename = $_FILES['importfile']['tmp_name'];
       $handle = fopen($filename, "r");
@@ -296,7 +327,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'importP') {
                     ?,
                     ?
                     )");
-                    echo "here 2";
+                    //echo "here 2";
                     $stmt->bind_param('ssssssssss',
                     $nextLeaseId,
                     $data[6],

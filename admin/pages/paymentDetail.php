@@ -336,7 +336,7 @@
 
 		// Email Receipt
 		if (isset($_POST['submit']) && $_POST['submit'] == 'emailRcpt') {
-			$paymentDate = dateFormat($row['paymentDate']);
+			$paymentDate = $row['paymentDate'];
 			$tenantsName = htmlspecialchars($row['user']);
 			$tenantsEmail = $row['userEmail'];
 			$tenantsAddress = nl2br(decryptIt($row['userAddress']));
@@ -397,7 +397,7 @@
 			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
 			// Send the Receipt
-			mail($tenantsEmail, $subject, $email_tmpl, $headers);
+			mailer($tenantsEmail, $subject, $email_tmpl, $headers);
 
 			// Add Recent Activity
 			$activityType = '2';
@@ -467,7 +467,7 @@
 							<tbody>
 								<tr>
 									<td><?php echo clean($row['paymentFor']); ?></td>
-									<td><?php echo dateFormat($row['paymentDate']); ?></td>
+									<td><?php echo $row['paymentDate']; ?></td>
 									<td><?php echo clean($row['paymentType']); ?></td>
 								</tr>
 							</tbody>
@@ -705,7 +705,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><?php echo dateFormat($row['refundDate']); ?></td>
+										<td><?php echo $row['refundDate']; ?></td>
 										<td><?php echo clean($row['refundFor']); ?></td>
 										<td><?php echo formatCurrency($row['refundAmount'],$currCode); ?></td>
 										<td><?php echo clean($row['adminName']); ?></td>

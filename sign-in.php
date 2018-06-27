@@ -43,7 +43,7 @@ if(is_dir('install')) {
 			$isUser = $isAdmin = $isManager = '';
 			$emailCheck = $_POST['emailAddy'];
 
-//echo encryptIt($_POST['password']);
+			//echo encryptIt($_POST['password']);
 
 			// Check for a User Account
 			$usrCheck = $mysqli->query("SELECT 'X' FROM users WHERE userEmail = '".$emailCheck."'");
@@ -367,7 +367,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'resetPass') {
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-			mail($userEmail, $subject, $message, $headers);
+			mailer($userEmail, $subject, $message, $headers);
 
 			$msgDiv = "<p class=\"text-center text-success\">".$passwordResetMsg."</p>";
 			$_POST['crMessage'] = '';
@@ -438,7 +438,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'resetPass') {
 		$headers .= "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-		mail($adminEmail, $subject, $message, $headers);
+		mailer($adminEmail, $subject, $message, $headers);
 
 		$msgDiv = "<p class=\"text-center text-success\">".$passwordResetMsg."</p>";
 		$_POST['crMessage'] = '';
@@ -589,7 +589,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'userSignUp') {
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-					mail($usrEmail, $subject, $message, $headers);
+					mailer($usrEmail, $subject, $message, $headers);
 
 					$msgDiv = "<p class=\"text-center text-success\">".$newAccCreatedMsg."</p>";
 					// Clear the Form of values
@@ -651,7 +651,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'userSignUp') {
 				$headers .= "MIME-Version: 1.0\r\n";
 				$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-				mail($accountEmail, $subject, $message, $headers);
+				mailer($accountEmail, $subject, $message, $headers);
 
 				$msgDiv = "<p class=\"text-center text-success\">".$emailResentMsg."</p>";
 				// Clear the Form of values

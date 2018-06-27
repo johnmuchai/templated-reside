@@ -202,7 +202,7 @@
 						<li class="list-group-item"><?php echo $paywithMpesa5; ?></li>
 						<li class="list-group-item">
 							<?php //echo $mailToText; ?><br />
-							<?php echo //nl2br($set['businessAddress']); ?><br />
+							<?php  //nl2br($set['businessAddress']); ?><br />
 							<?php echo $set['contactPhone']; ?>
 						</li>
 					</div>

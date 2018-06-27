@@ -4,7 +4,7 @@ ini_set('display_errors', '1');
 
 date_default_timezone_set('America/New_York');
 
-$dbhost = 'localhost';
+$dbhost = '40.121.208.35';
 $dbuser = 'root';
 $dbpass = 'notrust2015';
 //$dbpass = 'sajoda12';

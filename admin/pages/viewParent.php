@@ -72,6 +72,8 @@ $propertyId = htmlspecialchars($_GET['propertyId']);
 
 $qryP = "SELECT * from properties where propertyId=".$propertyId;
 
+$propName = $rowP["propertyName"];
+
 $resP = mysqli_query($mysqli, $qryP) or die('-1' . mysqli_error($mysqli));
 $rowP = mysqli_fetch_assoc($resP);
 	$qry = "SELECT
@@ -79,7 +81,7 @@ $rowP = mysqli_fetch_assoc($resP);
 			FROM
 				properties
 			WHERE
-				 propertyName='".$rowP["propertyName"]."'";
+				 propertyName='".$propName."'";
          //echo $qry;
 	$res = mysqli_query($mysqli, $qry) or die('-1' . mysqli_error($mysqli));
 
@@ -112,7 +114,7 @@ $rowP = mysqli_fetch_assoc($resP);
 			<table id="unleasedProperties" class="display" cellspacing="0">
 				<thead>
 					<tr>
-						<th><?php echo $propertyHead; ?></th>
+						<th><?php echo $unitHead; ?></th>
 						<th><?php echo $propertyMother; ?></th>
 						<th><?php echo $addressHead; ?></th>
 						<th class="text-center"><?php echo $rateText; ?></th>
@@ -133,7 +135,7 @@ $rowP = mysqli_fetch_assoc($resP);
 							<tr>
 								<td>
 									<a href="index.php?action=viewProperty&propertyId=<?php echo $row['propertyId']; ?>" data-toggle="tooltip" data-placement="top" title="<?php echo $viewPropertyText; ?>">
-										<?php echo clean($row['propertyName']); ?> - <?php echo clean($row['unitName']); ?>
+										<?php echo clean($row['unitName']); ?>
 									</a>
 								</td>
 								<td>

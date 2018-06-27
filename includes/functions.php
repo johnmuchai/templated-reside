@@ -391,7 +391,7 @@ function decryptIt($value) {
 	// iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
 	$iv = substr(hash('sha256', $secret_iv), 0, 16);
 
-	$decoded = openssl_decrypt(base64_decode($value), $encrypt_method, $key, 0, $iv);
+	$decoded = openssl_decrypt($value, $encrypt_method, $key, 0, $iv);
 
 	return($decoded);
 }
@@ -552,4 +552,74 @@ function updateActivity($aid,$uid,$type,$title) {
 		$allTenants = implode(',',$emailTenants);
 
 		return $allTenants;
+	}
+
+	function sendSMS($phoneNumber,$message){
+
+		require_once('AfricasTalkingGateway.php');
+
+		$username   = "mjohnmwangi";
+		$apikey     = "ffca643287af5dd9e12436807b6a78fd9d4f58572c08120e9589c3bbfafde9c8";
+		// Specify the numbers that you want to send to in a comma-separated list
+		// Please ensure you include the country code (+254 for Kenya in this case)
+		$recipients = $phoneNumber;
+		// And of course we want our recipients to know what we really do
+
+		// Create a new instance of our awesome gateway class
+		$gateway    = new AfricasTalkingGateway($username, $apikey);
+		/*************************************************************************************
+		  NOTE: If connecting to the sandbox:
+		  1. Use "sandbox" as the username
+		  2. Use the apiKey generated from your sandbox application
+		     https://account.africastalking.com/apps/sandbox/settings/key
+		  3. Add the "sandbox" flag to the constructor
+		  $gateway  = new AfricasTalkingGateway($username, $apiKey, "sandbox");
+		**************************************************************************************/
+		// Any gateway error will be captured by our custom Exception class below,
+		// so wrap the call in a try-catch block
+		try
+		{
+		  // Thats it, hit send and we'll take care of the rest.
+		  $results = $gateway->sendMessage($recipients, $message);
+
+		  foreach($results as $result) {
+		    // status is either "Success" or "error message"
+		    echo " Number: " .$result->number;
+		    echo " Status: " .$result->status;
+		    echo " StatusCode: " .$result->statusCode;
+		    echo " MessageId: " .$result->messageId;
+		    echo " Cost: "   .$result->cost."\n";
+		  }
+		}
+		catch ( AfricasTalkingGatewayException $e )
+		{
+		  echo "Encountered an error while sending: ".$e->getMessage();
+		}
+
+	}
+
+	function mailer($to, $subject, $message, $headers){
+
+		$data = array(
+			"from"=>"info@ops.m-reside.com",
+			"to"=>$to,
+			"subject"=>$subject,
+			"text"=>$message
+		);
+
+		//open connection
+		$ch = curl_init();
+
+		//set the url, number of POST vars, POST data
+		curl_setopt($ch,CURLOPT_URL, "https://api.mailgun.net/v3/ops.m-reside.com/messages");
+		curl_setopt($ch,CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERPWD, "api:key-3ebb5130bc056b012f6568bf1189f7fe");
+		curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+
+		//execute post
+		$result = curl_exec($ch);
+
+		//close connection
+		curl_close($ch);
 	}

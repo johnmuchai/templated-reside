@@ -68,12 +68,12 @@
 			);
 			$stmt->execute();
 			$stmt->close();
-			
+
 			$siteName = $set['siteName'];
 			$siteEmail = $set['siteEmail'];
-			
+
 			$subject = $siteName.' '.$newReqEmailSubject.' '.$propName;
-						
+
 			$message = '<html><body>';
 			$message .= '<h3>'.$subject.'</h3>';
 			$message .= '<p><strong>'.$newReqEmail1.'</strong> '.$rs_userFull.'<br><strong>'.$newPaymentEmail2.'</strong> '.$propName.'</p>';
@@ -82,19 +82,19 @@
 			$message .= '<hr>';
 			$message .= '<p>'.$emailTankYouTxt.'<br>'.$siteName.'</p>';
 			$message .= '</body></html>';
-			
+
 			$headers = "From: ".$siteName." <".$siteEmail.">\r\n";
 			$headers .= "Reply-To: ".$siteEmail."\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-			
+
 			// Get the email list
 			$emailTo = serviceManagers($propId,$admnEmail,$siteEmail);
 			$emailAdmins = assignedAdmins($propId,$siteEmail);
-			
+
 			// Send the Emails
-			mail($emailTo, $subject, $message, $headers);
-			mail($emailAdmins, $subject, $message, $headers);
+			mailer($emailTo, $subject, $message, $headers);
+			mailer($emailAdmins, $subject, $message, $headers);
 
 			// Add Recent Activity
 			$activityType = '3';
@@ -118,13 +118,13 @@
 ?>
 	<div class="container page_block noTopBorder">
 		<hr class="mt-0 mb-0" />
-		
+
 		<?php
 			if ($rs_leaseId != '0') {
 				if ($msgBox) { echo $msgBox; }
 		?>
 			<h3><?php echo $pageTitle; ?></h3>
-		
+
 			<form action="" method="post" class="mb-20">
 				<div class="row">
 					<div class="col-md-6">
@@ -160,7 +160,7 @@
 
 				<button type="input" name="submit" value="newRequest" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> <?php echo $saveBtn; ?></button>
 			</form>
-		
+
 		<?php } else { ?>
 			<hr class="mt-0 mb-0" />
 			<h3><?php echo $accessErrorHeader; ?></h3>
