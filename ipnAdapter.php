@@ -47,30 +47,30 @@ $propqry = "SELECT propertyId, propertyName, isLeased FROM properties where unit
 
 $propres = mysqli_query($mysqli, $propqry) or die('-1'.mysqli_error());
 
-while ($prop = mysqli_fetch_assoc($propres)) {
+if ($prop = mysqli_fetch_assoc($propres)) {
   $prodid =$prop['propertyId'];
 
-  echo $prodid;
+  //echo $prodid;
 
 
   $leaseQuery ="SELECT *  FROM leases  where propertyId ='".$prodid."'";
 
   $leaseres = mysqli_query($mysqli, $leaseQuery) or die('-1'.mysqli_error());
 
-  while ($ls= mysqli_fetch_assoc($leaseres)) {
+  if ($ls= mysqli_fetch_assoc($leaseres)) {
 
     $leaseid =$ls['leaseId'];
-    echo $leaseid;
+    //echo $leaseid;
 
     $UserLeaseQuery ="SELECT *  FROM users  where propertyId ='".$prodid."' and leaseId='".$leaseid."'";
 
     $user_date = mysqli_query($mysqli, $UserLeaseQuery) or die('-1'.mysqli_error());
 
-    while ($lusers= mysqli_fetch_assoc($user_date)) {
+    if ($lusers= mysqli_fetch_assoc($user_date)) {
 
       $phoneNumber = $lusers["primaryPhone"];
       $userid =$lusers['userId'];
-      echo $userid;
+      //echo $userid;
 
 
 
@@ -106,54 +106,69 @@ while ($prop = mysqli_fetch_assoc($propres)) {
 
       )";
 
-      echo $stmt2;
+      //echo $stmt2;
 
-      mysqli_query($mysqli, $stmt2);
+      $insertres =mysqli_query($mysqli, $stmt2);
+
+      if($insertres=== TRUE){
 
 
-      //update accruals
+        //update accruals
 
 
-      $accrual ="SELECT *  FROM accounts  where tenantId ='".$userid."' AND leaseId ='".$leaseid."'  FOR UPDATE";
+        $accrual ="SELECT *  FROM accounts  where tenantId ='".$userid."' AND leaseId ='".$leaseid."'  FOR UPDATE";
 
-      $accrualrs = mysqli_query($mysqli, $accrual) or die('-1'.mysqli_error());
+        $accrualrs = mysqli_query($mysqli, $accrual) or die('-1'.mysqli_error());
 
-      if ($ls= mysqli_fetch_assoc($accrualrs)) {
+        if ($ls= mysqli_fetch_assoc($accrualrs)) {
 
-        $balance =$ls['balance'];
+          $balance =$ls['balance'];
 
-        $newbalance = intval($paymentAmount)+intval($balance);
+          $newbalance = intval($paymentAmount)+intval($balance);
 
-        $updateQuery="UPDATE accounts SET  balance='".$newbalance."' where tenantId ='".$userid."' AND leaseId ='".$leaseid."' ";
+          $updateQuery="UPDATE accounts SET  balance='".$newbalance."' where tenantId ='".$userid."' AND leaseId ='".$leaseid."' ";
 
-        mysqli_query($mysqli, $updateQuery);
+          mysqli_query($mysqli, $updateQuery);
 
-        //Send sms
-        $message = "Dear tenant, your payment of KES ".$paymentAmount." was received and your tenant account updated successfully. Thanks for using m-reside.com";
-        sendSMS($phoneNumber,$message);
+          //Send sms
+          $message = "Dear tenant, your payment of KES ".$paymentAmount." was received and your tenant account updated successfully. Thanks for using m-reside.com";
+          sendSMS($phoneNumber,$message);
 
+          mysqli_close($mysqli);
+
+          $jsonData = array(
+            'responsecode' => 'OK',
+            'response_message' => 'Succesful'
+          );
+
+          echo json_encode($jsonData);
+
+        }else{
+          $jsonData = array(
+            'responsecode' => 'Error',
+            'response_message' => 'Account not found'
+          );
+
+          echo json_encode($jsonData);
+        }
+
+      }else{
+        $jsonData = array(
+          'responsecode' => 'Error',
+          'response_message' => 'Error inserting: '.$mysqli->error.' '.$stmt2;
+        );
+
+        echo json_encode($jsonData);
       }
 
 
-      mysqli_close($mysqli);
-
-      $jsonData = array(
-        'responsecode' => 'OK',
-        'response_message' => 'Succesful'
-      );
-
-      echo json_encode($jsonData);
-
     }
-
 
   }
 
-}
 
 
 
 
 
-
-?>
+  ?>
