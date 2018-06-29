@@ -178,7 +178,7 @@ if ($prop = mysqli_fetch_assoc($propres)) {
       }else{
         $jsonData = array(
           'responsecode' => 'Error',
-          'response_message' => 'Error inserting: '.$mysqli->error.' '.$stmt2;
+          'response_message' => 'Error inserting: '.$mysqli->error.' '.$stmt2
         );
 
         echo json_encode($jsonData);
