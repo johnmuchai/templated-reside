@@ -255,7 +255,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'addProp') {
 				);
 				$data_string = json_encode($data);
 
-				$ch = curl_init('http://localhost:8094/invoice/create/v1');
+				$ch = curl_init('http://40.121.208.35:8094/invoice/create/v1');
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

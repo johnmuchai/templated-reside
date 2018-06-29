@@ -48,35 +48,35 @@ $propqry = "SELECT propertyId, propertyName, isLeased FROM properties where unit
 echo $propqry;
 $propres = mysqli_query($mysqli, $propqry) or die('-1'.mysqli_error());
 
-while ($prop = mysqli_fetch_assoc($propres)) {
+if ($prop = mysqli_fetch_assoc($propres)) {
   $prodid =$prop['propertyId'];
 
-  echo $prodid;
+  //echo $prodid;
 
 
   $leaseQuery ="SELECT *  FROM leases  where propertyId ='".$prodid."'";
 
   $leaseres = mysqli_query($mysqli, $leaseQuery) or die('-1'.mysqli_error());
 
-  while ($ls= mysqli_fetch_assoc($leaseres)) {
+  if ($ls= mysqli_fetch_assoc($leaseres)) {
 
     $leaseid =$ls['leaseId'];
-    echo $leaseid;
+    //echo $leaseid;
 
     $UserLeaseQuery ="SELECT *  FROM users  where propertyId ='".$prodid."' and leaseId='".$leaseid."'";
 
     $user_date = mysqli_query($mysqli, $UserLeaseQuery) or die('-1'.mysqli_error());
 
-    while ($lusers= mysqli_fetch_assoc($user_date)) {
+    if ($lusers= mysqli_fetch_assoc($user_date)) {
 
       $phoneNumber = $lusers["primaryPhone"];
       $userid =$lusers['userId'];
-      echo $userid;
+      //echo $userid;
 
 
 
       $stmt2 = "INSERT INTO
-     `payments`(
+     payments (
         leaseId,
         propertyId,
         adminId,
@@ -107,59 +107,92 @@ while ($prop = mysqli_fetch_assoc($propres)) {
 
       )";
 
-      echo $stmt2;
+//<<<<<<< HEAD
+ //     echo $stmt2;
 //
   //    mysqli_query($mysqli, $stmt2);
-     if( mysqli_query($mysqli, $stmt2)){
-      echo "New record created successfully";
-} else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+ //    if( mysqli_query($mysqli, $stmt2)){
+//      echo "New record created successfully";
+//} else {
+//      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+//}
+//=======
+      //echo $stmt2;
+
+      $insertres =mysqli_query($mysqli, $stmt2);
+
+      if($insertres=== TRUE){
 
 
-      //update accruals
+        //update accruals
 
+//<<<<<<< HEAD
+//      $accrual ="SELECT *  FROM accounts  where tenantId ='".$userid."' AND leaseId ='".$leaseid."'  FOR UPDATE";
+//echo $accrual;
+//      $accrualrs = mysqli_query($mysqli, $accrual) or die('-1'.mysqli_error());
+//=======
 
-      $accrual ="SELECT *  FROM accounts  where tenantId ='".$userid."' AND leaseId ='".$leaseid."'  FOR UPDATE";
-echo $accrual;
-      $accrualrs = mysqli_query($mysqli, $accrual) or die('-1'.mysqli_error());
+        $accrual ="SELECT *  FROM accounts  where tenantId ='".$userid."' AND leaseId ='".$leaseid."'  FOR UPDATE";
+//>>>>>>> 41794558fdd01a3a887a315f3f55eb677ff4a26e
 
-      if ($ls= mysqli_fetch_assoc($accrualrs)) {
+        $accrualrs = mysqli_query($mysqli, $accrual) or die('-1'.mysqli_error());
 
-        $balance =$ls['balance'];
+        if ($ls= mysqli_fetch_assoc($accrualrs)) {
 
-        $newbalance = intval($paymentAmount)+intval($balance);
+          $balance =$ls['balance'];
 
-        $updateQuery="UPDATE accounts SET  balance='".$newbalance."' where tenantId ='".$userid."' AND leaseId ='".$leaseid."' ";
+          $newbalance = intval($paymentAmount)+intval($balance);
 
-        mysqli_query($mysqli, $updateQuery);
+          $updateQuery="UPDATE accounts SET  balance='".$newbalance."' where tenantId ='".$userid."' AND leaseId ='".$leaseid."' ";
 
-        //Send sms
-        $message = "Dear tenant, your payment of KES ".$paymentAmount." was received and your tenant account updated successfully. Thanks for using m-reside.com";
-        sendSMS($phoneNumber,$message);
+          mysqli_query($mysqli, $updateQuery);
 
+          //Send sms
+          $message = "Dear tenant, your payment of KES ".$paymentAmount." was received and your tenant account updated successfully. Thanks for using m-reside.com";
+          sendSMS($phoneNumber,$message);
+
+          mysqli_close($mysqli);
+
+          $jsonData = array(
+            'responsecode' => 'OK',
+            'response_message' => 'Succesful'
+          );
+
+          echo json_encode($jsonData);
+
+        }else{
+          $jsonData = array(
+            'responsecode' => 'Error',
+            'response_message' => 'Account not found'
+          );
+
+          echo json_encode($jsonData);
+        }
+
+//<<<<<<< HEAD
+///echo "12"
+ // }//
+//echo "10"
+//}
+//=======
+      }else{
+        $jsonData = array(
+          'responsecode' => 'Error',
+          'response_message' => 'Error inserting: '.$mysqli->error.' '.$stmt2;
+        );
+
+        echo json_encode($jsonData);
       }
 
 
-      mysqli_close($mysqli);
-
-      $jsonData = array(
-        'responsecode' => 'OK',
-        'response_message' => 'Succesful'
-      );
-
-      echo json_encode($jsonData);
-
     }
 
-///echo "12"
-  }//
-//echo "10"
-}
+  }
+//>>>>>>> 41794558fdd01a3a887a315f3f55eb677ff4a26e
 
 
 
 
 
 
-?>
+  ?>
