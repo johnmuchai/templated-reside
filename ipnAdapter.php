@@ -3,7 +3,8 @@
 include('config.php');
 
 include('includes/functions.php');
-
+/* turn autocommit on */
+$mysqli->autocommit(TRUE);
 //$con=mysqli_connect("localhost","root","notrust2015","reside");
 // Check connection
 if (mysqli_connect_errno())
@@ -44,7 +45,7 @@ $phoneNumber = "";
 
 
 $propqry = "SELECT propertyId, propertyName, isLeased FROM properties where unitName ='".$paymentRef."'";
-
+echo $propqry;
 $propres = mysqli_query($mysqli, $propqry) or die('-1'.mysqli_error());
 
 while ($prop = mysqli_fetch_assoc($propres)) {
@@ -75,7 +76,7 @@ while ($prop = mysqli_fetch_assoc($propres)) {
 
 
       $stmt2 = "INSERT INTO
-      payments(
+     `payments`(
         leaseId,
         propertyId,
         adminId,
@@ -107,15 +108,20 @@ while ($prop = mysqli_fetch_assoc($propres)) {
       )";
 
       echo $stmt2;
-
-      mysqli_query($mysqli, $stmt2);
+//
+  //    mysqli_query($mysqli, $stmt2);
+     if( mysqli_query($mysqli, $stmt2)){
+      echo "New record created successfully";
+} else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
 
 
       //update accruals
 
 
       $accrual ="SELECT *  FROM accounts  where tenantId ='".$userid."' AND leaseId ='".$leaseid."'  FOR UPDATE";
-
+echo $accrual;
       $accrualrs = mysqli_query($mysqli, $accrual) or die('-1'.mysqli_error());
 
       if ($ls= mysqli_fetch_assoc($accrualrs)) {
@@ -146,9 +152,9 @@ while ($prop = mysqli_fetch_assoc($propres)) {
 
     }
 
-
-  }
-
+///echo "12"
+  }//
+//echo "10"
 }
 
 
