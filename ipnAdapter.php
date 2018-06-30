@@ -169,12 +169,6 @@ if ($prop = mysqli_fetch_assoc($propres)) {
           echo json_encode($jsonData);
         }
 
-//<<<<<<< HEAD
-///echo "12"
- // }//
-//echo "10"
-//}
-//=======
       }else{
         $jsonData = array(
           'responsecode' => 'Error',
@@ -191,7 +185,7 @@ if ($prop = mysqli_fetch_assoc($propres)) {
 //>>>>>>> 41794558fdd01a3a887a315f3f55eb677ff4a26e
 
 
-
+}
 
 
 
