@@ -74,39 +74,45 @@ if ($prop = mysqli_fetch_assoc($propres)) {
       //echo $userid;
 
 
+     //
+     //  $stmt2 = "INSERT INTO
+     // payments (
+     //    leaseId,
+     //    propertyId,
+     //    adminId,
+     //    userId,
+     //    hasRefund,
+     //    paymentDate,
+     //    amountPaid,
+     //    paymentFor,
+     //    paymentType,
+     //    isRent,
+     //    notes,
+     //    lastUpdated
+     //  ) VALUES (
+     //    '".$leaseid."',
+     //    '".$prodid."',
+     //    '1',
+     //    '".$userid."',
+     //    '0',
+     //    NOW(),
+     //    '".  $paymentAmount."',
+     //    'rent',
+     //    '$payment_source',
+     //    '1',
+     //
+     //    '".$paidInByName."',
+     //    NOW()
+     //
+     //  )";
 
-      $stmt2 = "INSERT INTO
-     payments (
-        leaseId,
-        propertyId,
-        adminId,
-        userId,
-        hasRefund,
-        paymentDate,
-        amountPaid,
-        paymentFor,
-        paymentType,
-        isRent,
+$preparedstm = $mysqli->prepare("INSERT INTO payments (leaseId,propertyId,adminId,userId,hasRefund,paymentDate,amountPaid,paymentFor,paymentType,isRent,notes,lastUpdated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 
-        notes,
-        lastUpdated
-      ) VALUES (
-        '".$leaseid."',
-        '".$prodid."',
-        '1',
-        '".$userid."',
-        '0',
-        NOW(),
-        '".  $paymentAmount."',
-        'rent',
-        '$payment_source',
-        '1',
-
-        '".$paidInByName."',
-        NOW()
-
-      )";
-
+$stmt->bind_param("si", $leaseid, $prodid, '1',$userid, '0', NOW(), $paymentAmount,'rent',$payment_source,'1', $paidInByName,NOW());
+$stmt->execute();
+//fetching result would go here, but will be covered later
+$stmt->close();
+echo $mysqli->info;
 //<<<<<<< HEAD
  //     echo $stmt2;
 //
@@ -119,9 +125,10 @@ if ($prop = mysqli_fetch_assoc($propres)) {
 //=======
       //echo $stmt2;
 
-      $insertres =mysqli_query($mysqli, $stmt2);
+      //$insertres =mysqli_query($mysqli, $stmt2);
 
-      if($insertres=== TRUE){
+      // if($insertres=== TRUE){
+        if(true){
 
 
         //update accruals
