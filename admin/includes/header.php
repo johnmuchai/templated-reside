@@ -30,19 +30,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
 	<title><?php echo $set['siteName'].' &middot; '.$pageTitle; ?></title>
-
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../../star/vendors/iconfonts/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../star/vendors/css/vendor.bundle.base.css"/>
+	<link rel="stylesheet" type="text/css" href="../../star/vendors/css/vendor.bundle.addons.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="../../star/css/style.css" />
 	<?php if (isset($addCss)) { echo $addCss; } ?>
-	<link rel="stylesheet" type="text/css" href="../css/custom.css" />
-	<link rel="stylesheet" type="text/css" href="../css/styles.css" />
-
-	<!--[if lt IE 9]>
-		<script src="../js/html5shiv.min.js"></script>
-		<script src="../js/respond.min.js"></script>
-	<![endif]-->
+	<script src="../../star/vendors/js/vendor.bundle.base.js"></script>
+	<script src="../../star/js/vendor.bundle.addons.js"></script>
+	<script src="../../star/js/misc.js"></script>
 </head>
 
 <body>

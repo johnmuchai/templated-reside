@@ -4,11 +4,10 @@ ini_set('display_errors', '1');
 
 date_default_timezone_set('America/New_York');
 
-$dbhost = '40.121.208.35';
+$dbhost = 'localhost';
 $dbuser = 'root';
-$dbpass = 'notrust2015';
-//$dbpass = 'sajoda12';
-$dbname = 'reside_prod';
+$dbpass = '';
+$dbname = 'property';
 
 //Connect
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
