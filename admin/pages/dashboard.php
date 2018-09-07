@@ -207,6 +207,8 @@ if ($set['enablePayments'] == '1') {
 
 	include 'includes/header.php';
 	?>
+	
+
 	<div class="container page_block noTopBorder">
 		<hr class="mt-0" />
 
@@ -532,3 +534,4 @@ if ($set['enablePayments'] == '1') {
 		</div>
 	<?php } ?>
 </div>
+	
