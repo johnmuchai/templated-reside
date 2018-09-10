@@ -113,12 +113,167 @@
 
 		if (file_exists('pages/'.$page.'.php')) {
 			// Load the Page
+			?>
+			<div class="row" style="padding-left: 0;">
+
+				<div class="col-md-3">
+			
+       <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_sidebar.html -->
+      
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              
+              <button class="btn btn-success btn-block">New Project
+                <i class="mdi mdi-plus"></i>
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" <a href="index.php">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title"><?php echo $dashboardNavLink; ?></span>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              
+              <span class="menu-title"><?php echo $tenantsNavLink; ?></span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.php?action=leasedTenants"><?php echo $leasedTenNavLink; ?></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index.php?action=unleasedTenants"><?php echo $unleasedTenNavLink; ?></a>
+                </li>
+                 <li class="nav-item">
+                  <a class="nav-link" href="index.php?action=archivedTenants"><?php echo $archivedTenNavLink; ?></a>
+                </li>
+                 <li class="nav-item">
+                  <a class="nav-link" href="index.php?action=newTenant"><?php echo $newTenNavLink; ?></a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+           <li class="nav-item">
+           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+           
+              <span class="menu-title"><?php echo $propNavLink; ?></span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=leasedProperties"><?php echo $leasedPropNavLink; ?></a></li>
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=unleasedProperties"><?php echo $unleasedPropNavLink; ?></a></li>
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=newProperty"><?php echo $newPropNavLink; ?></a></li>
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=propertyLeases"><?php echo $propLeasesNavLink; ?></a></li>
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=imports">Import Properties and Tenants</a></li>
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=bulkApartments">Add bulk units</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+           <li class="nav-item ">
+           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+           
+              <span class="menu-title"><?php echo $servReqNavLink; ?></span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                     <li class="nav-item"><a class="nav-link" href="index.php?action=activeRequests"><?php echo $openReqNavLink; ?></a></li>
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=inactiveRequests"><?php echo $closedReqNavLink; ?></a></li>
+                      <li class="nav-item"><a class="nav-link" href="index.php?action=newRequest"><?php echo $newReqNavLink; ?></a></li>
+              </ul>
+            </div>
+          </li>
+
+           <li class="nav-item <?php echo $adminNav; ?>">
+           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+           
+              <span class="menu-title"><?php echo $adminsNavLink; ?></span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="index.php?action=adminAccounts"><?php echo $adminAccNavLink; ?></a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.php?action=newAdmin"><?php echo $newAdminNavLink; ?></a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.php?action=newManager">Create <?php echo $propManagerHead; ?></a></li>
+                  <li class="nav-item"><a class="nav-link" href="index.php?action=newManagerUser">Create <?php echo $propManagerHead; ?> User</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item <?php echo $manageNav; ?>">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic"> <span class="menu-title"><?php echo $manageNavLink; ?></span> <i class="menu-arrow"></i></a>
+                <ul class="nav flex-column sub-menu">
+                  <?php if ((checkArray('SITEALRTS', $auths)) || $rs_isAdmin != '') { ?>
+                    <li class="nav-item"><a class="nav-link" href="index.php?action=siteAlerts"><?php echo $siteAlertsNavLink; ?></a></li>
+                  <?php } ?>
+                  <li class="nav-item <?php echo $repNavLink; ?>">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic"><?php echo $repNavLink; ?></a>
+                    <ul class="nav flex-column sub-menu">
+                      <?php if ((checkArray('TENRPT', $auths)) || (checkArray('ADMINRPT', $auths)) || $rs_isAdmin != '') { ?>
+                        <li class="nav-item" ><a class="nav-link"  href="index.php?action=userReports"><?php echo $usrRepNavLink; ?></a></li>
+                      <?php } if ((checkArray('PROPRPT', $auths)) || (checkArray('LEASERPT', $auths)) || $rs_isAdmin != '') { ?>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=propertyReports"><?php echo $propRepNavLink; ?></a></li>
+                      <?php }
+                          if ($set['enablePayments'] == '1') {
+                            if ((checkArray('ACCTRPT', $auths)) || $rs_isAdmin != '') {
+                      ?>
+                            <li class="nav-item"><a class="nav-link" href="index.php?action=accountingReports"><?php echo $accRepNavLink; ?></a></li>
+                      <?php
+                          }
+                        }
+                        if ((checkArray('SERVRPT', $auths)) || $rs_isAdmin != '') {
+                      ?>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=serviceReports"><?php echo $servRepNavLink; ?></a></li>
+                      <?php } ?>
+                    </ul>
+                  </li>
+                  <?php if ((checkArray('FORMS', $auths)) || $rs_isAdmin != '') { ?>
+                    <li class="nav-item"><a class="nav-link" href="index.php?action=forms"><?php echo $formsNavLink; ?></a></li>
+                  <?php } if ((checkArray('SITECNT', $auths)) || $rs_isAdmin != '') { ?>
+                    <li class="nav-item"><a class="nav-link" href="index.php?action=siteContent"><?php echo $siteContNavLink; ?></a></li>
+                  <?php } if ((checkArray('SITESET', $auths)) || $rs_isAdmin != '') { ?>
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic"><?php echo $settingsNavLink; ?></a>
+                      <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=siteSettings"><?php echo $siteSetNavLink; ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=socialNetworks"><?php echo $socNetNavLink; ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=uploadSettings"><?php echo $uplSetNavLink; ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=paymentSettings"><?php echo $paySetNavLink; ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=servReqSettings"><?php echo $reqSetNavLink; ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=sliderSettings"><?php echo $slideSetNavLink; ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?action=importExport"><?php echo $impExptSetNavLink; ?></a></li>
+                      </ul>
+                    </li>
+                  <?php } if ((checkArray('SITELOGS', $auths)) || $rs_isAdmin != '') { ?>
+                    <li class="nav-link"><a class="nav-link" href="index.php?action=siteLogs"><?php echo $siteLogsNavLink; ?></a></li>
+                  <?php } ?>
+                </ul>
+              </li>
+        </ul>
+      </nav>
+      </div>
+      </div>
+      <div class="col-md-8"  style="padding-top:70px;">
+					 <?php
 			include('pages/'.$page.'.php');
 		} else {
 			$pageTitle = $pageNotFoundHeader;
 
 			if (($page != 'receipt') && ($page != 'workOrder')) {
 				include('includes/header.php');
+				
 			}
 
 			// Else Display an Error
@@ -132,12 +287,16 @@
 							</div>
 							'.$pageNotFoundQuip.'
 						</div>
-					</div>
+					</div>u
 				';
 		}
-
+		?>
+</div>
+</div>
+<?php
 		if (($page != 'receipt') && ($page != 'workOrder')) {
 			include('includes/footer.php');
 		}
 	}
 ?>
+				

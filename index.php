@@ -129,27 +129,27 @@ Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Son
 							<div class="col-md-2 agileits_w3layouts_about_counter_left c1 count-grid">
 							  <i class="fa fa-smile-o" aria-hidden="true"></i>
 								<span></span>
-									<a href="" class="href">Sign In</a>
+									<a href="sign-in.php">Sign In</a>
 							</div>
 							<div class="col-md-2 agileits_w3layouts_about_counter_left c2 count-grid">
 							<i class="fa fa-building-o" aria-hidden="true"></i>
 								<span></span>
-								<a href="">Available Properties</a>
+								<a href="view-property.php">Available Properties</a>
 							</div>
 							<div class="col-md-2 agileits_w3layouts_about_counter_left c3 count-grid">
 							 <i class="fa fa-home" aria-hidden="true"></i>
 								<span></span>
-									<a href="">Rental Application</a>
+									<a href="rental-application.php">Rental Application</a>
 							</div>
 							<div class="col-md-2 agileits_w3layouts_about_counter_left c4 count-grid">
 							 <i class="fa fa-users" aria-hidden="true"></i>
 								<span></span>
-								<a href="">About Us</a>
+								<a href="about-us.php">About Us</a>
 							</div>
 							<div class="col-md-2 agileits_w3layouts_about_counter_left c4 count-grid">
 								<i class="fa fa-users" aria-hidden="true"></i>
 								<span></span>
-								<a href="">Contact Us</a>
+								<a href="contact-us.php">Contact Us</a>
 							</div>
 
 						<div class="clearfix"></div>
