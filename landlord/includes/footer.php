@@ -50,8 +50,7 @@
 				';
 		}
 	?>
-	<script type="text/javascript" src="../js/simpleWeather.min.js"></script>
-	<script type="text/javascript" src="../js/simpleWeather.js"></script>
+	
 	<script type="text/javascript" src="../js/custom.js"></script>
 	<?php if (isset($datePicker)) { echo '<script type="text/javascript" src="../js/datetimepicker.js"></script>'; } ?>
 	<?php

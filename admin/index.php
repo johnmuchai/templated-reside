@@ -114,13 +114,10 @@
 		if (file_exists('pages/'.$page.'.php')) {
 			// Load the Page
 			?>
-			<div class="row" style="padding-left: 0;">
-
-				<div class="col-md-3">
-			
-       <div class="container-fluid page-body-wrapper">
+			<div class="row">
+        <div class="col-md-3">
+          <div class="container-fluid page-body-wrapper">
       <!-- partial:../../partials/_sidebar.html -->
-      
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
@@ -291,12 +288,13 @@
 				';
 		}
 		?>
-</div>
-</div>
+
 <?php
 		if (($page != 'receipt') && ($page != 'workOrder')) {
 			include('includes/footer.php');
 		}
 	}
 ?>
+</div>
+</div>
 				

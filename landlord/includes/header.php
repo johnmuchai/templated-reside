@@ -120,6 +120,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 	<meta name="description" content="">
 	<meta name="author" content="">
 
+	<link rel="stylesheet" href="../star/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../star/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../star/vendors/css/vendor.bundle.addons.css">
+
 	<title><?php echo $set['siteName'].' &middot; '.$pageTitle; ?></title>
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
@@ -132,128 +136,85 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'contactReq') {
 	<script src="js/html5shiv.min.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<link rel="stylesheet" href="../star/css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../star/images/favicon.png" />
 </head>
 
 <body>
-	<div class="container page_block noTopBorder noBotBorder">
-		<div class="header-cont">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="contact-text">
-						<?php echo $needHelpText; ?> <i class="fa fa-phone"></i> <?php echo $set['contactPhone']; ?>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="header-social-links">
-						<?php
-						echo $facebook;
-						echo $google;
-						echo $linkedin;
-						echo $pinterest;
-						echo $twitter;
-						echo $youtube;
-						?>
-					</div>
-				</div>
-			</div>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+   
+    <nav class="navbar default-layout col-md-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.html">
+          <img src="../images/newlogo.png" style="width:150px;height:60px; " />
 
-			<hr class="mt-10 mb-10" />
+        </a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+          <li class="nav-item">
+                <a href="../index.php" class="nav-link"><?php echo $homeNavLink; ?></a>
+              </li>
 
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only"><?php echo $toggleNavText; ?></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="index.php" style="height:169px;"><img src="../images/newlogo.png" /></a>
-					</div>
+      <li class="nav-item <?php echo $aboutNav; ?>"><a class="nav-link" href="../about-us.php"><?php echo $aboutUsNavLink; ?></a></li>
+	<li class="nav-item <?php echo $contactNav; ?>"><a  class="nav-link" href="../contact-us.php"><?php echo $contactUsNavLink; ?></a></li>
 
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-							<li class="<?php echo $homeNav; ?>"><a href="index.php"><?php echo $homeNavLink; ?></a></li>
-							<li class="<?php echo $propNav; ?> dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My <?php echo $propNavLink; ?> <i class="fa fa-angle-down"></i></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?action=unleasedProperties"><?php echo $availPropNavLink; ?></a></li>
-									<li><a href="index.php?action=leasedProperties"><?php echo "Leased Properties"; ?></a></li>
-									<li><a href="index.php?action=leasedTenants"><?php echo "Leased Tenants"; ?></a></li>
-									<li><a href="index.php?action=imports"><?php echo "Import Properties"; ?></a></li>
-									<li><a href="index.php?action=bulkApartments"><?php echo "Bulk Properties"; ?></a></li>
-									<li><a href="index.php?action=newProperty"><?php echo "New Property"; ?></a></li>
-									<li><a href="index.php?action=propertyLeases"><?php echo "Property Leases"; ?></a></li>
-
-								</ul>
-							</li>
-							<li class="dropdown <?php echo $tenNav; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $tenantsNavLink; ?> <i class="fa fa-angle-down"></i></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?action=leasedTenants"><?php echo $leasedTenNavLink; ?></a></li>
-									<li><a href="index.php?action=unleasedTenants"><?php echo $unleasedTenNavLink; ?></a></li>
-									<li><a href="index.php?action=archivedTenants"><?php echo $archivedTenNavLink; ?></a></li>
-									<li><a href="index.php?action=newTenant"><?php echo $newTenNavLink; ?></a></li>
-								</ul>
-							</li>
-							<li class="dropdown <?php echo $adminNav; ?>">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $adminsNavLink; ?> <i class="fa fa-angle-down"></i></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?action=newManagerUser">Create <?php echo $propManagerHead; ?> User</a></li>
-								</ul>
-							</li>
-
-
-							<?php if ($rs_userId != '') { ?>
-								<li class="<?php echo $userNav; ?> dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $myAccNavLink; ?> <i class="fa fa-angle-down"></i></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="index.php"><?php echo $dashboardNavLink; ?></a></li>
-										<li><a href="index.php?action=myProfile"><?php echo $myProfileNavLink; ?></a></li>
-									</ul>
-								</li>
-							<?php } ?>
-							<li class="<?php echo $aboutNav; ?>"><a href="../about-us.php"><?php echo $aboutUsNavLink; ?></a></li>
-							<li class="<?php echo $contactNav; ?>"><a href="../contact-us.php"><?php echo $contactUsNavLink; ?></a></li>
-							<?php if ($rs_adminId != '') { ?>
+             
+          </ul>
+          <?php if ($rs_userId != '') { ?>
+          <ul class="navbar-nav navbar-nav-right">
+          
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="index.php?action=myProfile"data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text"><?php echo $myAccNavLink; ?></span>
+              
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+            
+                <a class="dropdown-item" href="index.php"><?php echo $dashboardNavLink; ?></a>
+				<a class="dropdown-item" href="index.php?action=myProfile"><?php echo $myProfileNavLink;?></a>
+			<?php if ($rs_adminId != '') { ?>
 								<li class="<?php echo $manageNav; ?>"><a href="index.php?action=dashboard"><?php echo $manageNavLink; ?></a></li>
 							<?php } ?>
 							<?php if (($rs_adminId != '') || ($rs_userId != '')) { ?>
-								<li><a data-toggle="modal" href="#signOut"><?php echo $signOutNavLink; ?></a></li>
+								<a class="dropdown-item" data-toggle="modal" href="#signOut"><?php echo $signOutNavLink; ?></a>
 								<?php
 							} else {
 								if ($set['allowRegistrations'] == '1') {
 									?>
-									<li><a href="sign-in.php"><?php echo $signInUpNavLink; ?></a></li>
+									<a class="dropdown-item" href="sign-in.php"><?php echo $signInUpNavLink; ?></a>
 								<?php } else { ?>
-									<li><a href="sign-in.php"><?php echo $signInNavLink; ?></a></li>
+									<a class="dropdown-item" href="sign-in.php"><?php echo $signInNavLink; ?></a>
 									<?php
 								}
 							}
 							?>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</div>
+             
+            </div>
+          </li>
+        </ul>
+        <?php } ?>
+      </div>
 
-	<?php if (($rs_adminId != '') || ($rs_userId != '')) { ?>
-		<div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="signOutLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-						<?php if ($rs_adminId != '') { ?>
-							<p class="lead"><?php echo $rs_adminName; ?>, <?php echo $signOutConf; ?></p>
-						<?php } else { ?>
-							<p class="lead"><?php echo $rs_userFull; ?>, <?php echo $signOutConf; ?></p>
-						<?php } ?>
-					</div>
-					<div class="modal-footer">
-						<a href="../index.php?action=logout" class="btn btn-success btn-icon-alt"><?php echo $signOutNavLink; ?> <i class="fa fa-sign-out"></i></a>
-						<button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle"></i> <?php echo $cancelBtn; ?></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	<?php } ?>
+
+  </nav>
+</div>
+<div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="signOutLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="lead"><?php echo $rs_adminName; ?>, <?php echo $signOutConf; ?></p>
+      </div>
+      <div class="modal-footer">
+        <a href="../index.php?action=logout" class="btn btn-success btn-icon-alt"><?php echo $signOutNavLink; ?> <i class="fa fa-sign-out"></i></a>
+        <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle"></i> <?php echo $cancelBtn; ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+					

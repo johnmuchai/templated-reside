@@ -59,6 +59,15 @@
 			</div>
 		</div>
 	</div>
+	<script src="../star/vendors/js/vendor.bundle.base.js"></script>
+  <script src="../star/vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="../star/js/off-canvas.js"></script>
+  <script src="../star/js/misc.js"></script>
+  <!-- endinject -->
 	<script>
 	function isNumberKey(evt)
 				{

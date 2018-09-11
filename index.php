@@ -94,17 +94,17 @@ Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Son
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<h1><a class="navbar-brand" href="index.html"><img src="images/newlogo.PNG" alt="" height=50px;></a></h1>
+					<h1><a class="navbar-brand" href="index.php"><img src="images/newlogo.PNG" alt="" height=50px;></a></h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="index.html" class="menu__link">Home</a></li>
-							<li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
-							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Available Properties</a></li>
-							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Rental Application</a></li>
-							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
+							<li class="menu__item menu__item--current"><a href="index.php" class="menu__link">Home</a></li>
+							<li class="menu__item"><a href="about-us.php" class="menu__link">About</a></li>
+							<li class="menu__item"><a href="view-property.php" class="menu__link">Available Properties</a></li>
+							<li class="menu__item"><a href="rental-application.php" class="menu__link">Rental Application</a></li>
+							<li class="menu__item"><a href="contact-us.php" class="menu__link">Contact Us</a></li>
 						</ul>
 					</nav>
 				</div>

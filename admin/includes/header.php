@@ -115,17 +115,21 @@
     </nav>
     <!-- partial -->     
   </div>
+  <div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="signOutLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="lead"><?php echo $rs_adminName; ?>, <?php echo $signOutConf; ?></p>
+      </div>
+      <div class="modal-footer">
+        <a href="../index.php?action=logout" class="btn btn-success btn-icon-alt"><?php echo $signOutNavLink; ?> <i class="fa fa-sign-out"></i></a>
+        <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle"></i> <?php echo $cancelBtn; ?></button>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="../star/vendors/js/vendor.bundle.base.js"></script>
-  <script src="../star/vendors/js/vendor.bundle.addons.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="../star/js/off-canvas.js"></script>
-  <script src="../star/js/misc.js"></script>
-  <!-- endinject -->
+  
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
-</body>
