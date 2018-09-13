@@ -1,9 +1,5 @@
 	<div class="container footer_block noBotBorder mt-20">
 		<div class="row">
-			<div class="col-md-3">
-
-			</div>
-
 			<div class="col-md-5">
 				<h4 class="footer-hLine"><?php echo $recentActTitle; ?></h4>
 				<?php
@@ -29,7 +25,7 @@
 				<?php } ?>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="dateTime">
 					<div class="day"><?php echo date('j'); ?></div>
 					<div class="monthYear">

@@ -78,9 +78,8 @@ if(is_dir('install')) {
 	if (file_exists('pages/'.$page.'.php')) {
 		// Load the Page
 		?>
-		<div class="row">
-			<div class="col-md-3">
-			<div class="container-fluid page-body-wrapper">
+<div class="container-fluid page-body-wrapper">
+
       <!-- partial:../../partials/_sidebar.html -->
       
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -189,10 +188,11 @@ if(is_dir('install')) {
                 </ul>
               </li>
         </ul>
-      </nav>
-      </div>
-	</div>
-	<div class="col-md-8"  style="padding-top:70px;">
+			</nav>
+
+	<div class="main-panel">
+  <div class="content-wrapper">
+	<div class="col">
 	<?php
 			include('pages/'.$page.'.php');	
 	} else {
@@ -226,3 +226,6 @@ if(is_dir('install')) {
 ?>
 </div>
 </div>
+</div>
+</div>
+
